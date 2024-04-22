@@ -24,16 +24,25 @@
 
 
 .navbar{
+  display: flex;
   background-color: var(--sections);
   justify-content: space-around;
   height: 50px;
   align-items: center;
   border-radius: 18px 18px 0 0;
-  outline: var(--background) solid 1px;
+  outline: var(--sections) solid 1px;
   outline-offset: 1px;
-  padding: 28px;
-
+  padding: 0px 30px;
 }
+
+.navContainer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* . fixed bottom-0  w-full */
+
 
 .Picon{
   width: 30px;
@@ -72,6 +81,37 @@
   width: 10px;
 }
 
-.section:active span{
+.section:active,
+.section:focus {
   color: var(--background);
 }
+
+
+
+@media (min-width: 512px) {
+    .navContainer {
+      position: static;
+      bottom: auto;
+      height: 100vh;
+      width: 100px;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      float: right;
+    }
+    .section:hover span {
+      display: none;
+    }
+    .section:hover .Picon{
+      filter: none;
+      width: 30px;
+    }
+    .navbar{
+      flex-direction: column;
+      justify-content: space-around;
+      width: 36px;
+      padding: 0px 0px;
+      height: 30vh;
+      border-radius: 18px 18px 18px 18px;
+    }
+  }

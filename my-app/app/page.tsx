@@ -7,14 +7,12 @@ import { GiSkills } from "react-icons/gi";
 import { GoProjectRoadmap } from "react-icons/go";
 import { CiHeadphones } from "react-icons/ci";
 import { useEffect } from "react";
-import WebFont from 'webfontloader';
+import Home from "./Components/Home";
+import Header from "./Components/Header";
+// import WebFont from 'webfontloader';
 
 
-const Home = ()=> {
-  return(
-    <section></section>
-  );
-}
+
 
 const About = ()=> {
   return(
@@ -40,17 +38,18 @@ const Contact = ()=> {
   );
 }
 const NavBar = () =>{
-  //loading fonts
-  useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ['Droid Sans', 'Chilanka']
-      }
-    });
-   }, []);
+//   //loading fonts
+  // useEffect(() => {
+  //   WebFont.load({
+  //     google: {
+  //       families: ['Droid Sans', 'Chilanka']
+  //     }
+  //   });
+  //  }, []);
  
   return (
-    <ul className="navbar flex fixed bottom-0 w-full">
+    <div className="navContainer">
+      <ul className="navbar">
         <li><a className="section flex" href="#welcome-">
             <CiHome className="Picon"/>  <span>Home</span></a>
         </li>
@@ -70,8 +69,13 @@ const NavBar = () =>{
         <li><a className="section flex" href="#contact">
           <CiHeadphones className="Picon"/>  <span>Contact</span></a>
         </li>
-        
-    </ul>
+      </ul>
+      {/* <Home/> */}
+      <Header/>
+    </div>
+
+
+
   );
 }
 
