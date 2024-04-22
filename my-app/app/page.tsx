@@ -48,9 +48,10 @@ const NavBar = () =>{
   //  }, []);
  
   return (
+    <>
     <div className="navContainer">
       <ul className="navbar">
-        <li><a className="section flex" href="#welcome-">
+        <li><a className="section flex" href="#welcome-page">
             <CiHome className="Picon"/>  <span>Home</span></a>
         </li>
 
@@ -71,8 +72,9 @@ const NavBar = () =>{
         </li>
       </ul>
       {/* <Home/> */}
-      <Header/>
     </div>
+    <Header/>
+    </>
 
 
 
