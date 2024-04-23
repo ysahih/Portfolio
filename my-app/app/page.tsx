@@ -67,7 +67,7 @@ const NavBar = () =>{
           <GoProjectRoadmap className="Picon"/> <span>Work</span></a>
         </li>
         
-        <li><a className="section flex" href="#contact">
+        <li><a className="section flex  hidden-Icon" href="#contact">
           <CiHeadphones className="Picon"/>  <span>Contact</span></a>
         </li>
       </ul>

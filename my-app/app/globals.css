@@ -28,6 +28,7 @@
   display: flex;
   background-color: var(--sections);
   justify-content: space-around;
+  /* background-color: red; */
   height: 50px;
   align-items: center;
   border-radius: 18px 18px 0 0;
@@ -42,7 +43,6 @@
   bottom: 0;
   background-color: var(--background);
   /* background-color: red; */
-  padding-top: 2px;
   width: 100%;
 }
 
@@ -73,7 +73,7 @@
     bottom: 0;
   }
   to {
-    bottom: 30%;
+    bottom: 100%;
   }
 }
 
@@ -181,25 +181,29 @@
   }
 
   .connecHead{
-    height: 10vh;
-    /* min-height: 82px; */
+    height: 10vh;;
     display: flex;
     align-items: center;
-    margin-left: 10%;
-    /* width: 43vw;  */
-    /* justify-content: center; */
-    /* background-color: red; */
-
+    justify-content: center;
+    
   }
   
   .connecHead h2{
-    width: 115px;
-    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color:var(--sections);
+    /* background-color: red; */
+    width: 150px;
+    height: 30px;
+    color: var(--background);
     /* opacity: 1; */
   }
   
     hr{
     color: var(--sections);
+    background-color: #008080;
     width: 80%;
     margin: 0 auto;
     /* height: px; */
@@ -210,7 +214,6 @@
     grid-template-columns: 2fr 4fr;
     width: 90%;
     height: 72%;
-    /* gap: 10%; */
   }
 
     .socialIcon{
@@ -218,23 +221,25 @@
       height: 18px;
       border-radius: 20%;
       color: white;
-      transition: width 1s;
+      transition: width 2s;
       /* background-color: red; */
     }
-
+    
     .squared{
       width: 14px;
       height: 14px;
     }
-
+    
     .socials{
-      height: 80%;
+      height: 60%;
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
+
       /* background-color: red; */
     }
+    
     .myPhoto{
       height: 80%;
       border: 1px solid var(--sections);;
@@ -252,23 +257,30 @@
         outline: var(--sections) solid 1px;
         outline-offset: 1px;
         /* background-color: var(--sections); */
-
+        
+        animation: expandWidth 3s forwards;
       }
-      /* .smContainer:active{
-      /* .smContainer:focus{ 
-          .socialIcon{
-            color: var(--background);
-          }
-          background-color: var(--sections);
- 
-        } */
-
-    .smContainer:hover{
-      .socialIcon{
-        color: var(--background);
-        width:  20px;
-        height: 20px;
+      @keyframes expandWidth {
+        from {
+          width: 0;
+        }
+        to {
+          width: 30px;
+        }
       }
+  
+      
+      .socials:active > .smContainer:not(:hover){
+        filter: blur(6px);
+        transform: scale(0.9, 0.9);
+      }
+      .socials .smContainer:hover{
+        .socialIcon{
+          color: var(--background);
+          width:  20px;
+          height: 20px;
+        }
+        transform: scale(1.1, 1.1);
       background-color: white;
     }
 
@@ -282,34 +294,62 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
   }
 
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+
+.line{
+  background-color: var(--sections);
+  width: 80%;
+  height: 1px;
+}
+
+.footer p{
+  color: white;
+  font-weight: 100;
+  /* font-size: 10p; */
+}
+
+
 /* media */
 @media (min-width: 512px) {
   .options{
     display: none;
   }
-    .navContainer {
-      position: static;
-      bottom: auto;
-      height: 100vh;
-      width: 100px;
-      justify-content: center;
-      display: flex;
-      align-items: center;
-      float: right;
-    }
-    .section:hover span {
-      display: none;
-    }
-    .section:hover .Picon{
-      filter: none;
-      width: 30px;
-    }
-    .navbar{
-      flex-direction: column;
-      justify-content: space-around;
-      width: 36px;
-      padding: 0px 0px;
-      height: 30vh;
-      border-radius: 18px 18px 18px 18px;
-    }
+  .navContainer {
+    position: static;
+    bottom: auto;
+    height: 100vh;
+    width: 100px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    float: right;
   }
+  .section:hover span {
+    display: none;
+  }
+  .section:hover .Picon{
+    filter: none;
+    width: 30px;
+  }
+  .navbar{
+    flex-direction: column;
+    justify-content: space-around;
+    width: 36px;
+    padding: 0px 0px;
+    height: 30vh;
+    border-radius: 18px 18px 18px 18px;
+  }
+}
+@media (max-width: 512px) {
+  .hidden-Icon{
+    display: none;
+  }
+}

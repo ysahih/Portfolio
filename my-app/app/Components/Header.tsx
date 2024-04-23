@@ -4,13 +4,18 @@ import { ImLinkedin } from "react-icons/im";
 import { ImTwitter } from "react-icons/im";
 import { ImFacebook2 } from "react-icons/im";
 import { ImInstagram } from "react-icons/im";
+import { LiaPhoneAltSolid } from "react-icons/lia";
+
+
 import Form from "./Form";
 
 
 import { PiDotsThreeOutlineLight } from "react-icons/pi";
+import { useState } from "react";
 
 
 const Header = ()=>{
+    const [contact, setContact] = useState(false);
     return (
         <>
         <div className="header">
@@ -23,11 +28,11 @@ const Header = ()=>{
                     alt="ucef"
                 />
             </div>
-            <div className="options">
-                <PiDotsThreeOutlineLight className="Oicon"/>
+            <div className="options" onClick={()=>{setContact(!contact)}}>
+                <LiaPhoneAltSolid className="Oicon"/>
             </div>
         </div>
-        <div className="Connect">
+        {contact && <div className="Connect">
             <div className="connecHead">
                 <h2>Connect with me!</h2>
             </div>
@@ -51,8 +56,8 @@ const Header = ()=>{
                     </div>
                 </div>
 
-                <div className="myPhoto">
-                    <div>
+                <div className="">
+                    <div className="myPhoto">
                         <Image 
                             className="ucef"
                             src='/image.jpeg'
@@ -61,13 +66,16 @@ const Header = ()=>{
                             alt="uc3f"
                         />
                     </div>
-                    <div className="form">
+                    {/* <div className="form">
                         <Form />
-                    </div>
+                    </div> */}
                 </div>
-           
             </div>
-        </div>
+            <div className="footer">
+                    <div className="line"></div>
+                    <p>uc3f  -  2024</p>
+            </div>
+             </div>}
         </>
     );
 }
