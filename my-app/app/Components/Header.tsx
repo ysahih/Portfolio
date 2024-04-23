@@ -29,12 +29,40 @@ const Header = ()=>{
                 <PiDotsThreeOutlineLight className="Oicon"/>
             </div>
         </div>
-        <div className="infos">
-            <ImGithub    className="socials"/>
-            <ImLinkedin  className="socials"/>
-            <ImFacebook2 className="socials" />
-            <ImInstagram className="socials" />
-            <ImTwitter   className="socials"/>
+        <div className="Connect">
+            <div className="connecHead">
+                <h2>Connect with me!</h2>
+            </div>
+            <hr></hr>
+            <div className="infos">
+                <div className="socials">
+                    <div className="smContainer">
+                        <ImGithub    className="socialIcon"/>
+                    </div>
+                    <div className="smContainer">
+                        <ImLinkedin  className="socialIcon squared"/>
+                    </div>
+                    <div className="smContainer">
+                        <ImFacebook2 className="socialIcon squared" />
+                    </div>
+                    <div className="smContainer">
+                        <ImInstagram className="socialIcon squared" />
+                    </div>
+                    <div className="smContainer">
+                        <ImTwitter   className="socialIcon"/>
+                    </div>
+
+                </div>
+                <div className="myPhoto">
+                    <Image 
+                        className="ucef"
+                        src='/image.jpeg'
+                        width={80}
+                        height={40}
+                        alt="uc3f"
+                    />
+                </div>
+            </div>
         </div>
         </>
     );
