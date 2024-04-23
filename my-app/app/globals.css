@@ -143,6 +143,7 @@
     position: absolute;
     width: 100%;
     height: 20%;
+
     bottom: 0;
     left: 0;
     background-color: #ffffff;
@@ -166,9 +167,18 @@
     background-color: rgba(0, 0, 0, 0.3);
     outline: #008080 1px solid; 
     outline-offset: 2px;
-    /* background-color: red; */
-
+    animation: slideUp 2s forwards;
+  }
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
     }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
   .connecHead{
     height: 10vh;
@@ -189,16 +199,16 @@
   }
   
     hr{
-    color: var(--text);
+    color: var(--sections);
     width: 80%;
     margin: 0 auto;
-    background-color: red;
-    height: 1px;
+    /* height: px; */
   }
   
   .infos{
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    width: 90%;
     height: 72%;
     /* gap: 10%; */
   }
@@ -222,8 +232,16 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      align-items: center;
+      /* background-color: red; */
     }
-    
+    .myPhoto{
+      height: 80%;
+      border: 1px solid var(--sections);;
+      display: flex;
+      justify-content: center;
+      
+    }
     .smContainer{
         display: flex;
         align-items: center;
@@ -242,7 +260,7 @@
             color: var(--background);
           }
           background-color: var(--sections);
-
+ 
         } */
 
     .smContainer:hover{
@@ -255,7 +273,7 @@
     }
 
     .ucef{
-      background-color: red;
+      /* background-color: red; */
       border-radius: 50%;
       width: 100px;
       height: 100px;
@@ -263,12 +281,6 @@
       filter: brightness(120%);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
   }
-
-
-
-
-
-
 
 /* media */
 @media (min-width: 512px) {

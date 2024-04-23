@@ -4,9 +4,7 @@ import { ImLinkedin } from "react-icons/im";
 import { ImTwitter } from "react-icons/im";
 import { ImFacebook2 } from "react-icons/im";
 import { ImInstagram } from "react-icons/im";
-
-
-
+import Form from "./Form";
 
 
 import { PiDotsThreeOutlineLight } from "react-icons/pi";
@@ -33,7 +31,7 @@ const Header = ()=>{
             <div className="connecHead">
                 <h2>Connect with me!</h2>
             </div>
-            <hr></hr>
+            {/* <hr></hr> */}
             <div className="infos">
                 <div className="socials">
                     <div className="smContainer">
@@ -51,17 +49,23 @@ const Header = ()=>{
                     <div className="smContainer">
                         <ImTwitter   className="socialIcon"/>
                     </div>
+                </div>
 
-                </div>
                 <div className="myPhoto">
-                    <Image 
-                        className="ucef"
-                        src='/image.jpeg'
-                        width={80}
-                        height={40}
-                        alt="uc3f"
-                    />
+                    <div>
+                        <Image 
+                            className="ucef"
+                            src='/image.jpeg'
+                            width={80}
+                            height={40}
+                            alt="uc3f"
+                        />
+                    </div>
+                    <div className="form">
+                        <Form />
+                    </div>
                 </div>
+           
             </div>
         </div>
         </>
