@@ -160,10 +160,11 @@
 
   /*  */
   .Connect{
-    /* height: calc(100vh - 100px); */
     display: grid;
     grid-template-rows: 1fr 1.4fr 5fr 1.4fr;
     height: 100vh;
+    min-height: 570px;
+    /* background-color: red; */
     border-radius: 35px;
     width: 80vw;
     margin: 0px auto;
@@ -186,12 +187,11 @@
   }
 
   .connecHead{
-
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-
+    min-height: 60px;
   }
 
 .connecHead h2{
@@ -250,15 +250,7 @@
     /* background-color: red; */
     /* background-color: red; */
   }
-  
-  .myPhoto{
-    height: 80%;
-    border: 1px solid var(--sections);;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    
-  }
+
   .smContainer{
    
     display: flex;
@@ -366,12 +358,11 @@
 .paragraph{
   color: white;
   text-align: center;
-  /* background-color: red; */
   width: 96%;
   margin: auto auto;
   border: var(--sections) 1px solid;
   border-radius: 5px;
-
+  margin-bottom: 20px;
 
 }
 
@@ -432,18 +423,32 @@
 
 /*  */
 
+ .myPhoto{
+  height: 80%;
+  border: 1px solid var(--sections);;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  
+}
+
 .contact-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 2fr 2fr;
   max-width: 400px;
+  height: 100%;
+  width: 96%;
   margin: 0 auto;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
 }
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
+  color: white
+  /* margin-bottom: 0.5rem; */
 }
 
 input,
@@ -451,15 +456,20 @@ textarea {
   width: 100%;
   /* padding: 0.5rem; */
   border-radius: 5px;
+  outline: none;
   background-color: var(--background);
   border: 1px solid var(--sections);
 }
 
-button[type='submit'] {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.send{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.sendButton{
+  bottom: 0;
+
+
 }

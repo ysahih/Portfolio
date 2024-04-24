@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import emailjs from 'emailjs-com';
+import { IoSendSharp } from "react-icons/io5";
+
 
 
 
@@ -34,6 +36,7 @@ import emailjs from 'emailjs-com';
   // ------------------------------------------------
 
 import { useState } from 'react';
+import { Button } from '@mui/material';
 
 interface FormProps {
   onSubmit: (formData: FormData) => void;
@@ -65,10 +68,10 @@ const Form: React.FC<FormProps> = () => {
     e.preventDefault();
       
    emailjs.send("service_s5tsk8o","template_9rbucml",{
-     from_name: formData.name,
-     to_name: formData.name,
-     message: formData.message,
-     reply_to: formData.email,
+      from_name: formData.name,
+      // to_name: formData.name,
+      message: formData.message,
+      reply_to: formData.email,
      })
       .then(
           () => {
@@ -78,14 +81,13 @@ const Form: React.FC<FormProps> = () => {
                 console.log('FAILED...', error);
             }
       );
-    // onSubmit(formData);
     setFormData({ name: '', email: '', message: '' });
   };
 
   return (
     <form className="contact-form" id="contact-form" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Name</label>
         <input
           type="text"
           id="name"
@@ -96,7 +98,7 @@ const Form: React.FC<FormProps> = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
@@ -107,7 +109,7 @@ const Form: React.FC<FormProps> = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="message">Message:</label>
+        <label htmlFor="message">Message</label>
         <textarea
           id="message"
           name="message"
@@ -116,7 +118,16 @@ const Form: React.FC<FormProps> = () => {
           required
         ></textarea>
       </div>
-      <button type="submit">Send Message</button>
+      
+      <div className='send'>
+          <Button variant="contained"
+            className='sendButton'
+            endIcon={<IoSendSharp/>}
+            style={{ backgroundColor: '#008080', width: '90px' , height:'30px', fontSize: '10px'}}
+            >Send
+          </Button>
+      </div>
+    
     </form>
   );
 };

@@ -52,7 +52,8 @@ const Header = ()=>{
                 <LiaPhoneAltSolid className="Oicon"/>
             </div>
         </div>
-        {contact && <div className="Connect">
+        {/* contact && */}
+        { <div className="Connect">
             <div className="connecHead">
                 <hr className="line"/>
                 <h2>Connect with </h2>
@@ -87,7 +88,7 @@ const Header = ()=>{
                           variant="contained"
                           tabIndex={-1}
                           startIcon={< IoCloudDownloadOutline style={{width:'15px'}}/>}
-                          style={{ backgroundColor: '#008080', width: '90px', fontSize: '10px'}}
+                          style={{ backgroundColor: '#008080', width: '90px' , height:'30px', fontSize: '10px'}}
                         >
                           resume
                         </Button>
