@@ -1,23 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lalezar&display=swap'); */
-/* //Deep Blue: #003366 */
-/* // Silver: #C0C0C0 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lalezar&display=swap');
+
 
 :root {
   --sections:  #008080;
   --background: #333333;
   --text : rgb(219, 212, 212);
   background-color: var(--background);
-
+  
 }
 
 
 *{
-  font-family: 'Droid Sans';
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
   
@@ -354,15 +351,19 @@
 }
 
 
-
 .paragraph{
+  display: flex;
+  align-items: center;
   color: white;
   text-align: center;
   width: 96%;
+  min-height: 90px;
+  height: 80%;
+  font-size: 12px;
   margin: auto auto;
   border: var(--sections) 1px solid;
   border-radius: 5px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 
 }
 
