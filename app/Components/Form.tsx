@@ -77,8 +77,7 @@ const Form = () => {
      })
       .then(
           () => {
-            // toast.success('')
-            toast('Email sent successfully!',
+            toast('Email sent!',
               {
                 icon: '👏',
                 style: {
@@ -90,7 +89,7 @@ const Form = () => {
             );
             },
             (error) => {
-              toast.error("This didn't work.")
+              toast.error("Error.")
             }
       );
     setFormData({ name: '', email: '', message: '' });

@@ -53,8 +53,8 @@ const Header = ()=>{
                 <LiaPhoneAltSolid className="Oicon"/>
             </div>
         </div>
-        {/* contact && */}
-        { <div className="Connect">
+        {/*  */}
+        {contact && <div className="Connect">
             <div className="connecHead">
                 <hr className="line"/>
                 <h2>Get in Touch.</h2>

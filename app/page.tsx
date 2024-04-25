@@ -6,16 +6,12 @@ import { Toaster } from "react-hot-toast";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Home from "./Components/Home";
-// import WebFont from 'webfontloader';
+import About from "./Components/About";
 
 
 
 
-const About = ()=> {
-  return(
-    <section></section>
-  );
-}
+
 
 const Skills = ()=> {
   return(
@@ -73,7 +69,9 @@ const Body = ()=>{
         <NavBar/>
         <Header/>
       </div>}
-      {/* <Home/> */}
+      <Home/>
+      <About/>
+
     </>
   );
 }
