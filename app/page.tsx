@@ -70,7 +70,7 @@ const Body = ()=>{
         <Header/>
       </div>}
       <Home/>
-      <About/>
+      {/* <About/> */}
 
     </>
   );
