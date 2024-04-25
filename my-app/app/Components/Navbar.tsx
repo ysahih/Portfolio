@@ -7,12 +7,26 @@ import { CiHeadphones } from "react-icons/ci";
 import { useEffect } from "react";
 
 const NavBar = () =>{
+
+  useEffect(() => {
+    const button = document.getElementById('home');
+
+    // Add the hover effect class when the component mounts
+    button?.classList.add('homehover');
+
+    // Cleanup function to remove the hover effect class when the component unmounts
+    return () => {
+      button?.classList.remove('homehover');
+    };
+  }, []);
+
+
     return (
       <>
       <div className="navContainer">
         <ul className="navbar">
           <li><a className="section flex" href="#welcome-page">
-              <CiHome className="Picon"/>  <span>Home</span></a>
+              <CiHome className="Picon"  id="home"/>  <span>Home</span></a>
           </li>
   
           <li><a className="section flex" href="#about">

@@ -90,7 +90,10 @@
   color: var(--background);
 }
 
+.homehover{
+  color: var(--background);
 
+}
 
   /*---: */
 
@@ -536,6 +539,7 @@ textarea {
   font-weight: 800;
   opacity: .6;
 }
+
 
 .fourthline{
   opacity: .6;

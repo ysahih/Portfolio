@@ -14,7 +14,7 @@
     "@mui/material": "^5.15.15",
     "@react-pdf/renderer": "^3.4.2",
     "emailjs-com": "^3.2.0",
-    "next": "14.2.2",
+    "next": "^14.2.2",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",

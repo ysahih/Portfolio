@@ -17,7 +17,7 @@ const Home = ()=> {
           </div>
 
           <div className="me">
-            <p className="fourthline">I am a dedicated software developer and student at 42 network. Skilled in multiple programming languages and familiar with software development lifecycle. Committed to writing      efficient code and expanding skills. Strong problem-solving ability and collaborative mindset for team projects.</p>
+            <p className="fourthline">I work on building websites. I'm a <strong>  software engineer </strong> who specializes in front-end web design and development. I know my way around multiple programming languages and I'm all about writing efficient code. I've got a knack for problem-solving and I love working with teams on projects.</p>
           </div>
 
           <div className="githubutton">
