@@ -162,13 +162,11 @@
 
   /*  */
   .Connect{
-    height: 80vh;
-    max-height: 900px;
-    min-height: 500px;
-    /* display: grid; */
-    /* grid-auto-flow: column; */
-    /* grid-template-columns: 1fr 2fr 6fr 1fr; */
-    /* background-color: red; */
+    height: calc(100vh - 150px);
+    min-width: 200px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 3fr 1fr;
+    min-height: 580px;
     border-radius: 35px;
     width: 90vw;
     margin: 0px auto;
@@ -178,7 +176,8 @@
     animation: slideUp 1s forwards;
     padding: 1;
     margin-bottom: 60px;
-    /* gap: 5px; */
+    /* background-color: red; */
+    gap: 5px;
   }
   @keyframes slideUp {
     0% {
@@ -225,7 +224,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
+    gap: 5px;
+
+
+    
 
   }
   
@@ -235,18 +238,13 @@
     height: 20px;
     border-radius: 20%;
     color: white;
-    /* transition: width 2s; */
-    /* padding-right: 8px; */
-    /* background-color: red; */
   }
   .socials{
     
     /* height: 0%; */
     display: flex;
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* background-color: red; */
-    /* background-color: red; */
+    width: 100%;
+    justify-content: space-around;
   }
 
   .smContainer{
@@ -274,7 +272,6 @@
         width: 90%;
         margin: 0 auto;
         display: flex;
-        background-color: red;
         flex-direction: column;
         align-items: center;
       }
@@ -282,8 +279,7 @@
       .resume{
         display: flex;
         justify-content: center;
-        align-items: flex-end;
-        
+        align-items: center;
       }
       .resumeContainer p{
         font-size: 10px;
@@ -347,7 +343,6 @@
 }
 
 .paraContainer{
-  /* background-color: red; */
   width: 90%;
   margin: 0 auto;
 }

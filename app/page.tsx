@@ -73,7 +73,7 @@ const Body = ()=>{
         <NavBar/>
         <Header/>
       </div>}
-      <Home/>
+      {/* <Home/> */}
     </>
   );
 }
