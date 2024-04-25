@@ -32,6 +32,7 @@ const DownladCV: React.FC<Donloadprops> = ({ fileUrl, fileName }) => {
 import { PiDotsThreeOutlineLight } from "react-icons/pi";
 import { useState } from "react";
 import Parap from "./Parag";
+import Link from "next/link";
 
 
 const Header = ()=>{
@@ -42,7 +43,7 @@ const Header = ()=>{
             <div className="logo">
                 <Image
                     className="logoIcon"
-                    src="/ucefLogo.svg"
+                    src="/asahih.png"
                     width={35}
                     height={35}
                     alt="ucef"
@@ -52,39 +53,62 @@ const Header = ()=>{
                 <LiaPhoneAltSolid className="Oicon"/>
             </div>
         </div>
-        {/* contact && */}
-        { <div className="Connect">
+        
+        {contact && <div className="Connect">
             <div className="connecHead">
                 <hr className="line"/>
-                <h2>Connect with </h2>
+                <h2>Connect with me.</h2>
             </div>
+
             <div className="intro">
                     <Parap className={"paragraph"}/>
             </div>
             {/* <hr></hr> */}
             <div className="infos">
-                <div className="sideIcons">
-
-                    <div className="socials">
-                        <div className="smContainer">
-                            <ImGithub    className="socialIcon"/>
-                        </div>
-                        <div className="smContainer">
-                            <ImLinkedin  className="socialIcon squared"/>
-                        </div>
-                        <div className="smContainer">
-                            <ImFacebook2 className="socialIcon squared" />
-                        </div>
-                        <div className="smContainer">
-                            <ImInstagram className="socialIcon squared" />
-                        </div>
-                        <div className="smContainer">
-                            <ImTwitter   className="socialIcon"/>
+                    <div className="myPhoto">
+                        <div className="form">
+                            <Form />
                         </div>
                     </div>
 
-                    <div className="resume">
-                    <Button
+                <div className="sideIcons">
+                    <div className="socials">
+                        
+                        <div className="smContainer">
+                          <a href="https://github.com/ysahih" target="_blank">
+                            <ImGithub className="socialIcon" />
+                          </a>
+                        </div>
+                        
+                        <div className="smContainer">
+                            <a href="https://www.linkedin.com/in/youssef-sahih/" target="_blank">
+                                <ImLinkedin  className="socialIcon squared"/>
+                            </a>
+                        </div>
+
+                        <div className="smContainer">
+                        <a href="https://www.facebook.com/ucef.02/" target="_blank">
+                            <ImFacebook2 className="socialIcon squared" />
+                            </a>
+                        </div>
+
+                        <div className="smContainer">
+                        <a href="https://www.instagram.com/uc3f.02/" target="_blank">
+                            <ImInstagram className="socialIcon squared" />
+                        </a>
+                        </div>
+                            
+                        <div className="smContainer">
+                            <a href="https://twitter.com/uc3f02" target="_blank">
+                            <ImTwitter   className="socialIcon"/>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div className="resume">
+                        <Button
                           variant="contained"
                           tabIndex={-1}
                           startIcon={< IoCloudDownloadOutline style={{width:'15px'}}/>}
@@ -94,28 +118,10 @@ const Header = ()=>{
                         </Button>
                         
                     </div>
-                </div>
-                
-                <div className="">
-                    <div className="myPhoto">
-                        {/* <Image 
-                            className="ucef"
-                            src='/image.jpeg'
-                            width={80}
-                            height={40}
-                            alt="uc3f"
-                        /> */}
-                    <div className="form">
-                        <Form />
-                    </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div className="footer">
+            {/* <div className="footer">
                     <div className="line"></div>
                     <p>uc3f  -  2024</p>
-            </div>
+            </div> */}
              </div>}
         </>
     );

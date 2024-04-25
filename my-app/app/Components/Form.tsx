@@ -37,10 +37,11 @@ import { IoSendSharp } from "react-icons/io5";
 
 import { useState } from 'react';
 import { Button } from '@mui/material';
+import toast from 'react-hot-toast';
 
-interface FormProps {
-  onSubmit: (formData: FormData) => void;
-}
+// interface FormProps {
+//   onSubmit: (formData: FormData) => void;
+// }
 
 interface FormData {
   name: string;
@@ -48,7 +49,8 @@ interface FormData {
   message: string;
 }
 
-const Form: React.FC<FormProps> = () => {
+const Form = () => {
+  
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -75,10 +77,20 @@ const Form: React.FC<FormProps> = () => {
      })
       .then(
           () => {
-              console.log('SUCCESS!'); //thoasts
+            // toast.success('')
+            toast('Email sent successfully!',
+              {
+                icon: '👏',
+                style: {
+                  borderRadius: '10px',
+                  background: '#008080',
+                  color: '#fff',
+                },
+              }
+            );
             },
             (error) => {
-                console.log('FAILED...', error);
+              toast.error("This didn't work.")
             }
       );
     setFormData({ name: '', email: '', message: '' });
@@ -121,6 +133,7 @@ const Form: React.FC<FormProps> = () => {
       
       <div className='send'>
           <Button variant="contained"
+            type='submit'
             className='sendButton'
             endIcon={<IoSendSharp/>}
             style={{ backgroundColor: '#008080', width: '90px' , height:'30px', fontSize: '10px'}}
