@@ -69,8 +69,8 @@ const Body = ()=>{
         <NavBar/>
         <Header/>
       </div>}
-      <Home/>
-      {/* <About/> */}
+      {/* <Home/> */}
+      <About/>
 
     </>
   );
