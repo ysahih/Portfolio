@@ -25,7 +25,7 @@ const Home = ()=> {
               className='sendButton'
               startIcon={<VscGithubAlt/>}
               style={{ backgroundColor: '#008080', width: '90px' , height:'30px', fontSize: '12px', fontFamily: 'Montserrat Alternates', textTransform: 'lowercase'}}
-              >Gtihub
+              >Github
             </Button>
           </div>
         </div> 

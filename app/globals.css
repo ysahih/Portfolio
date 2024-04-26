@@ -19,7 +19,7 @@
   font-family: 'Montserrat Alternates', sans-serif;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /* overflow-x: hidden; */
   
 }
 
@@ -566,7 +566,7 @@ textarea {
 
 .sectionHeader{
 
-  /* animation: slideDown 1s forwards; */
+  animation: slideDown 1s forwards;
 }
 
 @keyframes slideDown {
@@ -599,7 +599,6 @@ textarea {
 
 .skilltype{
   display: flex;
-  background-color: red;
   align-items: center;
   gap: 3%;
 }
@@ -614,9 +613,10 @@ textarea {
   animation: slideLeft 1s forwards;
 
 }
+
 @keyframes slideLeft {
   0% {
-    transform: translateX(200%);
+    transform: translateX(10vw);
   }
   100% {
     transform: translateX(0);
@@ -633,7 +633,7 @@ textarea {
 
 @keyframes slideRight {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-8vw);
   }
   100% {
     transform: translateX(0);
@@ -684,8 +684,3 @@ textarea {
   
 }
 
-
-.C{
-  color: white;
-
-}
