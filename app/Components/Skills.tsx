@@ -1,5 +1,8 @@
 import React from 'react';
-import { FaExternalLinkAlt } from "react-icons/fa";
+import Image from 'next/image';
+// import { CPlain } from 'devicons-react';
+
+import CPlain from 'devicons-react/lib/icons/CPlain';
 
 
 const Skills: React.FC = () => {
@@ -36,13 +39,34 @@ const Skills: React.FC = () => {
         </div>
           
         <ul  className='skillName'>
-          <li> _ Collaboration</li>
+          <li>_ Collaboration</li>
           <li> _ Relationships</li>
           <li> _ Group management</li>
           <li> _ Interpersonal interactions</li>
           <li> _ Rigor</li>
           <li> _ Problem-solving</li>
           <li> _ Communication</li>
+        </ul>
+      </div>
+      <div className="skills-section">
+        <div className='skilltype'>
+          <hr />
+          <h3>Tools</h3>
+        </div>
+          
+        <ul  className='skillName'>
+          <li> <Image
+                className='C'
+                src="/C.svg"
+                width={40}
+                height={40}
+                alt="C"/> C</li>
+          <li> _ </li>
+          <li> _ </li>
+          <li> _ </li>
+          <li> _ </li>
+          <li> _ </li>
+          <li> _ </li>
         </ul>
       </div>
 

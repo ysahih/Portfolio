@@ -610,9 +610,9 @@ textarea {
   word-spacing: 5px;
   font-size: 1.4rem;
   opacity: .8;
-  visibility: hidden;  
-  visibility: visible;
+  min-width: 130px;
   animation: slideLeft 1s forwards;
+
 }
 @keyframes slideLeft {
   0% {
@@ -644,15 +644,22 @@ textarea {
 
 .skills{
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 50px;
-
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
+  @media (min-width: 712px) {
+    .skills {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skills-section:last-child {
+      grid-row: span 2;
+    }
+  }
 
 .skills-section{
   padding: 20px;
-  
 }
 
 
@@ -660,9 +667,9 @@ textarea {
   padding: 2px;
   opacity: .5;
 }
+
 .skillName{
   padding: 10px;
-  
   font-family: "Asap Condensed", sans-serif;
   font-weight: 500;
   color : white;
@@ -672,3 +679,13 @@ textarea {
   opacity: 1;
 }
 
+
+.skills-section:last-child{
+  
+}
+
+
+.C{
+  color: white;
+  
+}
