@@ -15,10 +15,11 @@
 }
 
 
-*{
+* {
   font-family: 'Montserrat Alternates', sans-serif;
   margin: 0;
   padding: 0;
+  overflow: hidden;
   
 }
 
@@ -27,7 +28,6 @@
   display: flex;
   background-color: var(--sections);
   justify-content: space-around;
-  /* background-color: red; */
   height: 50px;
   align-items: center;
   border-radius: 18px 18px 0 0;
@@ -37,11 +37,12 @@
 }
 
 .navContainer{
-  z-index: 3;
   position: fixed;
+  /* position: relative; */
   bottom: 0;
+  z-index: 3;
+
   background-color: var(--background);
-  
   width: 100%;
 }
 
@@ -511,7 +512,7 @@ textarea {
   flex-direction: column;
   align-items: center;
   font-weight: 700;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   justify-content: space-around;
   width : 200px;
   height: 40px; 
@@ -565,12 +566,12 @@ textarea {
 
 .sectionHeader{
 
-  animation: slideDown 1s forwards;
+  /* animation: slideDown 1s forwards; */
 }
 
 @keyframes slideDown {
   0% {
-    transform: translateY(-200%);
+    transform: translateY(-100%);
   }
   100% {
     transform: translateX(0);
@@ -591,15 +592,14 @@ textarea {
 .skills-container .sectionHeader{
   align-self: center;
   width: 300px;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   justify-content: center;
 }
-/* justify-content: space-between; */
+
 
 .skilltype{
   display: flex;
-  width: 50vw;
-  width: 100%;
+  background-color: red;
   align-items: center;
   gap: 3%;
 }
@@ -687,5 +687,5 @@ textarea {
 
 .C{
   color: white;
-  
+
 }
