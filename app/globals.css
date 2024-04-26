@@ -162,22 +162,19 @@
 
   /*  */
   .Connect{
-    height: calc(100vh - 150px);
+    height: 60vh;
     min-width: 300px;
     display: grid;
     grid-template-rows: 1fr 1fr 5fr 1fr;
-    min-height: 590px;
+    min-height: 500px;
     max-height: 800px;
     border-radius: 35px;
-    width: 90vw;
-    margin: 0px auto;
+    width: 60vw;
+    margin: 10px auto;
     background-color: rgba(0, 0, 0, 0.3);
-    outline: #008080 1px solid; 
-    outline-offset: 2px;
     animation: slideUp 1s forwards;
     padding: 1;
     margin-bottom: 60px;
-    /* background-color: red; */
     gap: 5px;
   }
   @keyframes slideUp {
@@ -196,15 +193,13 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    min-height: 60px;
-    
+
   }
 
 .connecHead h2{
     position: absolute;
     background-color: var(--sections); 
     color: var(--background);
-    /* padding: 0 10px;  */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -308,17 +303,6 @@
       background-color: white;
     }
 
-    .ucef{
-      /* background-color: red; */
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      filter: brightness(120%);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-  }
-
-
 
 .paraContainer{
   width: 90%;
@@ -329,13 +313,12 @@
   display: flex;
   align-items: start;
   color: white;
+  opacity: .6;
   text-align: center;
   width: 90%;
   min-height: 90px;
-  /* height: 80%; */
   font-size: 12px;
   margin: auto auto;
-  /* border: var(--sections) 1px solid; */
   border-radius: 5px;
   
   /* background-color: red; */
@@ -347,7 +330,6 @@
 @media (max-height: 729px) {
   .smContainer{
     border: none;
-    /* transform: translate(-10px, -10px); */
   }
   .socials .smContainer:hover{
     .socialIcon{
@@ -400,37 +382,27 @@
 /*  */
 
  .myPhoto{
-
-  border: 1px solid var(--sections);;
-  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80%;
-  height: 80%;
-  /* max-width: 200px; */
-  min-height: 310px;
-  /* background-color: red; */
+  height: 70%;
+  min-height: 210px;
+  
 }
 
 .contact-form {
   display: grid;
   align-items: center;
   grid-template-rows: 1fr 1fr 2fr 1fr;
-  /* max-width: 700px; */
+  font-size: 12px;
   height: 90%;
-  /* width: 90%; */
   margin: 0 auto;
-}
-
-.form-group {
-  margin-bottom: .5rem;
 }
 
 label {
   display: block;
   color: white
-  /* margin-bottom: 0.5rem; */
 }
 
 input,
@@ -438,11 +410,11 @@ textarea {
   max-height: 70px;
   width: 100%;
   font-size: 1rem;
-  box-sizing: border-box;
   border-radius: 5px;
-  /* outline: none; */
+
   color: var(--text);
   background-color: var(--background);
+
   border: 1px solid var(--sections);
 }
 
@@ -458,7 +430,6 @@ textarea {
 /*  */
 .landing{
   background-color: #232323;
-  opacity: ;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -466,7 +437,6 @@ textarea {
 }
 
 .sahihLogo{
-  /* width: 0; */
   width: 0;
   height: 0;
   transition: width 1s, height 1s;
@@ -534,19 +504,25 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* gap: 10%; */
-  height: 200vh;
   max-height: 800px;
+  margin-bottom: 100px;
   min-width: 300px;
 }
 
-.aboutHeader{
+@media (max-width: 300px) and (max-height: 800px) {
+  .about{
+      margin-bottom: 200px;
+    }
+}
+
+.sectionHeader{
   display: flex;
   flex-direction: column;
   align-items: center;
   font-weight: 700;
+  font-size: 1.6rem;
   justify-content: space-around;
-  width : 124px;
+  width : 200px;
   height: 40px;
   
 }
@@ -590,4 +566,94 @@ textarea {
 .ysahih:hover{
   opacity: 1;
   border: none;
+}
+
+/* Skills */
+
+
+.skills-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  height: 80vh;
+  min-width: 300px;
+  gap: 5%;
+
+}
+
+.skills-container .sectionHeader{
+  align-self: center;
+  width: 300px;
+  font-size: 1.6rem;
+  justify-content: center;
+}
+/* justify-content: space-between; */
+
+.skilltype{
+  display: flex;
+  width: 50vw;
+  width: 100%;
+  align-items: center;
+  gap: 3%;
+}
+
+.skilltype h3 {
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: 400;
+  word-spacing: 5px;
+  font-size: 1.4rem;
+  opacity: .8;
+  visibility: hidden;  
+  visibility: visible;
+}
+
+.skilltype .show {
+}
+
+
+.skilltype hr{
+  margin: 0;
+  width: 30%;
+  height: 2px;
+  border-radius: 2px;
+  animation: slideRight 1s forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.skills{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.skills-section{
+  padding: 20px;
+  
+}
+
+
+.skillName li{
+  padding: 2px;
+  opacity: .5;
+}
+.skillName{
+  padding: 10px;
+  
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: 500;
+  color : white;
+}
+
+.skillName li:hover{
+  opacity: 1;
 }

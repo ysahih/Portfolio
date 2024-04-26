@@ -7,17 +7,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Home from "./Components/Home";
 import About from "./Components/About";
-
-
-
-
-
-
-const Skills = ()=> {
-  return(
-    <section></section>
-  );
-}
+import Skills from "./Components/Skills";
 
 const Work = ()=> {
   return(
@@ -70,7 +60,8 @@ const Body = ()=>{
         <Header/>
       </div>}
       {/* <Home/> */}
-      <About/>
+      {/* <About/> */}
+      <Skills/>
 
     </>
   );
