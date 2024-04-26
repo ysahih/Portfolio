@@ -104,8 +104,6 @@
     height: 82px;
     align-items: center;
     min-width: 300px;
-    /* background-color: red; */
-    /* margin-bottom: 10px; */
 
 
   }
@@ -124,24 +122,23 @@
     
   }
   
-  .options{
+  .options {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    transition: background-color 0.5s ease-in-out;
-    transition: transform 0.3s ease-in-out;
+    transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
   }
   
-  .options:hover {
+  .clicked {
     transform: scale(1.2) rotate(-15deg);
     background-color: var(--sections);
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   }
   
-  .options:before {
+  .clicked::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -155,10 +152,9 @@
     transition: transform 0.3s ease-in-out;
   }
   
-  .options:hover:before {
+  .clicked.clicked::after {
     transform: scaleY(1);
   }
-
 
   /*  */
   .Connect{
@@ -170,6 +166,7 @@
     max-height: 800px;
     border-radius: 35px;
     width: 60vw;
+    max-width: 400px;
     margin: 10px auto;
     background-color: rgba(0, 0, 0, 0.3);
     animation: slideUp 1s forwards;
@@ -576,7 +573,7 @@ textarea {
   display: flex;
   flex-direction: column;
   color: white;
-  height: 80vh;
+  height: 90vh;
   min-width: 300px;
   gap: 5%;
 
@@ -633,7 +630,8 @@ textarea {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  
+  padding-bottom: 50px;
+
 }
 
 .skills-section{

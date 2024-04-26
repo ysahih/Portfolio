@@ -4,10 +4,12 @@ import NavBar from "./Components/Navbar";
 import Header from "./Components/Header";
 import { Toaster } from "react-hot-toast";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Home from "./Components/Home";
 import About from "./Components/About";
 import Skills from "./Components/Skills";
+import RenderContext from "./Contexts/rendre";
+import Contact from "./Components/Contact";
 
 const Work = ()=> {
   return(
@@ -15,11 +17,6 @@ const Work = ()=> {
   );
 }
 
-const Contact = ()=> {
-  return(
-    <section></section>
-  );
-}
 
 const Land = (props: any)=>{
   return (
@@ -41,6 +38,8 @@ const Body = ()=>{
 
   const [landing, setLanding] = useState(true);
   const [logo, setlogo] = useState(false);
+  
+  const renderContext = useContext(RenderContext);
 
   useEffect(()=>{
     const timer = setTimeout(()=>{
@@ -57,11 +56,12 @@ const Body = ()=>{
       {landing && <Land logo={logo}/>}
       {!landing && <div>
         <NavBar/>
-        <Header/>
+        <Header />
       </div>}
-      {/* <Home/> */}
-      {/* <About/> */}
-      <Skills/>
+          { renderContext?.render === 'home' && <Home/>}
+          { renderContext?.render === 'about' && <About/>}
+          { renderContext?.render === 'skills' && <Skills/>}
+          { renderContext?.render === 'connect' && <Contact/>}
 
     </>
   );
@@ -69,11 +69,15 @@ const Body = ()=>{
 
 
 export default function App() {
+  const [render, setRender] = useState('home');
+  
   return (
     <>
        <div>
         <Toaster/>
-        <Body/>
+        <RenderContext.Provider value={{render, setRender}}>
+          <Body/>
+        </RenderContext.Provider>
       </div>
     </>
   );
