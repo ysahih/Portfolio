@@ -22,7 +22,6 @@ const DownladCV: React.FC<Donloadprops> = ({ fileUrl, fileName }) => {
 
 // export default DownloadButton;
 
-
 import { PiDotsThreeOutlineLight } from "react-icons/pi";
 import { useContext, useState } from "react";
 import Parap from "./Parag";
@@ -45,7 +44,7 @@ const Header = ()=>{
                     alt="ucef"
                 />
             </div>
-            <div className={`options ${render?.render === 'connect' ? 'clicked' : ''}`} onClick={()=>{render?.setRender('connect')}}>
+            <div className={`options ${render?.render === 'connect' ? 'clicked' : ''}`} onClick={()=>{ render?.render === 'connect' ? render?.setRender('home') : render?.setRender('connect')}}>
                 <LiaPhoneAltSolid className="Oicon"/>
             </div>
         </div>

@@ -86,13 +86,8 @@
 }
 
 .section:active,
-.section:focus {
+.section:focus , .default{
   color: var(--background);
-}
-
-.homehover{
-  color: var(--background);
-
 }
 
   /*---: */
@@ -450,7 +445,6 @@ textarea {
   justify-content: center;
   height: calc(100vh - 130px);
   min-height: 400px;
-  /* height: 80vh; */
 }
 
 .welcome{
@@ -460,9 +454,8 @@ textarea {
   height: 70%;
   width: 80%;
   color: white;
-  /* gap: 30px; */
-
 }
+
 .firstline{
   font-family: "Montserrat Alternates", sans-serif;
   font-style: italic;
@@ -503,6 +496,7 @@ textarea {
   align-items: center;
   max-height: 800px;
   margin-bottom: 100px;
+  padding: 20px;
   min-width: 300px;
 }
 
@@ -520,9 +514,10 @@ textarea {
   font-size: 1.6rem;
   justify-content: space-around;
   width : 200px;
-  height: 40px;
-  
+  height: 40px; 
 }
+
+
 
 .aboutme{
   text-align: justify;
@@ -534,7 +529,7 @@ textarea {
 .aboutme p{
   font-family: "Asap Condensed", sans-serif;
   font-weight: 100;
-  opacity: .8;
+  /* opacity: .8; */
   word-spacing: 6px;
 }
 
@@ -568,6 +563,21 @@ textarea {
 /* Skills */
 
 
+.sectionHeader{
+
+  animation: slideDown 1s forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
 .skills-container {
   padding: 20px;
   display: flex;
@@ -576,7 +586,6 @@ textarea {
   height: 90vh;
   min-width: 300px;
   gap: 5%;
-
 }
 
 .skills-container .sectionHeader{
@@ -603,11 +612,16 @@ textarea {
   opacity: .8;
   visibility: hidden;  
   visibility: visible;
+  animation: slideLeft 1s forwards;
 }
-
-.skilltype .show {
+@keyframes slideLeft {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
-
 
 .skilltype hr{
   margin: 0;
@@ -625,6 +639,8 @@ textarea {
     transform: translateX(0);
   }
 }
+
+
 
 .skills{
   padding: 20px;
@@ -655,3 +671,4 @@ textarea {
 .skillName li:hover{
   opacity: 1;
 }
+
