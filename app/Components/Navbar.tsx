@@ -17,23 +17,23 @@ const NavBar = () =>{
       <div className="navContainer">
         <div></div>
         <ul className="navbar">
-          <li><a className={`section flex ${render?.render === 'home' ? 'hover' : ''}`} onClick={()=>{render?.setRender('home')}} href="#welcome-page">
+          <li><a className={`section flex ${render?.render === 'home' ? 'hover' : ''}`} onClick={()=>{render?.setRender('home')}} >
               <CiHome className="Picon"  id="home"/>  <span>Home</span></a>
           </li>
   
-          <li><a className={`section flex ${render?.render === 'about' ? 'hover' : ''}`} onClick={()=>{render?.setRender('about')}} href="#about-me">
+          <li><a className={`section flex ${render?.render === 'about' ? 'hover' : ''}`} onClick={()=>{render?.setRender('about')}} >
             <GoPerson className="Picon"/> <span>About</span></a>
           </li>
   
-          <li><a className={`section flex ${render?.render === 'skills' ? 'hover' : ''}`} onClick={()=>{render?.setRender('skills')}} href="#skills">
+          <li><a className={`section flex ${render?.render === 'skills' ? 'hover' : ''}`} onClick={()=>{render?.setRender('skills')}} >
             <GiSkills className="Picon"/> <span>Skills</span></a>
           </li>
   
-          <li><a className={`section flex ${render?.render === 'work' ? 'hover' : ''}`} onClick={()=>{render?.setRender('work')}} href="#projects">
+          <li><a className={`section flex ${render?.render === 'work' ? 'hover' : ''}`} onClick={()=>{render?.setRender('work')}} >
             <GoProjectRoadmap className="Picon"/> <span>Work</span></a>
           </li>
           
-          <li><a className="section flex  hidden-Icon" onClick={()=>{render?.setRender('connect')}} href="#contact">
+          <li><a className="section flex  hidden-Icon" onClick={()=>{render?.setRender('connect')}} >
             <CiHeadphones className="Picon"/>  <span>Contact</span></a>
           </li>
         </ul>

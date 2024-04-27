@@ -363,7 +363,7 @@
     display: none;
   }
   .aboutme{
-    margin-top: 200px;
+    margin: auto 0;
   }
   .about{
     height: 90vh;
@@ -381,7 +381,6 @@
     flex-direction: row-reverse;
     height: 60vh;
     width: 70vw;
-    /* background-color: red; */
   }
   .skills-container .sectionHeader{
     width: 400px;
@@ -389,7 +388,6 @@
   .Photo{
     display: none;
   }
-
 }
 @media (max-width: 512px) {
   .hidden-Icon{
@@ -481,9 +479,13 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: .6rem;
-  height: 70%;
+  height: 50%;
   width: 80%;
   color: white;
+}
+
+.githubutton{
+  padding-top : 30px;
 }
 
 .firstline{
@@ -524,7 +526,6 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* max-height: 800px; */
   width: 80vw;
   margin-bottom: 100px;
   padding: 20px;
@@ -533,7 +534,7 @@ textarea {
 @media (max-width: 512px) {
     .about, .home{
       width: 100vw;
-
+      height: 50%;
     }
 }
 
@@ -677,7 +678,12 @@ textarea {
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
+  width: 90vw;
   
+}
+.skills-section:last-child {
+  padding-top: 50px;
+  /* margin-top: 20px; */
 }
 
 .skills-section li{
@@ -690,7 +696,6 @@ textarea {
   font-family: "Asap Condensed", sans-serif;
   font-weight: 500;
   color : white;
-  
   
 }
 
@@ -706,23 +711,17 @@ textarea {
     padding: 90px;
   }
 }
-@media (min-width: 600px) {
 
-  .skills-section{
-    padding: 50px;
-  }
-}
-  
 .tools{
+  gap: 5%;
   display: flex;
+  padding: 10px;
   flex-wrap: wrap;
   padding-bottom: 100px;
-  gap: 20%;
 }
 
 
 .toolicon{
-  width:  50px;
   height: 80px;
   display: flex;
   flex-direction: column;
@@ -734,7 +733,6 @@ textarea {
 
 .toolicon span{
   font-size: .6rem;
-
 }
 
 
@@ -761,18 +759,3 @@ textarea {
     opacity: 0.2;
   }
 }
-/* 
-.section span{
-}
-
-
-.section:hover span {
-  display: block;
-}
-
-
-
-.section:active,
-.section:focus, .hover{
-  color: var(--background);
-} */

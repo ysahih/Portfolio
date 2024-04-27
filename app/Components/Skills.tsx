@@ -59,6 +59,7 @@ const Skills: React.FC = () => {
           <li className='toolicon'> <i className="devicon-sass-original"></i> <span>Sass</span></li>
           <li className='toolicon'> <i className="devicon-tailwindcss-original"></i> <span>Tailwind</span></li>
           <li className='toolicon'> <i className="devicon-bootstrap-plain"></i> <span>Bootstrap</span></li>
+          <li className='toolicon'> <i className="devicon-bash-plain"></i> <span>Bash</span></li>
           <li className='toolicon'> <i className="devicon-react-original"></i> <span>React</span></li>
           <li className='toolicon'> <i className="devicon-javascript-plain"></i> <span>JavaScript</span></li>
           <li className='toolicon'> <i className="devicon-typescript-plain"></i> <span>TypeScript</span></li>
@@ -69,12 +70,11 @@ const Skills: React.FC = () => {
           <li className='toolicon'> <i className="devicon-nestjs-original"></i> <span>Nestjs</span></li>
           <li className='toolicon'> <i className="devicon-mysql-original"></i> <span>MySql</span></li>
           <li className='toolicon'> <i className="devicon-postgresql-plain"></i> <span>PostgreSql</span></li>
-          <li className='toolicon'> <i className="devicon-bash-plain"></i> <span>Bash</span></li>
           <li className='toolicon'> <i className="devicon-git-plain"></i> <span>Git</span></li>
           <li className='toolicon'> <i className="devicon-github-original"></i> <span>Github</span></li>
           <li className='toolicon'> <i className="devicon-docker-plain"></i> <span>Docker</span></li>
-          <li className='toolicon'> <i className="devicon-vscode-plain"></i> <span>Vscode</span></li>
           <li className='toolicon'> <i className="devicon-python-plain"></i> <span>Python</span></li>
+          <li className='toolicon'> _ </li>
           <li className='toolicon'> _ </li>
           </div>
         </ul>
