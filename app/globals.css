@@ -161,7 +161,7 @@
     width: 60vw;
     max-width: 400px;
     margin: 10px auto;
-    background-color: #252525;
+    background-color: #262626;
     animation: slideUp 1s forwards;
     padding: 1;
     margin-bottom: 60px;
@@ -359,12 +359,10 @@ input,
 textarea {
   max-height: 70px;
   width: 100%;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border-radius: 5px;
-
   color: var(--text);
   background-color: var(--background);
-
   border: 1px solid var(--sections);
 }
 
@@ -372,6 +370,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 
@@ -650,7 +649,47 @@ textarea {
   font-size: .6rem;
 }
 
+.footerHolder{
+  background-color: #262626;
+  width: 100vw;
+  height: 100vh;
+
+}
+
+.footer{
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: red; */
+}
+.footer .intro{
+   /* background-color: red; */
+   padding-top: 100px;
+}
+
+.footer .sectionHeader{
+  color: white;
+  
+}
+
+.footerContainer{
+  width:  50vw;
+  height: 30vh;
+  max-width: 600px;
+
+  margin: auto auto;
+}
+
+.footer label{
+  font-size: .8rem;
+  font-weight: 200;
+}
+
 /* media */
+
+
 
 @media (min-width: 512px) {
  
@@ -677,11 +716,6 @@ textarea {
 }
 
 
-.footer{
-  background-color: #252525;
-  width: 100vw;
-  height: 100vh;
-}
 
 
 @media (min-width: 512px) {
@@ -696,7 +730,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #252525;
+    background-color: #262626;
     
     border-radius: 10px 0 0 10px;
   }

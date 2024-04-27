@@ -21,12 +21,13 @@ const Home = ()=> {
           </div>
 
           <div className="githubutton">
-            <Button variant="contained"
-              className='sendButton'
-              startIcon={<VscGithubAlt/>}
-              style={{ backgroundColor: '#008080', width: '90px' , height:'30px', fontSize: '12px', fontFamily: 'Montserrat Alternates', textTransform: 'lowercase'}}
-              >Github
-            </Button>
+            <a href="https://github.com/ysahih" target="_blank">
+              <Button variant="contained"
+                className='sendButton'
+                startIcon={<VscGithubAlt/>}
+                style={{ backgroundColor: '#008080', width: '90px' , height:'30px', fontSize: '12px', fontFamily: 'Montserrat Alternates', textTransform: 'lowercase'}}
+                >Github
+              </Button> </a>
           </div>
         </div> 
       </section>
