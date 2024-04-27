@@ -13,7 +13,7 @@ const Home = ()=> {
 
           <div className="name">
             <h1 className="secondline">Youssef Sahih.</h1>
-            <h1 className="thirdline">I work on building websites.</h1>
+            <h1 className="thirdline">I love doing things quickly.</h1>
           </div>
 
           <div className="me">
