@@ -542,7 +542,7 @@ textarea {
   height: 90vh;
   min-width: 300px;
   gap: 5%;
-  width: 100vw;
+  /* width: 100vw; */
 
 }
 
@@ -601,6 +601,7 @@ textarea {
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
+
   
 }
 .skills-section:last-child {
@@ -629,10 +630,8 @@ textarea {
 
 .tools{
   display: flex;
-  width: 60vw;
   flex-wrap: wrap;
   padding-bottom: 100px;
-  padding: 20px;
 }
 
 
@@ -680,7 +679,7 @@ textarea {
 
 .footer{
   background-color: #252525;
-  width: 90vw;
+  width: 100vw;
   height: 100vh;
 }
 
@@ -693,7 +692,7 @@ textarea {
     right: 0;
     height: 100vh;
     width: 20vw;
-    max-width: 250px;
+    max-width: 200px;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -754,19 +753,19 @@ textarea {
   .skills{
     padding: 90px;
   }
+  .tools{
+    width: 50vw;
+  }
 }
 @media (max-width: 512px) {
   .hidden-Icon{
     display: none;
   }
-  .tools{
-    width: 100vw;
-    padding: 0;
-  }
   .about, .home{
     width: 100vw;
     height: 50%;
   }
+ 
 }
 
 
