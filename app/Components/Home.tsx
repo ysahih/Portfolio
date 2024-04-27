@@ -4,7 +4,7 @@ import { VscGithubAlt } from "react-icons/vsc";
 
 const Home = ()=> {
     return(
-      <section className="Home">
+      <section className="home">
         <div className="welcome">
   
           <div className="what">

@@ -54,14 +54,17 @@ const Body = ()=>{
   return (
     <>
       {landing && <Land logo={logo}/>}
-      {!landing && <div>
+       {!landing && <div>
+        <div>
         <NavBar/>
         <Header />
+      </div>
+
+      { renderContext?.render === 'home' && <Home/>}
+      { renderContext?.render === 'about' && <About/>}
+      { renderContext?.render === 'skills' && <Skills/>}
+      { renderContext?.render === 'connect' && <Contact/>}
       </div>}
-          { renderContext?.render === 'home' && <Home/>}
-          { renderContext?.render === 'about' && <About/>}
-          { renderContext?.render === 'skills' && <Skills/>}
-          { renderContext?.render === 'connect' && <Contact/>}
 
     </>
   );

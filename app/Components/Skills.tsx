@@ -66,6 +66,7 @@ const Skills: React.FC = () => {
           <li> <i className="devicon-npm-original-wordmark"></i> </li>
           <li> <i className="devicon-nodejs-plain"></i> </li>
           <li> <i className="devicon-express-original"></i> </li>
+          <li> <i className="devicon-nestjs-original"></i> </li>
           <li> <i className="devicon-mysql-original"></i> </li>
           <li> <i className="devicon-postgresql-plain"></i> </li>
           <li> <i className="devicon-bash-plain"></i> </li>

@@ -15,6 +15,7 @@ const NavBar = () =>{
     return (
       <>
       <div className="navContainer">
+        <div></div>
         <ul className="navbar">
           <li><a className={`section flex ${render?.render === 'home' ? 'hover' : ''}`} onClick={()=>{render?.setRender('home')}} href="#welcome-page">
               <CiHome className="Picon"  id="home"/>  <span>Home</span></a>
