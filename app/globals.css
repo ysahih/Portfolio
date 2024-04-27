@@ -389,6 +389,7 @@
   .Photo{
     display: none;
   }
+
 }
 @media (max-width: 512px) {
   .hidden-Icon{
@@ -641,7 +642,6 @@ textarea {
   font-weight: 400;
   word-spacing: 5px;
   font-size: 1.4rem;
-  opacity: .8;
   min-width: 130px;
   animation: slideLeft 1s forwards;
 
@@ -673,8 +673,6 @@ textarea {
   }
 }
 
-
-
 .skills{
   padding: 20px;
   display: flex;
@@ -682,12 +680,9 @@ textarea {
   
 }
 
-
-
-
-.skillName li{
+.skills-section li{
   padding: 2px;
-  opacity: .5;
+  opacity: .7;
 }
 
 .skillName{
@@ -699,25 +694,85 @@ textarea {
   
 }
 
-.skillName li:hover{
+.skills-section li:hover{
   opacity: 1;
 }
+
 @media (min-width: 512px) {
   .skills-container {
-      width: 80vw;
-    }
-    .skills{
-      padding: 90px;
-    }
-    .skills-section{
-      padding: 50px;
-    }
+    width: 80vw;
   }
+  .skills{
+    padding: 90px;
+  }
+}
+@media (min-width: 600px) {
 
+  .skills-section{
+    padding: 50px;
+  }
+}
+  
 .tools{
-
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 100px;
   gap: 20%;
 }
+
+
+.toolicon{
+  width:  50px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  
+}
+
+.toolicon span{
+  font-size: .6rem;
+
+}
+
+
+@media (min-width: 512px) {
+
+  .skills-section:last-child span{
+    opacity: 1;
+    font-size: 20px;
+  }
+  .skills-section:last-child span {
+    opacity: 0;
+    transition: opacity 0.5s, transform 1s;
+    transform: translateY(50%);
+  }
+  
+  .skills-section:last-child i:hover ~ span {
+    opacity: 1;
+    transform: translateY(-100%);
+  }
+  .skills-section i{
+    font-size: 50px;
+  }
+  .skills-section:last-child i:hover {
+    opacity: 0.2;
+  }
+}
+/* 
+.section span{
+}
+
+
+.section:hover span {
+  display: block;
+}
+
+
+
+.section:active,
+.section:focus, .hover{
+  color: var(--background);
+} */

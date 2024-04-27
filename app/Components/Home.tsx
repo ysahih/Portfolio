@@ -8,12 +8,12 @@ const Home = ()=> {
         <div className="welcome">
   
           <div className="what">
-            <p  className="firstline">Hi, my name is</p>
+            <p  className="firstline">Hello, my name is</p>
           </div>
 
           <div className="name">
             <h1 className="secondline">Youssef Sahih.</h1>
-            <h1 className="thirdline">I build web stuff.</h1>
+            <h1 className="thirdline">I work on building websites.</h1>
           </div>
 
           <div className="me">

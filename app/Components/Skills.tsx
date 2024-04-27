@@ -52,30 +52,30 @@ const Skills: React.FC = () => {
 
         <ul  className='skillName'>
           <div className='tools'>
-          <li> <i className="devicon-c-plain-wordmark"></i></li>
-          <li> <i className="devicon-cplusplus-plain"></i> </li>
-          <li> <i className="devicon-html5-plain"></i> </li>
-          <li> <i className="devicon-css3-plain"></i> </li>
-          <li> <i className="devicon-sass-original"></i> </li>
-          <li> <i className="devicon-tailwindcss-original"></i> </li>
-          <li> <i className="devicon-bootstrap-plain"></i> </li>
-          <li> <i className="devicon-react-original"></i> </li>
-          <li> <i className="devicon-javascript-plain"></i> </li>
-          <li> <i className="devicon-typescript-plain"></i> </li>
-          <li> <i className="devicon-nextjs-original-wordmark"></i> </li>
-          <li> <i className="devicon-npm-original-wordmark"></i> </li>
-          <li> <i className="devicon-nodejs-plain"></i> </li>
-          <li> <i className="devicon-express-original"></i> </li>
-          <li> <i className="devicon-nestjs-original"></i> </li>
-          <li> <i className="devicon-mysql-original"></i> </li>
-          <li> <i className="devicon-postgresql-plain"></i> </li>
-          <li> <i className="devicon-bash-plain"></i> </li>
-          <li> <i className="devicon-git-plain"></i> </li>
-          <li> <i className="devicon-github-original"></i> </li>
-          <li> <i className="devicon-docker-plain"></i> </li>
-          <li> <i className="devicon-vscode-plain"></i> </li>
-          <li> <i className="devicon-python-plain"></i> </li>
-          <li> _ </li>
+          <li className='toolicon'><i className="devicon-c-plain-wordmark" ></i> <span>C</span> </li>
+          <li className='toolicon'> <i className="devicon-cplusplus-plain"></i> <span>Cplusplus</span></li>
+          <li className='toolicon'> <i className="devicon-html5-plain"></i> <span>Html</span></li>
+          <li className='toolicon'> <i className="devicon-css3-plain"></i> <span>Css</span></li>
+          <li className='toolicon'> <i className="devicon-sass-original"></i> <span>Sass</span></li>
+          <li className='toolicon'> <i className="devicon-tailwindcss-original"></i> <span>Tailwind</span></li>
+          <li className='toolicon'> <i className="devicon-bootstrap-plain"></i> <span>Bootstrap</span></li>
+          <li className='toolicon'> <i className="devicon-react-original"></i> <span>React</span></li>
+          <li className='toolicon'> <i className="devicon-javascript-plain"></i> <span>JavaScript</span></li>
+          <li className='toolicon'> <i className="devicon-typescript-plain"></i> <span>TypeScript</span></li>
+          <li className='toolicon'> <i className="devicon-nextjs-original-wordmark"></i> <span>Nextjs</span></li>
+          <li className='toolicon'> <i className="devicon-npm-original-wordmark"></i> <span>NPM</span></li>
+          <li className='toolicon'> <i className="devicon-nodejs-plain"></i> <span>Nodejs</span></li>
+          <li className='toolicon'> <i className="devicon-express-original"></i> <span>Express</span></li>
+          <li className='toolicon'> <i className="devicon-nestjs-original"></i> <span>Nestjs</span></li>
+          <li className='toolicon'> <i className="devicon-mysql-original"></i> <span>MySql</span></li>
+          <li className='toolicon'> <i className="devicon-postgresql-plain"></i> <span>PostgreSql</span></li>
+          <li className='toolicon'> <i className="devicon-bash-plain"></i> <span>Bash</span></li>
+          <li className='toolicon'> <i className="devicon-git-plain"></i> <span>Git</span></li>
+          <li className='toolicon'> <i className="devicon-github-original"></i> <span>Github</span></li>
+          <li className='toolicon'> <i className="devicon-docker-plain"></i> <span>Docker</span></li>
+          <li className='toolicon'> <i className="devicon-vscode-plain"></i> <span>Vscode</span></li>
+          <li className='toolicon'> <i className="devicon-python-plain"></i> <span>Python</span></li>
+          <li className='toolicon'> _ </li>
           </div>
         </ul>
       </div>
