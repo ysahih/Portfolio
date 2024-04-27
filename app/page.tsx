@@ -10,6 +10,7 @@ import About from "./Components/About";
 import Skills from "./Components/Skills";
 import RenderContext from "./Contexts/rendre";
 import Contact from "./Components/Contact";
+import Footer from "./Footer";
 
 const Work = ()=> {
   return(
@@ -64,6 +65,7 @@ const Body = ()=>{
       { renderContext?.render === 'about' && <About/>}
       { renderContext?.render === 'skills' && <Skills/>}
       { renderContext?.render === 'connect' && <Contact/>}
+      { renderContext?.render === 'footer' && <Footer/>}
       </div>}
 
     </>

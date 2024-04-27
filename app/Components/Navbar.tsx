@@ -33,7 +33,7 @@ const NavBar = () =>{
             <GoProjectRoadmap className="Picon"/> <span>Work</span></a>
           </li>
           
-          <li><a className="section flex  hidden-Icon" onClick={()=>{render?.setRender('connect')}} >
+          <li><a className="section flex  hidden-Icon" onClick={()=>{render?.setRender('footer')}} >
             <CiHeadphones className="Picon"/>  <span>Contact</span></a>
           </li>
         </ul>
