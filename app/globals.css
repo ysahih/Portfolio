@@ -130,21 +130,7 @@
     background-color: var(--sections);
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.5);
   }
-  
-  .clicked::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 20%;
-    bottom: 0;
-    left: 0;
-    background-color: #ffffff;
-    border-radius: 50%;
-    transform-origin: bottom center;
-    transform: scaleY(0);
-    transition: transform 0.3s ease-in-out;
-  }
-  
+
   .clicked.clicked::after {
     transform: scaleY(1);
   }
