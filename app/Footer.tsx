@@ -7,7 +7,6 @@ const Footer = ()=>{
         <div className="footerHolder">
 
             <div className="footer">
-
                 <div className="sectionHeader">
                     <h1>Get in Touch</h1>
                     <hr />
@@ -18,6 +17,9 @@ const Footer = ()=>{
                 <div className="footerContainer">
                     <Form />
                 </div>
+                < div className="foot">
+                    <p>Designed & Built by Youssef SAHIH</p>
+                </div >
             </div>
         </div>
     );

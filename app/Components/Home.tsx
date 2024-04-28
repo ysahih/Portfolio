@@ -17,7 +17,7 @@ const Home = ()=> {
           </div>
 
           <div className="me">
-            <p className="fourthline">I work on building websites. I'm a <strong>  software engineer </strong> who specializes in front-end web design and development. I know my way around multiple programming languages and I'm all about writing efficient code. I've got a knack for problem-solving and I love working with teams on projects.</p>
+            <p className="fourthline">I work on building websites. I'm a <span> SOFTWARE ENGINEER </span> who specializes in front-end web design and development. I know my way around multiple programming languages and I'm all about writing efficient code. I've got a knack for problem-solving and I love working with teams on projects.</p>
           </div>
 
           <div className="githubutton">

@@ -17,7 +17,7 @@
 
 
 * {
-  font-family: 'Montserrat Alternates', sans-serif;
+  
   margin: 0;
   padding: 0;
 }
@@ -310,23 +310,6 @@
   border-radius: 5px;
 }
 
-/* media */
-
-@media (max-height: 729px) {
-  .smContainer{
-    border: none;
-  }
-  .socials .smContainer:hover{
-    .socialIcon{
-      color: white;
-      width:  20px;
-      height: 20px;
-    }
-    transform: scale(1, 1);
-    background-color: var(--background);
-  }
-}
-
 
 
 /*  */
@@ -400,17 +383,17 @@ textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  margin-bottom: 100px;
   min-width: 300px;
   width: 80vw;
-  min-height: 400px;
-
+  height: 80vh;
+  min-height: 400px;  
 }
 
 .welcome{
   display: flex;
   flex-direction: column;
-  gap: .6rem;
+  gap: .7rem;
   height: 50%;
   width: 80%;
   color: white;
@@ -421,30 +404,33 @@ textarea {
 }
 
 .firstline{
-  font-family: "Montserrat Alternates", sans-serif;
   font-style: italic;
   font-size: .7rem;
   opacity: .8;
 }
 
 .secondline{
-  font-family: "Montserrat Alternates", sans-serif;
   font-weight: 900;
 }
 
 .thirdline{
-  font-family: "Montserrat Alternates", sans-serif;
   font-weight: 800;
   opacity: .6;
 }
 
 
-.fourthline{
-  opacity: .6;
+
+.fourthline {
   font-family: "Asap Condensed", sans-serif;
-  font-weight: 100;
+  word-spacing: 5px;
 }
 
+.fourthline span{
+  font-family: "Asap Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #66CCCC;
+}
 
 .githubutton{
   align-self: end;
@@ -483,18 +469,17 @@ textarea {
 }
 
 
-.aboutme p{
+.aboutme p {
   font-family: "Asap Condensed", sans-serif;
-  font-weight: 100;
-  word-spacing: 6px;
 }
 
 
 .aboutme p span{
-  opacity: .5;
-  font-family: "Asap Condensed", sans-serif;
-  font-weight: 500;
-  color : white;
+    font-family: "Asap Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #66CCCC;
+  
 }
 
 
@@ -653,20 +638,23 @@ textarea {
   background-color: #262626;
   width: 100vw;
   height: 100vh;
-
+  
 }
 
 .footer{
+  padding-bottom: 200px;
   width: 80vw;
-  height: 80vh;
   display: flex;
+  background-color: #262626;
   flex-direction: column;
   align-items: center;
-  /* background-color: red; */
+  
 }
+
 .footer .intro{
-   /* background-color: red; */
-   padding-top: 100px;
+  padding: 30px;
+  padding-top: 80px;
+  max-width: 800px;
 }
 
 .footer .sectionHeader{
@@ -676,19 +664,40 @@ textarea {
 
 .footerContainer{
   width:  50vw;
-  height: 30vh;
-  max-width: 600px;
-
   margin: auto auto;
+  max-width: 500px;
 }
+
 
 .footer label{
   font-size: .8rem;
   font-weight: 200;
 }
 
-/* media */
+.foot{
+  bottom: 0;
+  padding: 30px;
+  position: fixed;
+  color: #66CCCC;
+  width: 100vw;
+  background-color: #262626;
+  font-family: "Asap Condensed", sans-serif;
+}
 
+.foot p{
+  margin:  0 auto;
+  width: 200px;
+
+  font-size: .6rem;
+  word-spacing: 5px;
+
+}
+.footer .paragraph{
+  opacity: 1;
+}
+
+
+/* media */
 
 
 @media (min-width: 512px) {
@@ -797,9 +806,28 @@ textarea {
   }
   .about, .home{
     width: 100vw;
+
     height: 50%;
   }
  
+}
+
+
+/* media */
+
+@media (max-height: 729px) {
+  .smContainer{
+    border: none;
+  }
+  .socials .smContainer:hover{
+    .socialIcon{
+      color: white;
+      width:  20px;
+      height: 20px;
+    }
+    transform: scale(1, 1);
+    background-color: var(--background);
+  }
 }
 
 
