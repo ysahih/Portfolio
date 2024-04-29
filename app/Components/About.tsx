@@ -3,8 +3,8 @@ import Image from "next/image";
 const About = ()=> {
     return(
       <div id='about' className="about">
-        <div className="infos">
         
+        <div className="infos">
         <div className="sectionHeader">
             <h1>ABOUT ME</h1>
             <hr />

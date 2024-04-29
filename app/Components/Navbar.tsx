@@ -18,7 +18,7 @@ const NavBar = () =>{
         <div></div>
         <ul className="navbar">
           <li><a className={`section flex ${render?.render === 'home' ? 'hover' : ''}`} onClick={()=>{render?.setRender('home')}} >
-              <CiHome className="Picon"  id="home"/>  <span>Home</span></a>
+              <CiHome className="Picon "  id="home"/>  <span>Home</span></a>
           </li>
   
           <li><a className={`section flex ${render?.render === 'about' ? 'hover' : ''}`} onClick={()=>{render?.setRender('about')}} >
@@ -33,7 +33,7 @@ const NavBar = () =>{
             <GoProjectRoadmap className="Picon"/> <span>Work</span></a>
           </li>
           
-          <li><a className="section flex  hidden-Icon" onClick={()=>{render?.setRender('footer')}} >
+          <li><a className={`section flex   hidden-Icon ${render?.render === 'footer' ? 'hover' : ''}`} onClick={()=>{render?.setRender('footer')}} >
             <CiHeadphones className="Picon"/>  <span>Contact</span></a>
           </li>
         </ul>

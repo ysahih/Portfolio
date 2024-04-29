@@ -29,7 +29,7 @@
   justify-content: space-around;
   height: 50px;
   align-items: center;
-  border-radius: 18px 18px 0 0;
+  border-radius: 8px 8px 0 0;
   outline: var(--sections) solid 1px;
   outline-offset: 1px;
   padding: 0px 30px;
@@ -47,10 +47,9 @@
 
 
 .Picon{
-  width: 30px;
-  height: 25px;
+  width: 35px;
+  height: 40px;
   transition: width 1s;
-
 }
 
 .section{
@@ -142,21 +141,21 @@
     display: grid;
     grid-template-rows: 1fr 1fr 5fr 1fr;
     min-height: 500px;
-    max-height: 800px;
+    max-height: 650px;
     border-radius: 35px;
     width: 60vw;
     max-width: 400px;
     margin: 10px auto;
     background-color: #262626;
-    animation: slideUp 1s forwards;
     padding: 1;
     margin-bottom: 60px;
     gap: 5px;
+    animation: slideUp 1s forwards;
   }
   @keyframes slideUp {
     0% {
       opacity: 0;
-      transform: translateY(100%);
+      transform: translateY(10%);
     }
     100% {
       opacity: 1;
@@ -192,11 +191,10 @@
     margin: 0 auto;
   }
   
-  .infos{
+  .infos {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
   }
   
 
@@ -291,7 +289,7 @@
   text-align: center;
   width: 90%;
   min-height: 90px;
-  font-size: 12px;
+  font-size: 14px;
   margin: auto auto;
   border-radius: 5px;
 }
@@ -371,22 +369,36 @@ textarea {
   justify-content: center;
   margin-bottom: 100px;
   min-width: 300px;
-  width: 80vw;
-  height: 80vh;
-  min-height: 400px;  
+  min-height: 500px;  
 }
 
 .welcome{
   display: flex;
   flex-direction: column;
   gap: .7rem;
-  height: 50%;
   width: 80%;
   color: white;
 }
 
 .githubutton{
   padding-top : 30px;
+    align-self: end;
+    margin-top: 10px;
+  
+}
+
+.githubutton , .skilltype h3{
+  animation: slideLeft 1s forwards;
+}
+
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(8vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .firstline{
@@ -402,6 +414,7 @@ textarea {
 .thirdline{
   font-weight: 800;
   opacity: .6;
+
 }
 
 
@@ -409,8 +422,10 @@ textarea {
 .fourthline {
   font-family: "Asap Condensed", sans-serif;
   word-spacing: 5px;
-}
-
+  padding-top: 10px;
+  animation: slideUp 1s forwards;
+  }
+ 
 .fourthline span{
   font-family: "Asap Condensed", sans-serif;
   font-weight: 700;
@@ -418,22 +433,15 @@ textarea {
   color: #66CCCC;
 }
 
-.githubutton{
-  align-self: end;
-  margin-top: 10px;
-}
 
 /* about */
 
 .about{
   color : white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80vw;
-  margin-bottom: 100px;
   padding: 20px;
-  min-width: 300px;
+  height: 100vh;
+  width: calc(100vw - 200px);
+
 }
 
 
@@ -443,6 +451,7 @@ textarea {
   align-items: center;
   font-weight: 700;
   font-size: 1.4rem;
+ 
   justify-content: space-around;
   height: 40px; 
 }
@@ -451,8 +460,19 @@ textarea {
 
 .aboutme{
   text-align: justify;
-  padding-top: 10%
-}
+  padding-top: 10%;
+  animation: slideUp 1s forwards;
+  }
+  @keyframes slideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(10%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
 
 .aboutme p {
@@ -489,7 +509,7 @@ textarea {
 /* Skills */
 
 
-.sectionHeader{
+.sectionHeader, .firstline{
 
   animation: slideDown 1s forwards;
 }
@@ -506,21 +526,20 @@ textarea {
 
 .skills-container {
   padding: 20px;
+  
   display: flex;
   flex-direction: column;
   color: white;
   height: 90vh;
   min-width: 300px;
   gap: 5%;
-  /* width: 100vw; */
-
 }
 
 .skills-container .sectionHeader{
   align-self: center;
   font-size: 1.4rem;
   justify-content: center;
-  
+  min-width: 290px;
 }
 
 
@@ -536,19 +555,7 @@ textarea {
   word-spacing: 5px;
   font-size: 1.4rem;
   min-width: 130px;
-  animation: slideLeft 1s forwards;
-
 }
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(10vw);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
 .skilltype hr{
   margin: 0;
   width: 30%;
@@ -568,15 +575,10 @@ textarea {
 
 .skills{
   padding: 20px;
+  padding-top: 5vh;
   display: flex;
   flex-wrap: wrap;
   width: 90vw;
-
-  
-}
-.skills-section:last-child {
-  padding-top: 50px;
-  /* margin-top: 20px; */
 }
 
 .skills-section li{
@@ -601,6 +603,7 @@ textarea {
 .tools{
   display: flex;
   flex-wrap: wrap;
+  padding-top: 40px;
   padding-bottom: 100px;
 }
 
@@ -622,14 +625,12 @@ textarea {
 
 .footerHolder{
   background-color: #262626;
-  width: 100vw;
   height: 100vh;
-  
 }
 
 .footer{
-  padding-bottom: 200px;
-  width: 80vw;
+  padding-bottom: 100px;
+  padding-right: 200px;
   display: flex;
   background-color: #262626;
   flex-direction: column;
@@ -638,8 +639,8 @@ textarea {
 }
 
 .footer .intro{
-  padding: 30px;
-  padding-top: 80px;
+  padding: 50px;
+  padding-top: 100px;
   max-width: 800px;
 }
 
@@ -668,18 +669,20 @@ textarea {
   width: 100vw;
   background-color: #262626;
   font-family: "Asap Condensed", sans-serif;
+  /* background-color: red; */
 }
 
 .foot p{
   margin:  0 auto;
   width: 200px;
-
   font-size: .6rem;
   word-spacing: 5px;
 
 }
 .footer .paragraph{
-  opacity: 1;
+  opacity: .8;
+  font-size: 20px;
+  /* max-height: 100px; */
 }
 
 
@@ -720,13 +723,11 @@ textarea {
     bottom: auto;
     right: 0;
     height: 100vh;
-    width: 20vw;
-    max-width: 200px;
+    width: 200px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     background-color: #262626;
-    
     border-radius: 10px 0 0 10px;
   }
   .section:hover span {
@@ -734,66 +735,77 @@ textarea {
   }
   .section:hover .Picon{
     filter: none;
-    width: 30px;
+    width: 35px;
+    height: 40px;
   }
+  
   .navbar{
     flex-direction: column;
     justify-content: space-around;
-    width: 36px;
+    width: 48px;
     padding: 0px 0px;
-    height: 40vh;
+    height: 35vh;
     min-height: 300px;
-
-    border-radius: 18px;
+    border-radius: 20px;
   }
   .header{
     display: none;
   }
   .aboutme{
-    margin: auto 0;
+    max-width: 700px;
   }
-  .about{
-    height: 90vh;
-    padding: 0;
-  }
+
   *{
     font-size: 1.3rem;
   }
   .sectionHeader{
     margin-top: 10vh;
+
   }
   
   .infoHolder{
+
     display: flex;
-    flex-direction: row-reverse;
-    height: 60vh;
-    width: 70vw;
+    justify-content: center;
+    width: calc(100vw - 200px);
+    padding: 40px;
+    padding-top: 0;
   }
-  .skills-container .sectionHeader{
-    width: 400px;
-  }
+
   .Photo{
     display: none;
   }
 
-  .skills-container {
-    width: 80vw;
+  .skills-container , .skills{
+    width: calc(100vw - 200px);
   }
-  .skills{
-    padding: 90px;
-  }
+
   .tools{
     width: 50vw;
   }
+
+  .home{
+    width: calc(100vw - 200px);
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    
+  }
+  .welcome{
+    height: 60%;
+    max-width: 700px;
+  }
 }
+
 @media (max-width: 512px) {
+
   .hidden-Icon{
     display: none;
   }
   .about, .home{
     width: 100vw;
-
     height: 50%;
+    margin-bottom: 100px;
   }
  
 }

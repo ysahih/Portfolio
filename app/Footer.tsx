@@ -8,7 +8,7 @@ const Footer = ()=>{
 
             <div className="footer">
                 <div className="sectionHeader">
-                    <h1>Get in Touch</h1>
+                    <h1>GET IN TOUCH</h1>
                     <hr />
                 </div>
                 <div className="intro">
