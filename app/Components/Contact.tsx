@@ -65,17 +65,7 @@ const Contact = ()=>{
                 </div>
 
             </div>
-            <div className="resume">
-                        <Button
-                          variant="contained"
-                          tabIndex={-1}
-                          startIcon={< IoCloudDownloadOutline style={{width:'15px'}}/>}
-                          style={{ backgroundColor: '#008080', width: '90px' , height:'30px', fontSize: '10px'}}
-                        >
-                          resume
-                        </Button>
-                        
-                    </div>
+          
             {/* <div className="footer">
                     <div className="line"></div>
                     <p>uc3f  -  2024</p>

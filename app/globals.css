@@ -23,6 +23,13 @@
 }
 
 
+.navholder{
+  /* height: 50px; */
+  background-color: red;
+  /* width: 200px; */
+}
+
+
 .navbar{
   display: flex;
   background-color: var(--sections);
@@ -39,7 +46,6 @@
   position: fixed;
   bottom: 0;
   z-index: 3;
-
   background-color: var(--background);
   width: 100%;
 }
@@ -47,12 +53,13 @@
 
 
 .Picon{
-  width: 35px;
+  width: 30px;
   height: 40px;
   transition: width 1s;
 }
 
 .section{
+  cursor: pointer;
   flex-direction: column;
   width: 60px;
   align-items: center;
@@ -62,14 +69,17 @@
 .section span{
   display: none;
   position: absolute;
-  animation: slideUp 1s forwards;
+  animation: slideIUp 1s forwards;
 }
-@keyframes slideUp {
-  from {
-    bottom: 0;
+
+@keyframes slideIUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
   }
-  to {
-    bottom: 100%;
+  100% {
+    opacity: 1;
+    transform: translateY(40%);
   }
 }
 
@@ -140,7 +150,7 @@
     min-width: 300px;
     display: grid;
     grid-template-rows: 1fr 1fr 5fr 1fr;
-    min-height: 500px;
+    min-height: 450px;
     max-height: 650px;
     border-radius: 35px;
     width: 60vw;
@@ -152,23 +162,12 @@
     gap: 5px;
     animation: slideUp 1s forwards;
   }
-  @keyframes slideUp {
-    0% {
-      opacity: 0;
-      transform: translateY(10%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
   .connecHead{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-
+    height: 40px;
   }
 
 .connecHead h2{
@@ -234,16 +233,6 @@
 
       .sideIcons{
         width: 90%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .resume{
-        display: flex;
-        justify-content: center;
-        align-items: center;
       }
       .resumeContainer p{
         font-size: 10px;
@@ -303,18 +292,12 @@
   justify-content: center;
   align-items: center;
   width: 80%;
-  height: 70%;
   min-height: 210px;
   
 }
 
 .contact-form {
-  display: grid;
-  align-items: center;
-  grid-template-rows: 1fr 1fr 2fr 1fr;
   font-size: 12px;
-  height: 90%;
-  margin: 0 auto;
 }
 
 label {
@@ -337,6 +320,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 
 }
 
@@ -380,21 +364,19 @@ textarea {
   color: white;
 }
 
-.githubutton{
+.linkedIn, .resume{
   padding-top : 30px;
-    align-self: end;
-    margin-top: 10px;
-  
+  align-self: end;  
 }
 
-.githubutton , .skilltype h3{
+.linkedIn , .skilltype h3{
   animation: slideLeft 1s forwards;
 }
 
 
 @keyframes slideLeft {
   0% {
-    transform: translateX(8vw);
+    transform: translateX(3vw);
   }
   100% {
     transform: translateX(0);
@@ -439,9 +421,10 @@ textarea {
 .about{
   color : white;
   padding: 20px;
+  min-width: 300px;
   height: 100vh;
   width: calc(100vw - 200px);
-
+  
 }
 
 
@@ -496,7 +479,7 @@ textarea {
 }
 
 .ysahih{
-  border-radius: 10px;
+  border-radius: 4px;
   opacity: .5;
   border: #008080 2px solid;
 }
@@ -669,7 +652,6 @@ textarea {
   width: 100vw;
   background-color: #262626;
   font-family: "Asap Condensed", sans-serif;
-  /* background-color: red; */
 }
 
 .foot p{
@@ -682,7 +664,6 @@ textarea {
 .footer .paragraph{
   opacity: .8;
   font-size: 20px;
-  /* max-height: 100px; */
 }
 
 
@@ -733,6 +714,10 @@ textarea {
   .section:hover span {
     display: none;
   }
+  .Picon{
+    width: 35px;
+  }
+
   .section:hover .Picon{
     filter: none;
     width: 35px;
@@ -831,7 +816,7 @@ textarea {
 
 @media (max-width: 300px) and (max-height: 800px) {
 .about{
-    margin-bottom: 200px;
+    /* margin-bottom: 200px; */
   }
 }
 

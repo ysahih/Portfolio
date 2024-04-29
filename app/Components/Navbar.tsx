@@ -15,29 +15,34 @@ const NavBar = () =>{
     return (
       <>
       <div className="navContainer">
-        <div></div>
-        <ul className="navbar">
-          <li><a className={`section flex ${render?.render === 'home' ? 'hover' : ''}`} onClick={()=>{render?.setRender('home')}} >
-              <CiHome className="Picon "  id="home"/>  <span>Home</span></a>
-          </li>
-  
-          <li><a className={`section flex ${render?.render === 'about' ? 'hover' : ''}`} onClick={()=>{render?.setRender('about')}} >
-            <GoPerson className="Picon"/> <span>About</span></a>
-          </li>
-  
-          <li><a className={`section flex ${render?.render === 'skills' ? 'hover' : ''}`} onClick={()=>{render?.setRender('skills')}} >
-            <GiSkills className="Picon"/> <span>Skills</span></a>
-          </li>
-  
-          <li><a className={`section flex ${render?.render === 'work' ? 'hover' : ''}`} onClick={()=>{render?.setRender('work')}} >
-            <GoProjectRoadmap className="Picon"/> <span>Work</span></a>
-          </li>
-          
-          <li><a className={`section flex   hidden-Icon ${render?.render === 'footer' ? 'hover' : ''}`} onClick={()=>{render?.setRender('footer')}} >
-            <CiHeadphones className="Picon"/>  <span>Contact</span></a>
-          </li>
-        </ul>
-      </div>
+
+        
+
+          {/* <div className="navholder"> */}
+          <div></div>
+          <ul className="navbar">
+            <li><a className={`section flex ${render?.render === 'home' ? 'hover' : ''}`} onClick={()=>{render?.setRender('home')}} >
+                <CiHome className="Picon "  id="home"/>  <span>Home</span></a>
+            </li>
+    
+            <li><a className={`section flex ${render?.render === 'about' ? 'hover' : ''}`} onClick={()=>{render?.setRender('about')}} >
+              <GoPerson className="Picon"/> <span>About</span></a>
+            </li>
+    
+            <li><a className={`section flex ${render?.render === 'skills' ? 'hover' : ''}`} onClick={()=>{render?.setRender('skills')}} >
+              <GiSkills className="Picon"/> <span>Skills</span></a>
+            </li>
+    
+            <li><a className={`section flex ${render?.render === 'work' ? 'hover' : ''}`} onClick={()=>{render?.setRender('work')}} >
+              <GoProjectRoadmap className="Picon"/> <span>Work</span></a>
+            </li>
+            
+            <li><a className={`section flex   hidden-Icon ${render?.render === 'footer' ? 'hover' : ''}`} onClick={()=>{render?.setRender('footer')}} >
+              <CiHeadphones className="Picon"/>  <span>Contact</span></a>
+            </li>
+          </ul>
+          </div>
+      {/* </div> */}
       </>
     );
   }
