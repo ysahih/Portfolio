@@ -18,7 +18,7 @@ const NavBar = () =>{
 
         
 
-          {/* <div className="navholder"> */}
+          <div className="navholder">
           <div></div>
           <ul className="navbar">
             <li><a className={`section flex ${render?.render === 'home' ? 'hover' : ''}`} onClick={()=>{render?.setRender('home')}} >
@@ -42,7 +42,7 @@ const NavBar = () =>{
             </li>
           </ul>
           </div>
-      {/* </div> */}
+      </div>
       </>
     );
   }

@@ -25,20 +25,21 @@
 
 .navholder{
   /* height: 50px; */
-  background-color: red;
+  /* background-color: red; */
   /* width: 200px; */
 }
 
 
 .navbar{
   display: flex;
-  background-color: var(--sections);
-  justify-content: space-around;
-  height: 50px;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  height: 50px;
   border-radius: 8px 8px 0 0;
   outline: var(--sections) solid 1px;
   outline-offset: 1px;
+  background-color: var(--sections);
   padding: 0px 30px;
 }
 
@@ -59,10 +60,11 @@
 }
 
 .section{
-  cursor: pointer;
+  display: flex;
   flex-direction: column;
-  width: 60px;
   align-items: center;
+  width: 20vw;
+  min-width: 75px;
   color: var(--text);
 }
 
