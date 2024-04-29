@@ -17,7 +17,7 @@ const NavBar = () =>{
       <div className="navContainer">
 
         
-
+          
           <div className="navholder">
           <div></div>
           <ul className="navbar">
