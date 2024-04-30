@@ -287,11 +287,13 @@
   align-items: center;
   width: 80%;
   min-height: 210px;
-  
+  height: 260px;
 }
 
 .contact-form {
   font-size: 12px;
+  
+
 }
 
 label {
@@ -301,13 +303,21 @@ label {
 
 input,
 textarea {
-  max-height: 70px;
   width: 100%;
   font-size: 1.2rem;
   border-radius: 5px;
   color: var(--text);
   background-color: var(--background);
-  border: 1px solid var(--sections);
+  outline: none;
+}
+input:focus,
+textarea:focus{
+  outline: var(--sections) 1px solid;
+}
+
+textarea{
+  max-height: 70px;
+  min-height: 70px;
 }
 
 .send{
@@ -490,6 +500,7 @@ textarea {
   animation: slideDown 1s forwards;
 }
 
+
 @keyframes slideDown {
   0% {
     transform: translateY(-100%);
@@ -514,8 +525,7 @@ textarea {
 .skills-container .sectionHeader{
   align-self: center;
   justify-content: center;
-  min-width: 280px;
-  padding: 0;
+  padding: 0px;
 }
 
 
@@ -756,6 +766,21 @@ textarea {
 }
 
 
+.projects .sectionHeader hr{
+  width: 200px;
+}
+
+.projects{
+  color: white;
+  min-width: 300px;
+  padding: 10px;
+  
+}
+.projectHolder{
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 20px;
+}
 
 .email{
   writing-mode: vertical-rl; 
@@ -767,9 +792,6 @@ textarea {
 .contactinfo hr{
   width: 50px;
 }
-
-
-
 .contactinfo .socials{
   display: flex;
   flex-direction: column;
@@ -778,13 +800,7 @@ textarea {
   border: none;
 }
 .contactinfo .socials .smContainer:hover{
-  .socialIcon{
-    color: white;
-    width:  20px;
-    height: 20px;
-  }
-  transform: scale(1, 1);
-  background-color: var(--background);
+  width: 30px;
 }
 
 /* .contactinfo .socials .smContainer{
@@ -864,7 +880,7 @@ textarea {
     display: none;
   }
 
-  .skills-container , .skills{
+  .skills-container , .skills, .projects{
     width: calc(100vw - 200px);
   }
 
@@ -898,7 +914,14 @@ textarea {
     height: 50%;
     margin-bottom: 100px;
   }
- 
+
+  .projectHolder{
+    padding-top: 50px;
+  }
+  .projects .sectionHeader hr{
+    width: 100px;
+
+  }
 }
 
 
