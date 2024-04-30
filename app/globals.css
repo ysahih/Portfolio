@@ -23,13 +23,6 @@
 }
 
 
-.navholder{
-  /* height: 50px; */
-  /* background-color: red; */
-  /* width: 200px; */
-}
-
-
 .navbar{
   display: flex;
   flex-direction: row;
@@ -279,7 +272,6 @@
   opacity: .6;
   text-align: center;
   width: 90%;
-  /* min-height: 90px; */
   font-size: 14px;
   margin: auto auto;
   border-radius: 5px;
@@ -444,6 +436,7 @@ textarea {
 
 
 .aboutme{
+
   text-align: justify;
   padding-top: 10%;
   animation: slideUp 1s forwards;
@@ -674,6 +667,12 @@ textarea {
 
 @media (min-width: 512px) {
  
+  .child{
+    height: 30vh;
+    display: flex;
+    align-items: center;
+  }
+  
   .skills-section:last-child span{
     opacity: 1;
     font-size: 20px;
@@ -697,10 +696,29 @@ textarea {
 }
 
 
+.sideimg p{
+  font-size: 10px;
+  color: var(--sections);
+  font-style: italic;
+}
+.sideimg{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
+.sidePhoto{
+  width: 180px;
+  outline: var(--sections) solid 1px;
+  outline-offset: 1px;
+  border-radius: 8px;
+}
+
+.infoHolder{
+  width: 100vw;
+}
 
 @media (min-width: 512px) {
-
   .navContainer {
     position: fixed;
     bottom: auto;
@@ -708,8 +726,9 @@ textarea {
     height: 100vh;
     width: 200px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #262626;
     border-radius: 10px 0 0 10px;
   }
@@ -787,6 +806,9 @@ textarea {
 @media (max-width: 512px) {
 
   .hidden-Icon{
+    display: none;
+  }
+  .sideimg, .contactinfo{
     display: none;
   }
   .about, .home{
