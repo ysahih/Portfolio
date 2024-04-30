@@ -315,7 +315,6 @@ textarea {
   justify-content: center;
   align-items: center;
   padding: 20px;
-
 }
 
 
@@ -428,7 +427,6 @@ textarea {
   align-items: center;
   font-weight: 700;
   font-size: 1.4rem;
- 
   justify-content: space-around;
   height: 40px; 
 }
@@ -515,9 +513,9 @@ textarea {
 
 .skills-container .sectionHeader{
   align-self: center;
-  font-size: 1.4rem;
   justify-content: center;
-  min-width: 290px;
+  min-width: 280px;
+  padding: 0;
 }
 
 
@@ -609,16 +607,15 @@ textarea {
 .footer{
   padding-bottom: 100px;
   padding-right: 200px;
+  min-width: 512px;
   display: flex;
   background-color: #262626;
   flex-direction: column;
   align-items: center;
-  
 }
 
 .footer .intro{
   padding: 50px;
-  padding-top: 100px;
   max-width: 800px;
 }
 
@@ -628,9 +625,11 @@ textarea {
 }
 
 .footerContainer{
+
   width:  50vw;
   margin: auto auto;
   max-width: 500px;
+  min-width: 312px;
 }
 
 
@@ -653,12 +652,14 @@ textarea {
   margin:  0 auto;
   width: 200px;
   font-size: .6rem;
-  word-spacing: 5px;
+  word-spacing: 4px;
 
 }
+
 .footer .paragraph{
   opacity: .8;
-  font-size: 20px;
+  min-width: 312px;
+  border: var(--sections) 1px solid;
 }
 
 
@@ -701,6 +702,7 @@ textarea {
   color: var(--sections);
   font-style: italic;
 }
+
 .sideimg{
   display: flex;
   flex-direction: column;
@@ -708,11 +710,86 @@ textarea {
 }
 
 .sidePhoto{
-  width: 180px;
-  outline: var(--sections) solid 1px;
-  outline-offset: 1px;
-  border-radius: 8px;
+  border-radius:  50%;
+  width: 100px;
+  outline: var(--sections) 1px solid;
+  outline-offset: 1px ;
 }
+
+.contactinfo{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: end;
+}
+
+.lines hr{
+  height: 2px;
+  border-radius: 1px;
+
+}
+
+.lines{
+  height: 25px;
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+}
+
+.contactfooter{
+  display: flex;
+  align-items: center;
+  width: 134px;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.email:hover p{
+  font-size: 21px;
+
+}
+.email p{
+  font-size: 20px;
+  font-weight: 200;
+  cursor: pointer;
+  font-family: "Asap Condensed", sans-serif;
+}
+
+
+
+.email{
+  writing-mode: vertical-rl; 
+  text-orientation: sideways;
+  color: white;
+}
+
+
+.contactinfo hr{
+  width: 50px;
+}
+
+
+
+.contactinfo .socials{
+  display: flex;
+  flex-direction: column;
+}
+.contactinfo .smContainer{
+  border: none;
+}
+.contactinfo .socials .smContainer:hover{
+  .socialIcon{
+    color: white;
+    width:  20px;
+    height: 20px;
+  }
+  transform: scale(1, 1);
+  background-color: var(--background);
+}
+
+/* .contactinfo .socials .smContainer{
+  flex: 0 0 calc(100% / 2);
+} */
 
 .infoHolder{
   width: 100vw;
@@ -731,7 +808,10 @@ textarea {
     justify-content: space-between;
     background-color: #262626;
     border-radius: 10px 0 0 10px;
+    outline: var(--sections) solid 1px;
+    outline-offset: 1px;
   }
+
   .section:hover span {
     display: none;
   }
@@ -765,8 +845,10 @@ textarea {
     font-size: 1.3rem;
   }
   .sectionHeader{
+    font-size: 2rem;
     margin-top: 10vh;
-
+    white-space: nowrap;
+    padding-bottom: 120px;
   }
   
   .infoHolder{

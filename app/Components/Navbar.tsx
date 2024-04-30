@@ -6,6 +6,7 @@ import { GoProjectRoadmap } from "react-icons/go";
 import { CiHeadphones } from "react-icons/ci";
 import { useContext, useEffect } from "react";
 import RenderContext from "../Contexts/rendre";
+import Socials from "./Socials";
 
 const NavBar = () =>{
 
@@ -16,17 +17,11 @@ const NavBar = () =>{
       <>
       <div className="navContainer">
 
-          <div className="sideimg child">
-            <img
-              src="ysahih.png"
-              className="sidePhoto"
-              width={200}
-              height={200}
-              alt="SAHIH"
-              />
-              <p>{`<uc3f sahih>`}</p>
+          <div className="sideimg child ">
+            <img className="sidePhoto" src="ysahih.png" alt="Portfolio Photo"></img>
+            <p>{`<uc3f sahih>`}</p>
           </div>
-          
+        
           <div className="navholder child">
             <div></div>
             <ul className="navbar">
@@ -51,7 +46,20 @@ const NavBar = () =>{
               </li>
             </ul>
           </div>
-          <div className="child contactinfo"></div>
+          <div className="child contactinfo">
+              <div className="contactfooter">
+                <div className="vertical">
+                  <Socials/>
+                </div>
+                <div className="email vertical">
+                  <p>ucefsahih@gmail.com</p>
+                </div>
+              </div>
+              <div className="lines">
+                <hr className="transform rotate-90"/>
+                <hr className="transform rotate-90"/>
+              </div>
+          </div>
       </div>
       </>
     );

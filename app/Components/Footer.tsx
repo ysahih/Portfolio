@@ -1,5 +1,5 @@
-import Form from "./Components/Form";
-import Parap from "./Components/Parag";
+import Form from "./Form";
+import Parap from "./Parag";
 
 
 const Footer = ()=>{

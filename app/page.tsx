@@ -10,7 +10,7 @@ import About from "./Components/About";
 import Skills from "./Components/Skills";
 import RenderContext from "./Contexts/rendre";
 import Contact from "./Components/Contact";
-import Footer from "./Footer";
+import Footer from "./Components/Footer";
 
 const Work = ()=> {
   return(
