@@ -1,4 +1,4 @@
-a basic web application that generates a simple and minimalistic resume for viewing on larger screens. Additionally, for mobile devices, I built and designed a portfolio using Next.js and deployed it on Vercel.
+a basic web application that generates a simple and minimalistic resume for viewing on larger screens (inspired by bartoszjarocki). Additionally, for mobile devices, I built and designed a portfolio using Next.js and deployed it on Vercel.
 
 # Getting Started Locally
 
