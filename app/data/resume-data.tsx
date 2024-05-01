@@ -66,10 +66,10 @@ export const RESUME_DATA = {
         "TypeScript",
       ],
       description: "Pong contest website with real-time multiplayer games, chat, and security",
-      link: {
-        // label: "consultly.com",
-        href: "https://github.com/ysahih/Pongy",
-      },
+      // link: {
+      //   // label: "consultly.com",
+      //   href: "https://github.com/ysahih/Pongy",
+      // },
     },
     {
       title: "Wordle-Game clone",
@@ -78,7 +78,7 @@ export const RESUME_DATA = {
         "a simple clone of the famous wordle game",
 
       link: {
-        label: "monito.dev",
+        label: "github.com",
         href: "https://github.com/ysahih/blog",
       },
     },
@@ -87,10 +87,9 @@ export const RESUME_DATA = {
       techStack: ["Docker", "Nginx", "mariaDb", "Wordpress"],
       description:
         "Created a Docker-based multi-container infrastructure with Nginx, WordPress, and MariaDB for a web application.",
-      // logo: JarockiMeLogo,
       link: {
         label: "github.com",
-        href: "https://jarocki.me/",
+        href: "https://github.com/ysahih/inception",
       },
     },
     {
@@ -100,7 +99,7 @@ export const RESUME_DATA = {
         "Internet Relay Chat server (Communication protocol on the Internet)",
       link: {
         label: "github.com",
-        href: "https://jarocki.me/",
+        href: "https://github.com/ysahih/IRC",
       },
     },
   ],

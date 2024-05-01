@@ -17,7 +17,7 @@ const About = ()=> {
 
           <div className="Photo">
             <img
-              src="ysahih.png"
+              src="ysahih1.png"
               className="ysahih"
               width={150}
               height={150}
