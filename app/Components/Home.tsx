@@ -5,7 +5,7 @@ import { FaLinkedin } from "react-icons/fa";
 const Home = ()=> {
     return(
       <section className="home">
-        <div className="welcome">
+        <div className="homeWelcome">
   
           <div className="what">
             <p  className="firstline">Hello, my name is</p>

@@ -1,37 +1,32 @@
+
 import React from 'react';
+import { Section } from './ui/section';
+import { RESUME_DATA } from '../data/resume-data';
+import { ProjectCard } from './project-card';
 
 const Project = () => {
   return (
 
     <div className='projects'>
-
-         <div className="sectionHeader">
-            <h1>PROJECTS</h1>
-            <hr />
-         </div>
-    <div className='projectHolder'>
-    <div className="mb-5 max-w-lg mx-auto bg-teal-600  rounded-lg shadow-lg overflow-hidden">
-      <img src='ysahih.png' alt="Project" className="w-full h-48 object-cover" />
-      <div className="p-4">
-        <p className="text-2xl font-bold mb-3">Project Title</p>
-        <p className="text-gray-700">{`hello`}</p>
-      </div>
-    </div>
-    <div className="mb-5 max-w-lg mx-auto bg-teal-600  rounded-lg shadow-lg overflow-hidden">
-      <img src='ysahih.png' alt="Project" className="w-full h-48 object-cover" />
-      <div className="p-4">
-        <p className="text-2xl font-bold mb-3">Project Title</p>
-        <p className="text-gray-700">{`hello`}</p>
-      </div>
-    </div>
-    <div className="mb-5 max-w-lg mx-auto bg-teal-600  rounded-lg shadow-lg overflow-hidden">
-      <img src='ysahih.png' alt="Project" className="w-full h-48 object-cover" />
-      <div className="p-4">
-        <p className="text-2xl font-bold mb-3">Project Title</p>
-        <p className="text-gray-700">{`hello`}</p>
-      </div>
-    </div>
-    </div>
+       <div className="sectionHeader">
+         <h1>PROJECTS</h1>
+         <hr />
+        </div>
+        <Section className="container print-force-new-page scroll-mb-16">
+          <div className="-mx-3 grid grid-cols-1 gap-3 print:grid-cols-3 print:gap-2 md:grid-cols-2 lg:grid-cols-3">
+            {RESUME_DATA.projects.map((project) => {
+              return (
+                <ProjectCard
+                  key={project.title}
+                  title={project.title}
+                  description={project.description}
+                  tags={project.techStack}
+                  link={"link" in project ? project.link.href : undefined}
+                />
+              );
+            })}
+          </div>
+        </Section>  
     </div>
   );
 }

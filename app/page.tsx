@@ -10,8 +10,8 @@ import About from "./Components/About";
 import Skills from "./Components/Skills";
 import RenderContext from "./Contexts/rendre";
 import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
 import Project from "./Components/Project";
+import Desktop from "./Desktop";
 
 const Work = ()=> {
   return(
@@ -66,7 +66,6 @@ const Body = ()=>{
       { renderContext?.render === 'about' && <About/>}
       { renderContext?.render === 'skills' && <Skills/>}
       { renderContext?.render === 'connect' && <Contact/>}
-      { renderContext?.render === 'footer' && <Footer/>}
       { renderContext?.render === 'work' && <Project/>}
       </div>}
 
@@ -77,13 +76,26 @@ const Body = ()=>{
 
 export default function App() {
   const [render, setRender] = useState('home');
-  
+  const [isMobile, setIsMobile] = useState(false);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 512); // Adjust the breakpoint value as needed
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <>
-       <div>
+       <>
+       <div className={` ${isMobile ? "Mobile" : "Desktop"}`}>
         <Toaster/>
         <RenderContext.Provider value={{render, setRender}}>
-          <Body/>
+          {isMobile ?  <Body /> : <Desktop/>}
         </RenderContext.Provider>
       </div>
     </>
