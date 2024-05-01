@@ -12,13 +12,17 @@ import RenderContext from "./Contexts/rendre";
 import Contact from "./Components/Contact";
 import Project from "./Components/Project";
 import Desktop from "./Desktop";
+import styled from 'styled-components';
 
-const Work = ()=> {
-  return(
-    <section></section>
-  );
+interface RootContainerProps {
+  isMobile: boolean;
 }
 
+const RootContainer = styled.div<RootContainerProps>`
+  background-color: ${(props) => (props.isMobile ? '#333333' : 'white')};
+  max-height: 100vh;
+  overflow-y: auto;
+`;
 
 const Land = (props: any)=>{
   return (
@@ -54,7 +58,7 @@ const Body = ()=>{
   });
   
   return (
-    <>
+    <div className="body">
       {landing && <Land logo={logo}/>}
        {!landing && <div>
         <div>
@@ -69,7 +73,7 @@ const Body = ()=>{
       { renderContext?.render === 'work' && <Project/>}
       </div>}
 
-    </>
+    </div>
   );
 }
 
@@ -91,13 +95,11 @@ export default function App() {
   }, []);
 
   return (
-       <>
-       <div className={` ${isMobile ? "Mobile" : "Desktop"}`}>
-        <Toaster/>
-        <RenderContext.Provider value={{render, setRender}}>
-          {isMobile ?  <Body /> : <Desktop/>}
-        </RenderContext.Provider>
-      </div>
-    </>
+        <RootContainer isMobile={isMobile}>
+          <Toaster/>
+          <RenderContext.Provider value={{render, setRender}}>
+            {isMobile ?  <Body /> : <Desktop/>}
+          </RenderContext.Provider>
+        </RootContainer>
   );
 }
