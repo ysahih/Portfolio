@@ -1,5 +1,5 @@
 
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/app/components/icons";
+import { GitHubIcon, LinkedInIcon, XIcon } from "@/app/Components/icons";
 
 export const RESUME_DATA = {
   name: "Youssef Sahih",
