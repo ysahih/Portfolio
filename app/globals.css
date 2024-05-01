@@ -11,6 +11,8 @@
   --sections:  #008080;
   --background: #333333;
   --text : rgb(219, 212, 212);
+    background-color: var(--background);
+    
 }
 
 * {
@@ -21,6 +23,8 @@
 .body{
   height: 100vh;
 }
+
+
 
 .navbar{
   display: flex;
@@ -405,12 +409,7 @@ textarea{
 
 
 
-.fourthline {
-  font-family: "Asap Condensed", sans-serif;
-  word-spacing: 5px;
-  padding-top: 10px;
-  animation: slideUp 1s forwards;
-  }
+
  
 .fourthline span{
   font-family: "Asap Condensed", sans-serif;
@@ -637,11 +636,18 @@ textarea{
     padding-bottom: 100px;
     min-width: 300px;
   }
+ 
   .container{
     animation: slideUp 1s forwards;
     padding: 40px;
     padding-top: 60px;
   }
+  .fourthline {
+    font-family: "Asap Condensed", sans-serif;
+    word-spacing: 5px;
+    padding-top: 10px;
+    animation: slideUp 1s forwards;
+    }  
 }
 
 
@@ -661,6 +667,7 @@ textarea{
     transform: scale(1, 1);
     background-color: var(--background);
   }
+  
 }
 
 

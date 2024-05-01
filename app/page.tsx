@@ -95,11 +95,13 @@ export default function App() {
   }, []);
 
   return (
-        <RootContainer isMobile={isMobile}>
+    <>
+        {/* // <RootContainer isMobile={isMobile}> */}
           <Toaster/>
           <RenderContext.Provider value={{render, setRender}}>
             {isMobile ?  <Body /> : <Desktop/>}
           </RenderContext.Provider>
-        </RootContainer>
+        {/* // </RootContainer> */}
+    </>
   );
 }
