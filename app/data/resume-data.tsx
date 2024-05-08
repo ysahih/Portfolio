@@ -6,9 +6,9 @@ export const RESUME_DATA = {
   location: "Morocco",
 
   about:
-    "Software Engineer specializing in front-end web design and development, passionate about building efficient websites. With expertise in multiple programming languages, I confidently navigate various technical challenges. I thrive on problem-solving and enjoy collaborating with teams on projects. My dedication to writing efficient code ensures optimal performance and user experiences. Let's work together to create exceptional digital experiences.",
+    "Motivated software developer with a strong track record of successfully completing various projects. Proficient in various programming languages and technologies, including C, C++, and web development technologies (HTML, CSS, JavaScript). Skilled in areas such as file handling, multithreading, game development, virtualization, and networking. Strong problem-solving abilities and a solid understanding of software development principles. Committed to continuous learning and delivering high-quality solutions. Ready to contribute expertise to new challenges.",
   summary:
-    "As a Front-end Web Developer with a background in computer systems, algorithms, and data structures, I have two years of experience in IT and two years of English studies under my belt. I am currently furthering my education in the 42 network for a Master Digital IT Architect degree. Coding and problem-solving through code are my passions, and I am excited to collaborate with talented programmers and expand my knowledge even more!",
+    "As a software Developer with a background in computer systems, algorithms, and data structures, I have two years of experience in IT and two years of English studies under my belt. I am currently furthering my education in the 42 network for a Master Digital IT Architect degree. Coding and problem-solving through code are my passions, and I am excited to collaborate with talented programmers and expand my knowledge even more!",
   avatarUrl: "./ysahih.png",
 
   contact: {
@@ -54,8 +54,10 @@ export const RESUME_DATA = {
     "Tailwind Css",
     "JavaScript",
     "TypeScript",
-    "React/Next.js",
+    "React",
+    "Node.js/Next.js",
   ],
+
   projects: [
     {
       title: "Pongy",
@@ -94,12 +96,32 @@ export const RESUME_DATA = {
     },
     {
       title: "IRC",
-      techStack: ["C++", "Socket"],
+      techStack: ["C++", "Socket Programming"],
       description:
         "Internet Relay Chat server (Communication protocol on the Internet)",
       link: {
         label: "github.com",
         href: "https://github.com/ysahih/IRC",
+      },
+    },
+    {
+      title: "cub3D",
+      techStack: ["C", "Graphics"],
+      description:
+        "My first RayCaster with miniLibX. This project is inspired by the world-famous Wolfenstein 3D game.",
+      link: {
+        label: "github.com",
+        href: "https://github.com/ysahih/cub3D",
+      },
+    },
+    {
+      title: "sash",
+      techStack: ["C", "Software Design and Architecture"],
+      description:
+        "simple implementation of Unix Shell with C",
+      link: {
+        label: "github.com",
+        href: "https://github.com/ysahih/Sash",
       },
     },
   ],
