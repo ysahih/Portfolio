@@ -1,107 +1,141 @@
-"use client"
+"use client";
 
-import NavBar from "./Components/Navbar";
-import Header from "./Components/Header";
-import { Toaster } from "react-hot-toast";
-import Image from "next/image";
-import { useContext, useEffect, useState } from "react";
-import Home from "./Components/Home";
-import About from "./Components/About";
-import Skills from "./Components/Skills";
-import RenderContext from "./Contexts/rendre";
-import Contact from "./Components/Contact";
-import Project from "./Components/Project";
-import Desktop from "./Desktop";
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import NavigationBar from './components/NavigationBar';
+import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
+import SkillsSection from './components/SkillsSection';
+import ProjectsSection from './components/ProjectsSection';
+import EducationSection from './components/EducationSection';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
+import { useTheme } from './Contexts/ThemeContext';
+import { RESUME_DATA } from './data/resume-data';
 
-interface RootContainerProps {
-  isMobile: boolean;
-}
-
-const RootContainer = styled.div<RootContainerProps>`
-  background-color: ${(props) => (props.isMobile ? '#333333' : 'white')};
-  max-height: 100vh;
-  overflow-y: auto;
-`;
-
-const Land = (props: any)=>{
-  return (
-    <div className="landing">
-      <div className="logoLand">
-        <Image
-            className={`sahihLogo ${props.logo ? 'show' : ''}`}
-            src="/asahih.png"
-            width={55}
-            height={55}
-            alt="ucef"
-        />
-      </div>
-    </div>
-  );
-}
-
-const Body = ()=>{
-
-  const [landing, setLanding] = useState(true);
-  const [logo, setlogo] = useState(false);
-  
-  const renderContext = useContext(RenderContext);
-
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
-      setLanding(false);
-    }, 1000);
-    setTimeout(()=>{
-      setlogo(true);
-    }, 300)
-    return () => clearTimeout(timer); // Cleanup function to clear the timer if the component unmounts before the timeout
-  });
-  
-  return (
-    <div className="body">
-      {landing && <Land logo={logo}/>}
-       {!landing && <div>
-        <div>
-        <NavBar/>
-        <Header />
-      </div>
-
-      { renderContext?.render === 'home' && <Home/>}
-      { renderContext?.render === 'about' && <About/>}
-      { renderContext?.render === 'skills' && <Skills/>}
-      { renderContext?.render === 'connect' && <Contact/>}
-      { renderContext?.render === 'work' && <Project/>}
-      </div>}
-
-    </div>
-  );
-}
-
-
-export default function App() {
-  const [render, setRender] = useState('home');
-  const [isMobile, setIsMobile] = useState(false);
-
+export default function Portfolio() {
+  const { theme } = useTheme();
+  const [activeSection, setActiveSection] = useState('home');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 512); // Adjust the breakpoint value as needed
+    // Simulate loading to ensure smooth animations
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    // Add scroll event listener for setting active section
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section[id]');
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach((section) => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).offsetHeight;
+        const sectionId = section.getAttribute('id') || '';
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          setActiveSection(sectionId);
+        }
+      });
     };
-    window.addEventListener('resize', handleResize);
-    handleResize();
+
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-background-light dark:bg-background-dark">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex flex-col items-center"
+        >
+          <motion.img
+            src="/ucefLogo.svg"
+            alt="Logo"
+            className="w-16 h-16"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              rotate: [0, 360] 
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut" 
+            }}
+          />
+          <motion.p 
+            className="mt-4 text-text-light dark:text-text-dark text-lg font-medium"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            Loading Portfolio...
+          </motion.p>
+        </motion.div>
+      </div>
+    );
+  }
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <>
-        {/* // <RootContainer isMobile={isMobile}> */}
-          <Toaster/>
-          <RenderContext.Provider value={{render, setRender}}>
-            {isMobile ?  <Body /> : <Desktop/>}
-          </RenderContext.Provider>
-        {/* // </RootContainer> */}
-    </>
+    <div className="min-h-screen flex flex-col bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+      <NavigationBar activeSection={activeSection} />
+
+      <motion.main 
+        className="flex-grow"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          visible: {
+            transition: {
+              staggerChildren: 0.1
+            }
+          }
+        }}
+      >
+        <motion.section id="home" variants={fadeInUp}>
+          <HeroSection data={RESUME_DATA} />
+        </motion.section>
+        
+        <motion.section id="about" variants={fadeInUp}>
+          <AboutSection data={RESUME_DATA} />
+        </motion.section>
+        
+        <motion.section id="skills" variants={fadeInUp}>
+          <SkillsSection skills={RESUME_DATA.skills} />
+        </motion.section>
+        
+        <motion.section id="projects" variants={fadeInUp}>
+          <ProjectsSection projects={RESUME_DATA.projects} />
+        </motion.section>
+        
+        <motion.section id="education" variants={fadeInUp}>
+          <EducationSection education={RESUME_DATA.education} />
+        </motion.section>
+        
+        <motion.section id="contact" variants={fadeInUp}>
+          <ContactSection contact={RESUME_DATA.contact} location={RESUME_DATA.location} />
+        </motion.section>
+      </motion.main>
+      
+      <Footer socialLinks={RESUME_DATA.contact.social} />
+    </div>
   );
 }
