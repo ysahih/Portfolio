@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownIcon, DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from 'lucide-react';
 
+
 interface HeroProps {
   data: {
     name: string;
@@ -71,14 +72,14 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
   return (
     <div className="min-h-screen flex items-center justify-center px-6 md:px-12 py-20 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 -z-20" />
       
-      {/* Animated particles */}
-      <div className="absolute inset-0 -z-5">
+      {/* Animated particles - Add pointer-events-none to prevent blocking clicks */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute bg-primary-light/20 dark:bg-primary/30 rounded-full"
+            className="absolute bg-primary-light/20 dark:bg-primary/30 rounded-full pointer-events-none"
             style={{
               width: Math.random() * 8 + 4,
               height: Math.random() * 8 + 4,
@@ -99,7 +100,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
         ))}
       </div>
       
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Left content */}
           <motion.div 
