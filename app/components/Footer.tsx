@@ -60,7 +60,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               e.preventDefault();
               scrollToSection('home');
             }}>
-              <img src="/ucefLogo.svg" alt="Logo" className="h-10 w-10" />
+              <img src="./ucefLogo.png" alt="Logo" className="h-10 w-10" />
               <span className="text-2xl font-bold gradient-text bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
                 Youssef Sahih
               </span>

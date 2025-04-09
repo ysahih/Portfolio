@@ -64,7 +64,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
             scrollToSection('home');
           }}
         >
-          <img src="/ucefLogo.svg" alt="Logo" className="h-8 w-8" />
+          <img src="./ucefLogo.png" alt="Logo" className="h-8 w-8" />
           <span className="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
             Youssef
           </span>

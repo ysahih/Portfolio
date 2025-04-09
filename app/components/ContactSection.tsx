@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon } from 'lucide-react';
 import { toast } from 'react-hot-toast';
@@ -73,6 +73,9 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
     }
   };
 
+  useEffect(() => {
+    emailjs.init('k7Xbdqofx3sBAJf3I');
+  }, []);
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
@@ -84,10 +87,9 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
     setFormStatus('submitting');
     
     try {
-      // Replace with your EmailJS service ID, template ID, and user ID
       await emailjs.send(
-        'service_id',
-        'template_id',
+        'service_s5tsk8o',
+        'template_9rbucml',
         {
           from_name: formData.name,
           from_email: formData.email,

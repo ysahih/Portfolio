@@ -49,33 +49,35 @@ export default function Portfolio() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-background-light dark:bg-background-dark">
+      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="flex flex-col items-center"
         >
           <motion.img
-            src="/ucefLogo.svg"
-            alt="Logo"
-            className="w-16 h-16"
+            src="./ucefLogo.png" 
+            alt="Youssef Sahih Logo"
+            className="w-24 h-24"
             animate={{ 
-              scale: [1, 1.2, 1],
-              rotate: [0, 360] 
+              scale: [1, 1.1, 1],
+              rotate: [0, 5, 0, -5, 0]
             }}
             transition={{ 
-              duration: 2,
+              duration: 3,
               repeat: Infinity,
               ease: "easeInOut" 
             }}
           />
           <motion.p 
-            className="mt-4 text-text-light dark:text-text-dark text-lg font-medium"
+            className="mt-6 text-gray-700 dark:text-gray-300 text-lg font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Loading Portfolio...
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+              Loading Portfolio...
+            </span>
           </motion.p>
         </motion.div>
       </div>
