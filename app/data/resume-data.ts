@@ -62,16 +62,15 @@ export const RESUME_DATA = {
     {
       title: "Pongy",
       techStack: [
-        "Ongoing Project",
         "Next.js",
         "React",
         "TypeScript",
       ],
       description: "Pong contest website with real-time multiplayer games, chat, and security",
-      // link: {
-      //   // label: "consultly.com",
-      //   href: "https://github.com/ysahih/Pongy",
-      // },
+      link: {
+        label: "github.com/ysahih",
+        href: "https://github.com/ysahih/PingPong",
+      },
     },
     {
       title: "Wordle-Game clone",
