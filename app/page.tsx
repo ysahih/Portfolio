@@ -56,15 +56,14 @@ export default function Portfolio() {
           className="flex flex-col items-center"
         >
           <motion.img
-            src="./ucefLogo.png" 
-            alt="Youssef Sahih Logo"
-            className="w-24 h-24"
+            src="./ucefLogo.png"
+            alt="Logo"
+            className="w-16 h-16"
             animate={{ 
               scale: [1, 1.1, 1],
-              rotate: [0, 5, 0, -5, 0]
             }}
             transition={{ 
-              duration: 3,
+              duration: 2,
               repeat: Infinity,
               ease: "easeInOut" 
             }}
@@ -113,7 +112,7 @@ export default function Portfolio() {
         }}
       >
         <motion.section id="home" variants={fadeInUp}>
-          <HeroSection data={RESUME_DATA} />
+          <HeroSection data={RESUME_DATA as any} />
         </motion.section>
         
         <motion.section id="about" variants={fadeInUp}>
@@ -121,23 +120,34 @@ export default function Portfolio() {
         </motion.section>
         
         <motion.section id="skills" variants={fadeInUp}>
-          <SkillsSection skills={RESUME_DATA.skills} />
+          <SkillsSection skills={[...RESUME_DATA.skills]} />
         </motion.section>
         
         <motion.section id="projects" variants={fadeInUp}>
-          <ProjectsSection projects={RESUME_DATA.projects} />
+          <ProjectsSection 
+            projects={RESUME_DATA.projects.map(project => ({
+              ...project,
+              techStack: [...project.techStack]
+            }))}
+          />
         </motion.section>
         
         <motion.section id="education" variants={fadeInUp}>
-          <EducationSection education={RESUME_DATA.education} />
+          <EducationSection education={[...RESUME_DATA.education]} />
         </motion.section>
         
         <motion.section id="contact" variants={fadeInUp}>
-          <ContactSection contact={RESUME_DATA.contact} location={RESUME_DATA.location} />
+          <ContactSection 
+            contact={{
+              ...RESUME_DATA.contact,
+              social: [...RESUME_DATA.contact.social]
+            }} 
+            location={RESUME_DATA.location}
+          />
         </motion.section>
       </motion.main>
       
-      <Footer socialLinks={RESUME_DATA.contact.social} />
+      <Footer socialLinks={[...RESUME_DATA.contact.social]} />
     </div>
   );
 }
