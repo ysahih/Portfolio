@@ -39,6 +39,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
+        when: "beforeChildren"
       },
     },
   };
@@ -119,79 +120,80 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
 
         {/* Projects Grid */}
         <motion.div
+          key={activeFilter}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          animate="visible"
         >
-          <AnimatePresence>
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                layout
-                variants={itemVariants}
-                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ y: -10 }}
-                onHoverStart={() => setHoveredProject(project.title)}
-                onHoverEnd={() => setHoveredProject(null)}
-                onClick={() => setSelectedProject(project)}
-              >
-                <div className="relative overflow-hidden h-48">
-                  <img 
-                    src={getProjectImage(project.title)} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-500"
-                    style={{ 
-                      transform: hoveredProject === project.title ? 'scale(1.1)' : 'scale(1)'
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
-                    <h3 className="text-white text-xl font-bold">{project.title}</h3>
-                  </div>
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={`${project.title}-${index}`}
+              layout
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -10 }}
+              onHoverStart={() => setHoveredProject(project.title)}
+              onHoverEnd={() => setHoveredProject(null)}
+              onClick={() => setSelectedProject(project)}
+            >
+              <div className="relative overflow-hidden h-48">
+                <img 
+                  src={getProjectImage(project.title)} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-500"
+                  style={{ 
+                    transform: hoveredProject === project.title ? 'scale(1.1)' : 'scale(1)'
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                  <h3 className="text-white text-xl font-bold">{project.title}</h3>
                 </div>
-                
-                <div className="p-5">
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.techStack.map((tech, techIndex) => (
-                      <span 
-                        key={techIndex}
-                        className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <button 
-                      className="text-primary dark:text-primary-light font-medium hover:underline flex items-center gap-1"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedProject(project);
-                      }}
+              </div>
+              
+              <div className="p-5">
+                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.techStack.map((tech, techIndex) => (
+                    <span 
+                      key={techIndex}
+                      className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full"
                     >
-                      <CodeIcon className="w-4 h-4" />
-                      View Details
-                    </button>
-                    {project.link && (
-                      <a 
-                        href={project.link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <GithubIcon className="w-5 h-5" />
-                      </a>
-                    )}
-                  </div>
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                <div className="flex justify-between items-center">
+                  <button 
+                    className="text-primary dark:text-primary-light font-medium hover:underline flex items-center gap-1"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProject(project);
+                    }}
+                  >
+                    <CodeIcon className="w-4 h-4" />
+                    View Details
+                  </button>
+                  {project.link && (
+                    <a 
+                      href={project.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <GithubIcon className="w-5 h-5" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Project Modal */}

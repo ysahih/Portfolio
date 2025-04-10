@@ -54,7 +54,12 @@ export const RESUME_DATA = {
     "JavaScript",
     "TypeScript",
     "React",
+    "Redux",
     "Node.js/Next.js",
+    "Docker",
+    "Git",
+    "Jira",
+    "Agile/Scrum",
   ],
 
   projects: [

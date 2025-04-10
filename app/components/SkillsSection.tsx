@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code2Icon, ServerIcon, LayoutDashboardIcon } from 'lucide-react';
+import { Code2Icon, ServerIcon, LayoutDashboardIcon, PenToolIcon } from 'lucide-react';
 
 interface SkillsProps {
   skills: string[];
@@ -19,14 +19,16 @@ const SKILL_PROFICIENCY: Record<string, number> = {
   "React": 80,
   "Node.js/Next.js": 75,
   "Docker": 70,
-  "Git": 85
+  "Git": 85,
+  "Jira": 80,
 };
 
 // Categorized skills
 const SKILL_CATEGORIES = {
   "Languages": ["C", "C++", "JavaScript", "TypeScript"],
-  "Frontend": ["Html", "Tailwind Css", "React"],
-  "Backend": ["Node.js/Next.js", "Docker"]
+  "Frontend": ["Html", "Tailwind Css", "React", "Redux"],
+  "Backend": ["Node.js/Next.js", "Docker"],
+  "DevOps & Tools": ["Git", "Docker", "Jira"]
 };
 
 const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
@@ -37,10 +39,11 @@ const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
     { id: "Languages", label: "Languages", icon: <Code2Icon className="w-5 h-5" /> },
     { id: "Frontend", label: "Frontend", icon: <LayoutDashboardIcon className="w-5 h-5" /> },
     { id: "Backend", label: "Backend", icon: <ServerIcon className="w-5 h-5" /> },
+    { id: "DevOps & Tools", label: "DevOps & Tools", icon: <PenToolIcon className="w-5 h-5" /> },
   ];
 
   const filteredSkills = activeCategory === "All" 
-    ? skills 
+    ? Object.values(SKILL_CATEGORIES).flat() // get all skills from categories
     : SKILL_CATEGORIES[activeCategory as keyof typeof SKILL_CATEGORIES] || [];
 
   const containerVariants = {
@@ -49,6 +52,7 @@ const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
+        when: "beforeChildren"
       },
     },
   };
@@ -60,6 +64,7 @@ const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
       y: 0,
       transition: {
         duration: 0.5,
+        ease: "easeOut"
       },
     },
   };
@@ -77,7 +82,11 @@ const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
       "javascript": "javascript",
       "typescript": "typescript",
       "react": "react",
+      "redux": "redux",
       "nodejs/nextjs": "nextjs",
+      "jira": "jira",
+      "docker": "docker",
+      "git": "git",
     };
 
     return skillMap[skillLower] || skillLower;
@@ -128,21 +137,24 @@ const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
 
         {/* Skills Grid */}
         <motion.div
+          key={activeCategory}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
+          animate="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
           {filteredSkills.map((skill, index) => {
-            const proficiency = SKILL_PROFICIENCY[skill] || 75; // Default proficiency if not specified
+            const proficiency = SKILL_PROFICIENCY[skill] || 75;
             const deviconClass = getDeviconClass(skill);
 
             return (
               <motion.div
-                key={index}
+                key={`${skill}-${index}`}
                 className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
                 variants={itemVariants}
+                initial="hidden"
+                animate="visible"
                 whileHover={{ y: -5 }}
               >
                 <div className="flex items-center mb-4">
@@ -178,9 +190,26 @@ const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <h3 className="text-2xl font-semibold mb-6 text-center">Additional Skills & Tools</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-center">Additional Skills & Methodologies</h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {["Git", "Docker", "Linux", "Socket Programming", "Project Management", "Problem Solving"].map((skill, index) => (
+            {[
+              // "Git",
+              // "Docker",
+              "Linux",
+              "Socket Programming",
+              "Project Management",
+              "Problem Solving",
+              "Agile Methodology",
+              "Scrum",
+              // "Jira",
+              "Team Collaboration",
+              "CI/CD",
+              "Code Review",
+              "Test-Driven Development",
+              "RESTful APIs",
+              "System Design",
+              "Technical Documentation"
+            ].map((skill, index) => (
               <motion.span
                 key={index}
                 className="px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-full text-gray-800 dark:text-gray-200"
