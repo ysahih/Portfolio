@@ -44,7 +44,6 @@ export const RESUME_DATA = {
       start: "2022",
       end: "present",
     },
-
   ],
   skills: [
     "C",
@@ -65,12 +64,9 @@ export const RESUME_DATA = {
   projects: [
     {
       title: "Pongy",
-      techStack: [
-        "Next.js",
-        "React",
-        "TypeScript",
-      ],
-      description: "Pong contest website with real-time multiplayer games, chat, and security",
+      techStack: ["Next.js", "React", "TypeScript"],
+      description:
+        "Pong contest website with real-time multiplayer games, chat, and security",
       link: {
         label: "github.com/ysahih",
         href: "https://github.com/ysahih/PingPong",
@@ -79,8 +75,7 @@ export const RESUME_DATA = {
     {
       title: "Wordle-Game clone",
       techStack: ["Html", "Css", "JavaScript"],
-      description:
-        "a simple clone of the famous wordle game",
+      description: "a simple clone of the famous wordle game",
 
       link: {
         label: "github.com",
@@ -120,12 +115,51 @@ export const RESUME_DATA = {
     {
       title: "sash",
       techStack: ["C", "Software Design and Architecture"],
-      description:
-        "simple implementation of Unix Shell with C",
+      description: "simple implementation of Unix Shell with C",
       link: {
         label: "github.com",
         href: "https://github.com/ysahih/Sash",
       },
+    },
+  ],
+
+  experience: [
+    {
+      company: "Im'enSe",
+      position: "Frontend Developer",
+      logo: 'https://media.licdn.com/dms/image/v2/C4E0BAQGwBEMaD6MB4Q/company-logo_200_200/company-logo_200_200/0/1670258446221?e=1749686400&v=beta&t=ke4p83O45mws8hx8rE5qkaD8KH5-aI1hPa6gesmqx_U',
+      location: "Tangier, Morocco",
+      startDate: "Aug 2024",
+      endDate: "Present",
+      description:
+        "Working on front-end development projects for clients in the QHSE sector, focusing on secure, scalable web applications.",
+      skills: [
+        "React",
+        "TypeScript",
+        "Redux",
+        "Node.js",
+        "Jira",
+        "Agile",
+        "Git",
+        "CI/CD",
+        "REST APIs",
+      ],
+      achievements: [
+        "Improved application performance by 40% through code optimization",
+        "Collaborated with cross-functional teams to deliver projects on time",
+        "Contributed to the development of a secure authentication system",
+        "Conducted code reviews and provided constructive feedback to peers",
+        "Participated in the design and architecture of a new web application",
+        "Worked closely with UX/UI designers to implement user-friendly interfaces",
+        "Contributed to the development of a reusable component library",
+        "Participated in the migration of a legacy application to a modern tech stack",
+        "Worked on a project that reduced page load time by 50%",
+        "Participated in the development of a web application that supports multiple languages",
+        "Worked on a project that improved accessibility for users with disabilities",
+        "Worked on a project that improved SEO performance by 30%",
+        "Participated in the development of a web application that integrates with third-party APIs",
+        "Worked on a project that improved data visualization for users",
+      ],
     },
   ],
 } as const;

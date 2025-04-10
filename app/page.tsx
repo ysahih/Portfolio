@@ -12,6 +12,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import { useTheme } from './Contexts/ThemeContext';
 import { RESUME_DATA } from './data/resume-data';
+import ExperienceSection from './components/ExperienceSection';
 
 export default function Portfolio() {
   const { theme } = useTheme();
@@ -126,6 +127,10 @@ export default function Portfolio() {
         
         <motion.section id="skills" variants={fadeInUp}>
           <SkillsSection skills={[...RESUME_DATA.skills]} />
+        </motion.section>
+        
+        <motion.section id="experience" variants={fadeInUp}>
+          <ExperienceSection experience={[...RESUME_DATA.experience]} />
         </motion.section>
         
         <motion.section id="projects" variants={fadeInUp}>
