@@ -58,18 +58,23 @@ export default function Portfolio() {
           <motion.img
             src="./ucefLogo.png"
             alt="Logo"
-            className="w-16 h-16"
+            className="w-20 h-20"
+            initial={{ opacity: 0, scale: 0.5 }}
             animate={{ 
-              scale: [1, 1.1, 1],
+              opacity: 1,
+              scale: 1,
+              rotate: [0, 10, -10, 10, 0],
+              y: [0, -10, 0]
             }}
             transition={{ 
-              duration: 2,
+              duration: 2.5,
               repeat: Infinity,
-              ease: "easeInOut" 
+              repeatType: "reverse",
+              ease: [0.25, 0.1, 0.25, 1]
             }}
           />
           <motion.p 
-            className="mt-6 text-gray-700 dark:text-gray-300 text-lg font-medium"
+            className="-mt-4 text-gray-700 dark:text-gray-300 text-lg font-medium"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
