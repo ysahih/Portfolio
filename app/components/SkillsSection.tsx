@@ -93,7 +93,7 @@ const SkillsSection: React.FC<SkillsProps> = ({ skills }) => {
   };
 
   return (
-    <div className="py-20 px-6 md:px-12 bg-surface-light dark:bg-surface-dark" id="skills">
+    <div className="py-20 px-4 sm:px-6 md:px-12 bg-surface-light dark:bg-surface-dark overflow-hidden" id="skills">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           className="text-center mb-16"

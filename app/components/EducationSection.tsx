@@ -39,7 +39,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
   };
 
   return (
-    <div className="py-20 px-6 md:px-12 bg-surface-light dark:bg-surface-dark" id="education">
+    <div className="py-20 px-4 sm:px-6 md:px-12 bg-surface-light dark:bg-surface-dark overflow-hidden" id="education">
       <div className="container mx-auto max-w-6xl relative">
         <motion.div
           className="text-center mb-16"

@@ -70,7 +70,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
   };
   
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 md:px-12 py-20 md:py-32 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 py-20 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 -z-20" />
       

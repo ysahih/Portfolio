@@ -44,7 +44,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 px-4 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 transition-all duration-300 ${
         isScrolled
           ? "bg-white/80 dark:bg-background-dark/80 shadow-md backdrop-blur-md"
           : "bg-transparent"

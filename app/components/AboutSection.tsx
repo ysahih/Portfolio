@@ -57,7 +57,7 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
   ];
 
   return (
-    <div className="py-20 px-6 md:px-12 relative overflow-hidden" id="about">
+    <div className="py-20 px-4 sm:px-6 md:px-12 relative overflow-hidden" id="about">
       {/* Background shape */}
       <div className="absolute right-0 top-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl -z-10" />
       <div className="absolute left-0 bottom-0 w-96 h-96 bg-secondary/5 dark:bg-secondary/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl -z-10" />

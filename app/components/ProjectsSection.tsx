@@ -64,7 +64,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
   };
 
   return (
-    <div className="py-20 px-6 md:px-12" id="projects">
+    <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="projects">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           className="text-center mb-16"
