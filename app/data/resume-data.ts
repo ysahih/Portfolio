@@ -145,7 +145,6 @@ export const RESUME_DATA = {
         "REST APIs",
       ],
       achievements: [
-        "Improved application performance by 40% through code optimization",
         "Collaborated with cross-functional teams to deliver projects on time",
         "Contributed to the development of a secure authentication system",
         "Conducted code reviews and provided constructive feedback to peers",
