@@ -130,7 +130,7 @@ export default function Portfolio() {
         </motion.section>
         
         <motion.section id="experience" variants={fadeInUp}>
-          <ExperienceSection experience={[...RESUME_DATA.experience]} />
+          <ExperienceSection experience={RESUME_DATA.experience} />
         </motion.section>
         
         <motion.section id="projects" variants={fadeInUp}>

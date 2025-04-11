@@ -11,12 +11,12 @@ interface Experience {
   startDate: string;
   endDate: string;
   description: string;
-  skills: string[];
-  achievements: string[];
+  skills: readonly string[];
+  achievements: readonly string[];
 }
 
 interface ExperienceSectionProps {
-  experience: Experience[];
+  experience: readonly Experience[];
 }
 
 const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => {
