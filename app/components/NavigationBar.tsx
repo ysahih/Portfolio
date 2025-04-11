@@ -78,7 +78,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
         </motion.a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-8">
           {navItems.map((item) => (
             <motion.a
               key={item.id}
@@ -122,7 +122,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-4 md:hidden">
+        <div className="flex items-center space-x-4 lg:hidden">
           <motion.button
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             className="p-2 rounded-full bg-surface-light dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
@@ -155,7 +155,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
-          className="absolute top-full left-0 right-0 bg-white dark:bg-background-dark shadow-lg rounded-b-lg py-4 md:hidden"
+          className="absolute top-full left-0 right-0 bg-white dark:bg-background-dark shadow-lg rounded-b-lg py-4 lg:hidden"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
