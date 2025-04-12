@@ -21,6 +21,7 @@ A modern, responsive portfolio website built with Next.js, TypeScript, and Tailw
 - **About**: Professional summary with animated qualities cards
 - **Skills**: Interactive skill cards with proficiency indicators
 - **Projects**: Filterable project gallery with detailed modal views
+- **Experience**: Dynamic timeline showcasing professional journey
 - **Education**: Timeline-based education history
 - **Contact**: Interactive contact form with social media links
 
