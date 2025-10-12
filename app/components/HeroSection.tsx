@@ -207,8 +207,11 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
                 <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-background-dark p-1">
                   <img 
                     src={data.avatarUrl} 
-                    alt={data.name} 
+                    alt={`${data.name} - Professional Web Developer`}
                     className="w-full h-full rounded-full object-cover"
+                    loading="eager"
+                    width={320}
+                    height={320}
                   />
                 </div>
               </motion.div>

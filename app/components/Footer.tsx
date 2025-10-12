@@ -34,9 +34,12 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
+    { id: "services", label: "Services" },
+    { id: "tech-stack", label: "Tech Stack" },
     { id: "skills", label: "Skills" },
+    { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
-    { id: "education", label: "Education" },
+    { id: "testimonials", label: "Results" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -72,8 +75,8 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               </div>
             </a>
             <p className="text-gray-600 dark:text-gray-400 mt-4 mb-6 max-w-md">
-              A passionate software developer with expertise in both low-level
-              programming and web development technologies.
+              Professional web developer specializing in React, Next.js, and modern web technologies. 
+              Building fast, mobile-ready websites for local businesses.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((link, index) => (
@@ -144,8 +147,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
 
         <div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-600 dark:text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} Youssef Sahih. All rights
-            reserved.
+            © {new Date().getFullYear()} Youssef Sahih — Web Developer | sahih.tech
           </p>
           <p className="text-gray-600 dark:text-gray-400 text-sm mt-2 md:mt-0">
             Designed & Built with <span className="text-red-500">♥</span> by

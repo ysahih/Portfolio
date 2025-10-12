@@ -12,6 +12,9 @@ interface Project {
     href: string;
     label?: string;
   };
+  impact?: string;
+  category?: string;
+  featured?: boolean;
 }
 
 interface ProjectsSectionProps {
@@ -23,15 +26,15 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Extract unique tech stacks for filter
-  const techStacks = Array.from(
-    new Set(projects.flatMap(project => project.techStack))
+  // Extract unique categories for filter
+  const categories = Array.from(
+    new Set(projects.map(project => project.category).filter(Boolean))
   );
 
-  // Filter projects based on tech stack
+  // Filter projects based on category
   const filteredProjects = activeFilter === 'All'
     ? projects
-    : projects.filter(project => project.techStack.includes(activeFilter));
+    : projects.filter(project => project.category === activeFilter);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -101,19 +104,19 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
             All Projects
           </motion.button>
           
-          {techStacks.map((tech, index) => (
+          {categories.map((category, index) => (
             <motion.button
               key={index}
               className={`px-4 py-2 rounded-full transition-all duration-300 ${
-                activeFilter === tech
+                activeFilter === category
                   ? "bg-primary text-white shadow-md shadow-primary/20"
                   : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
               }`}
-              onClick={() => setActiveFilter(tech)}
+              onClick={() => setActiveFilter(category)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {tech}
+              {category}
             </motion.button>
           ))}
         </motion.div>
@@ -143,8 +146,11 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
               <div className="relative overflow-hidden h-48">
                 <img 
                   src={getProjectImage(project.title)} 
-                  alt={project.title} 
+                  alt={`${project.title} - Project Screenshot`}
                   className="w-full h-full object-cover transition-transform duration-500"
+                  loading="lazy"
+                  width={600}
+                  height={400}
                   style={{ 
                     transform: hoveredProject === project.title ? 'scale(1.1)' : 'scale(1)'
                   }}
@@ -155,9 +161,26 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
               </div>
               
               <div className="p-5">
+                {project.featured && (
+                  <div className="mb-3">
+                    <span className="px-2 py-1 text-xs bg-primary/10 text-primary dark:text-primary-light rounded-full font-medium">
+                      Featured Project
+                    </span>
+                  </div>
+                )}
+                
                 <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
                   {project.description}
                 </p>
+                
+                {project.impact && (
+                  <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                    <p className="text-sm font-medium text-green-800 dark:text-green-200">
+                      🎯 {project.impact}
+                    </p>
+                  </div>
+                )}
+                
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.techStack.map((tech, techIndex) => (
                     <span 
@@ -168,6 +191,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                     </span>
                   ))}
                 </div>
+                
                 <div className="flex justify-between items-center">
                   <button 
                     className="text-primary dark:text-primary-light font-medium hover:underline flex items-center gap-1"
@@ -182,12 +206,17 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                   {project.link && (
                     <a 
                       href={project.link.href}
-                      target="_blank"
+                      target={project.link.href.startsWith('/') ? '_self' : '_blank'}
                       rel="noopener noreferrer"
-                      className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors"
+                      className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <GithubIcon className="w-5 h-5" />
+                      {project.link.href.startsWith('/') ? (
+                        <ExternalLinkIcon className="w-4 h-4" />
+                      ) : (
+                        <GithubIcon className="w-4 h-4" />
+                      )}
+                      <span className="text-xs">{project.link.label}</span>
                     </a>
                   )}
                 </div>
@@ -217,8 +246,11 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                 <div className="relative h-64 md:h-80">
                   <img 
                     src={getProjectImage(selectedProject.title)} 
-                    alt={selectedProject.title} 
+                    alt={`${selectedProject.title} - Project Screenshot`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    width={800}
+                    height={400}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
                     <h3 className="text-white text-2xl md:text-3xl font-bold">{selectedProject.title}</h3>

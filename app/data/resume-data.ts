@@ -63,63 +63,93 @@ export const RESUME_DATA = {
 
   projects: [
     {
-      title: "Pongy",
-      techStack: ["Next.js", "React", "TypeScript"],
+      title: "Plombier Rapide Agadir",
+      techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "SEO", "Google Analytics"],
       description:
-        "Pong contest website with real-time multiplayer games, chat, and security",
+        "Professional website for local plumbing service with SEO optimization, Google Business Profile integration, and analytics tracking. Real-time data shows 3 active users across 5+ Moroccan cities with 50% traffic share.",
+      link: {
+        label: "View Case Study",
+        href: "/case-study/plombier-rapide-agadir",
+      },
+      impact: "50% of total website traffic from project page",
+      category: "Client Work",
+      featured: true,
+    },
+    {
+      title: "Pongy",
+      techStack: ["Next.js", "React", "TypeScript", "Socket.io", "Real-time"],
+      description:
+        "Pong contest website with real-time multiplayer games, chat, and security features. Built with modern web technologies for smooth gaming experience.",
       link: {
         label: "github.com/ysahih",
         href: "https://github.com/ysahih/PingPong",
       },
+      impact: "Real-time multiplayer gaming platform",
+      category: "Personal Project",
+      featured: false,
     },
     {
-      title: "Wordle-Game clone",
-      techStack: ["Html", "Css", "JavaScript"],
-      description: "a simple clone of the famous wordle game",
-
+      title: "Wordle-Game Clone",
+      techStack: ["HTML", "CSS", "JavaScript", "Local Storage"],
+      description: "A faithful recreation of the famous Wordle game with local storage for game history and statistics tracking.",
       link: {
         label: "github.com",
         href: "https://github.com/ysahih/blog",
       },
+      impact: "Interactive word puzzle game",
+      category: "Personal Project",
+      featured: false,
     },
     {
       title: "Inception",
-      techStack: ["Docker", "Nginx", "mariaDb", "Wordpress"],
+      techStack: ["Docker", "Nginx", "MariaDB", "WordPress", "DevOps"],
       description:
-        "Created a Docker-based multi-container infrastructure with Nginx, WordPress, and MariaDB for a web application.",
+        "Created a Docker-based multi-container infrastructure with Nginx, WordPress, and MariaDB for a scalable web application deployment.",
       link: {
         label: "github.com",
         href: "https://github.com/ysahih/inception",
       },
+      impact: "Containerized web application infrastructure",
+      category: "DevOps",
+      featured: false,
     },
     {
-      title: "IRC",
-      techStack: ["C++", "Socket Programming"],
+      title: "IRC Server",
+      techStack: ["C++", "Socket Programming", "Network Protocols"],
       description:
-        "Internet Relay Chat server (Communication protocol on the Internet)",
+        "Internet Relay Chat server implementing the IRC communication protocol with multi-client support and channel management.",
       link: {
         label: "github.com",
         href: "https://github.com/ysahih/IRC",
       },
+      impact: "Multi-client chat server implementation",
+      category: "System Programming",
+      featured: false,
     },
     {
-      title: "cub3D",
-      techStack: ["C", "Graphics"],
+      title: "Cub3D",
+      techStack: ["C", "Graphics", "Raycasting", "miniLibX"],
       description:
-        "My first RayCaster with miniLibX. This project is inspired by the world-famous Wolfenstein 3D game.",
+        "My first RayCaster with miniLibX. This project is inspired by the world-famous Wolfenstein 3D game, featuring 3D graphics rendering.",
       link: {
         label: "github.com",
         href: "https://github.com/ysahih/cub3D",
       },
+      impact: "3D graphics engine with raycasting",
+      category: "Graphics Programming",
+      featured: false,
     },
     {
-      title: "sash",
-      techStack: ["C", "Software Design and Architecture"],
-      description: "simple implementation of Unix Shell with C",
+      title: "Sash Shell",
+      techStack: ["C", "System Programming", "Process Management"],
+      description: "Simple implementation of Unix Shell with C, featuring command parsing, process execution, and built-in commands.",
       link: {
         label: "github.com",
         href: "https://github.com/ysahih/Sash",
       },
+      impact: "Unix shell implementation",
+      category: "System Programming",
+      featured: false,
     },
   ],
 

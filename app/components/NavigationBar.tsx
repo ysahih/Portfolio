@@ -17,10 +17,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
+    { id: "services", label: "Services" },
+    { id: "tech-stack", label: "Tech Stack" },
     { id: "skills", label: "Skills" },
     { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
-    { id: "education", label: "Education" },
+    { id: "testimonials", label: "Results" },
     { id: "contact", label: "Contact" },
   ];
 

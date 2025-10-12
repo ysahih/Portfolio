@@ -2,7 +2,7 @@
 
 import { useState, FormEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon } from 'lucide-react';
+import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon, MessageCircleIcon } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import emailjs from 'emailjs-com';
 
@@ -151,11 +151,36 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Build Your Website</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
           <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+            Ready to grow your business online? Let's discuss how I can help you reach more customers and increase your revenue.
           </p>
+          
+          {/* Quick CTA Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <motion.a
+              href={`https://wa.me/${contact.tel.replace(/\D/g, '')}?text=Hi%20Youssef,%20I'm%20interested%20in%20building%20a%20website%20for%20my%20business.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold flex items-center gap-2 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <MessageCircleIcon className="w-5 h-5" />
+              WhatsApp Me
+            </motion.a>
+            
+            <motion.a
+              href={`mailto:${contact.email}?subject=Website%20Development%20Inquiry`}
+              className="px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold flex items-center gap-2 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <MailIcon className="w-5 h-5" />
+              Send Email
+            </motion.a>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

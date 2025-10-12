@@ -6,10 +6,14 @@ import NavigationBar from './components/NavigationBar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
+import ServicesSection from './components/ServicesSection';
+import TechStackSection from './components/TechStackSection';
 import ProjectsSection from './components/ProjectsSection';
+import TestimonialsSection from './components/TestimonialsSection';
 import EducationSection from './components/EducationSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import StickyContactCTA from './components/StickyContactCTA';
 import { useTheme } from './Contexts/ThemeContext';
 import { RESUME_DATA } from './data/resume-data';
 import ExperienceSection from './components/ExperienceSection';
@@ -17,14 +21,7 @@ import ExperienceSection from './components/ExperienceSection';
 export default function Portfolio() {
   const { theme } = useTheme();
   const [activeSection, setActiveSection] = useState('home');
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    // Simulate loading to ensure smooth animations
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-
     // Add scroll event listener for setting active section
     const handleScroll = () => {
       const sections = document.querySelectorAll('section[id]');
@@ -43,51 +40,9 @@ export default function Portfolio() {
 
     window.addEventListener('scroll', handleScroll);
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex flex-col items-center"
-        >
-          <motion.img
-            src="./ucefLogo.png"
-            alt="Logo"
-            className="w-20 h-20"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ 
-              opacity: 1,
-              scale: 1,
-              rotate: [0, 10, -10, 10, 0],
-              y: [0, -10, 0]
-            }}
-            transition={{ 
-              duration: 2.5,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: [0.25, 0.1, 0.25, 1]
-            }}
-          />
-          <motion.p 
-            className="-mt-4 text-gray-700 dark:text-gray-300 text-lg font-medium"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              Loading Portfolio...
-            </span>
-          </motion.p>
-        </motion.div>
-      </div>
-    );
-  }
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -125,6 +80,14 @@ export default function Portfolio() {
           <AboutSection data={RESUME_DATA} />
         </motion.section>
         
+        <motion.section id="services" variants={fadeInUp}>
+          <ServicesSection />
+        </motion.section>
+        
+        <motion.section id="tech-stack" variants={fadeInUp}>
+          <TechStackSection />
+        </motion.section>
+        
         <motion.section id="skills" variants={fadeInUp}>
           <SkillsSection skills={[...RESUME_DATA.skills]} />
         </motion.section>
@@ -140,6 +103,10 @@ export default function Portfolio() {
               techStack: [...project.techStack]
             }))}
           />
+        </motion.section>
+        
+        <motion.section id="testimonials" variants={fadeInUp}>
+          <TestimonialsSection />
         </motion.section>
         
         <motion.section id="education" variants={fadeInUp}>
@@ -158,6 +125,12 @@ export default function Portfolio() {
       </motion.main>
       
       <Footer socialLinks={[...RESUME_DATA.contact.social]} />
+      
+      {/* Sticky Contact CTA */}
+      <StickyContactCTA 
+        phone={RESUME_DATA.contact.tel}
+        email={RESUME_DATA.contact.email}
+      />
     </div>
   );
 }
