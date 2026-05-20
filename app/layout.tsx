@@ -21,21 +21,21 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: 'Youssef Sahih - Web Developer & Software Engineer',
-  description: 'Professional web developer specializing in React, Next.js, and modern web technologies. Building fast, mobile-ready websites for local businesses.',
-  keywords: ['web developer', 'React developer', 'Next.js', 'TypeScript', 'frontend developer', 'Morocco', 'Agadir'],
+  title: 'Youssef Sahih — Frontend & Fullstack Engineer',
+  description: 'Fullstack Engineer with 3+ years building production systems — React/Next.js frontends, NestJS backends, PostgreSQL databases, and containerized deployments.',
+  keywords: ['frontend engineer', 'fullstack engineer', 'React', 'Next.js', 'TypeScript', 'NestJS', 'Node.js', 'Morocco'],
   authors: [{ name: 'Youssef Sahih' }],
   openGraph: {
     type: 'website',
     url: 'https://sahih.codes/',
-    title: 'Youssef Sahih - Web Developer & Software Engineer',
-    description: 'Professional web developer specializing in React, Next.js, and modern web technologies.',
+    title: 'Youssef Sahih — Frontend & Fullstack Engineer',
+    description: 'Fullstack Engineer with 3+ years building production systems — React/Next.js frontends, NestJS backends, PostgreSQL databases, and containerized deployments.',
     images: [{ url: 'https://sahih.codes/portfolio-preview.png' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Youssef Sahih - Web Developer & Software Engineer',
-    description: 'Professional web developer specializing in React, Next.js, and modern web technologies.',
+    title: 'Youssef Sahih — Frontend & Fullstack Engineer',
+    description: 'Fullstack Engineer with 3+ years building production systems — React/Next.js frontends, NestJS backends, PostgreSQL databases, and containerized deployments.',
     images: ['https://sahih.codes/portfolio-preview.png'],
   },
   icons: {
@@ -61,18 +61,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: 'Youssef Sahih',
               url: 'https://sahih.codes',
               image: 'https://sahih.codes/ysahih.png',
-              description: 'Professional web developer specializing in React, Next.js, and modern web technologies',
-              jobTitle: 'Web Developer & Software Engineer',
+              description: 'Fullstack Engineer with 3+ years building production systems across the entire stack.',
+              jobTitle: 'Frontend & Fullstack Engineer',
               worksFor: { '@type': 'Organization', name: "Im'enSe" },
               address: { '@type': 'PostalAddress', addressCountry: 'Morocco' },
-              email: 'ucefsahih@gmail.com',
+              email: 'youssefsahih9@gmail.com',
               telephone: '+212708978739',
               sameAs: [
                 'https://github.com/ysahih',
                 'https://www.linkedin.com/in/youssef-sahih/',
                 'https://x.com/uc3f02',
               ],
-              knowsAbout: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Web Development', 'SEO Optimization'],
+              knowsAbout: ['React', 'Next.js', 'TypeScript', 'NestJS', 'Node.js', 'PostgreSQL', 'Docker', 'Real-Time Systems', 'AI Integration'],
             }),
           }}
         />

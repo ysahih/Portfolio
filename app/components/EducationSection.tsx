@@ -9,6 +9,8 @@ interface Education {
   degree: string;
   start: string;
   end: string;
+  location?: string;
+  description?: string;
 }
 
 interface EducationSectionProps {
@@ -64,11 +66,14 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
                       <CalendarIcon className="w-4 h-4" />
                       <span>{edu.start} - {edu.end}</span>
                     </div>
-                    {index === 1 && (
-                      <div className="mt-4 p-3 rounded" style={{ background: 'rgba(79,195,247,0.08)', border: '1px solid rgba(79,195,247,0.15)' }}>
+                    {edu.location && (
+                      <p className="text-sm mb-3" style={{ color: 'var(--text-muted)' }}>📍 {edu.location}</p>
+                    )}
+                    {edu.description && (
+                      <div className="mt-2 p-3 rounded" style={{ background: 'var(--accent-tint)', border: '1px solid var(--accent-tint-border)' }}>
                         <div className="flex items-start gap-2">
                           <BookOpenIcon className="w-5 h-5 mt-1 flex-shrink-0" style={{ color: 'var(--accent)' }} />
-                          <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Part of the prestigious 42 Network, known for its project-based, peer-to-peer learning methodology.</p>
+                          <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>{edu.description}</p>
                         </div>
                       </div>
                     )}
@@ -78,13 +83,6 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
             ))}
           </motion.div>
         </div>
-
-        <motion.div className="mt-16 text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.5 }}>
-          <blockquote className="text-xl italic max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            &ldquo;Education is the passport to the future, for tomorrow belongs to those who prepare for it today.&rdquo;
-          </blockquote>
-          <p className="mt-2" style={{ color: 'var(--text-muted)' }}>― Malcolm X</p>
-        </motion.div>
       </div>
     </div>
   );

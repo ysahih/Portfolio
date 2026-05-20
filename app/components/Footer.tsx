@@ -34,12 +34,10 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
   const navItems = [
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
-    { id: "services", label: "Services" },
-    { id: "tech-stack", label: "Tech Stack" },
     { id: "skills", label: "Skills" },
     { id: "experience", label: "Experience" },
     { id: "projects", label: "Projects" },
-    { id: "testimonials", label: "Results" },
+    { id: "education", label: "Education" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -54,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
   };
 
   return (
-    <footer style={{ background: 'rgba(255,255,255,0.03)', borderTop: '1px solid var(--border)' }} className="py-12 px-6 md:px-12">
+    <footer style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)' }} className="py-12 px-6 md:px-12">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -75,8 +73,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               </div>
             </a>
             <p className="opacity-60 mt-4 mb-6 max-w-md">
-              Professional web developer specializing in React, Next.js, and modern web technologies. 
-              Building fast, mobile-ready websites for local businesses.
+              Frontend &amp; Fullstack Engineer building production-grade web applications with React, Next.js, and Node.js.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((link, index) => (
@@ -132,13 +129,13 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="mailto:ucefsahih@gmail.com"
+                  href="mailto:youssefsahih9@gmail.com"
                   className="transition-colors"
                   style={{ opacity: 0.6 }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1'; (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.6'; (e.currentTarget as HTMLElement).style.color = ''; }}
                 >
-                  ucefsahih@gmail.com
+                  youssefsahih9@gmail.com
                 </a>
               </li>
               <li>
@@ -159,7 +156,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
 
         <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center" style={{ borderTop: '1px solid var(--border)' }}>
           <p className="opacity-60 text-sm">
-            © {new Date().getFullYear()} Youssef Sahih — Web Developer
+            © 2026 Youssef Sahih — Frontend &amp; Fullstack Engineer
           </p>
           <p className="opacity-60 text-sm mt-2 md:mt-0">
             Designed & Built with <span className="text-red-500">♥</span> by
@@ -171,7 +168,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
       {/* Scroll to top button */}
       <motion.button
         className={`fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-40 ${showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"} transition-opacity duration-300`}
-        style={{ background: 'var(--accent)', color: '#070710' }}
+        style={{ background: 'var(--accent)', color: 'var(--on-accent)' }}
         onClick={scrollToTop}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

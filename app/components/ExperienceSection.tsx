@@ -44,9 +44,10 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
     },
   };
 
-  // Function to generate a default logo if none provided
+  // Generate initials-based avatar without external requests
   const generateDefaultLogo = (companyName: string) => {
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(companyName)}&background=0D8ABC&color=fff&size=128`;
+    const initials = companyName.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+    return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="%230D8ABC"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="52" font-family="monospace" font-weight="bold">${initials}</text></svg>`)}`;
   };
 
   return (
@@ -110,7 +111,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                       </p>
                       <div className={`flex flex-wrap gap-2 mb-4 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
                         {exp.skills.map((skill, si) => (
-                          <span key={si} className="px-2 py-1 text-xs rounded-full font-mono" style={{ background: 'rgba(79,195,247,0.1)', color: 'var(--accent)', border: '1px solid rgba(79,195,247,0.2)' }}>
+                          <span key={si} className="px-2 py-1 text-xs rounded-full font-mono" style={{ background: 'var(--accent-tint)', color: 'var(--accent)', border: '1px solid var(--accent-tint-border)' }}>
                             {skill}
                           </span>
                         ))}
@@ -134,18 +135,6 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
           </motion.div>
         </div>
 
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <blockquote className="text-xl italic max-w-3xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
-            &ldquo;Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful.&rdquo;
-          </blockquote>
-          <p className="mt-2" style={{ color: 'var(--text-muted)' }}>― Albert Schweitzer</p>
-        </motion.div>
       </div>
     </div>
   );

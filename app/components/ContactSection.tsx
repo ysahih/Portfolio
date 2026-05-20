@@ -2,7 +2,7 @@
 
 import { useState, FormEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon, MessageCircleIcon } from 'lucide-react';
+import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { toast } from 'react-hot-toast';
 import emailjs from 'emailjs-com';
@@ -146,28 +146,17 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
     <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="contact">
       <div className="container mx-auto max-w-6xl">
         <SectionHeader
-          title="Let's Build Your Website"
-          subtitle="Ready to grow your business online? Let's discuss how I can help you reach more customers and increase your revenue."
+          title="Get in Touch"
+          subtitle="Have a project in mind or want to collaborate? I'd love to hear from you."
           centered
         />
 
           {/* Quick CTA Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-16 -mt-8">
             <motion.a
-              href={`https://wa.me/${contact.tel.replace(/\D/g, '')}?text=Hi%20Youssef,%20I'm%20interested%20in%20building%20a%20website%20for%20my%20business.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold flex items-center gap-2 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <MessageCircleIcon className="w-5 h-5" />
-              WhatsApp Me
-            </motion.a>
-            
-            <motion.a
-              href={`mailto:${contact.email}?subject=Website%20Development%20Inquiry`}
-              className="px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg font-semibold flex items-center gap-2 transition-colors"
+              href={`mailto:${contact.email}`}
+              className="px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-colors"
+              style={{ background: 'var(--accent)', color: 'var(--on-accent)' }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -279,7 +268,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     value={formData.name}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
-                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.name ? '#ef4444' : 'var(--border)' }}
+                    style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.name ? '#ef4444' : 'var(--border)' }}
                     placeholder="Your name"
                   />
                   {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
@@ -296,7 +285,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     value={formData.email}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
-                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.email ? '#ef4444' : 'var(--border)' }}
+                    style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.email ? '#ef4444' : 'var(--border)' }}
                     placeholder="your.email@example.com"
                   />
                   {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
@@ -313,7 +302,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
-                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.subject ? '#ef4444' : 'var(--border)' }}
+                    style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.subject ? '#ef4444' : 'var(--border)' }}
                     placeholder="What is this regarding?"
                   />
                   {errors.subject && <p className="mt-1 text-sm text-red-500">{errors.subject}</p>}
@@ -330,7 +319,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     onChange={handleInputChange}
                     rows={5}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
-                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.message ? '#ef4444' : 'var(--border)' }}
+                    style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.message ? '#ef4444' : 'var(--border)' }}
                     placeholder="Your message here..."
                   />
                   {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
@@ -343,8 +332,8 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                       formStatus === 'submitting' ? 'cursor-not-allowed' : ''
                     }`}
                     style={{
-                      background: formStatus === 'submitting' ? 'rgba(255,255,255,0.15)' : formStatus === 'success' ? '#22c55e' : formStatus === 'error' ? '#ef4444' : 'var(--accent)',
-                      color: formStatus === 'success' || formStatus === 'error' ? '#fff' : '#070710',
+                      background: formStatus === 'submitting' ? 'var(--surface)' : formStatus === 'success' ? '#22c55e' : formStatus === 'error' ? '#ef4444' : 'var(--accent)',
+                      color: formStatus === 'success' || formStatus === 'error' || formStatus === 'submitting' ? '#fff' : 'var(--bg)',
                       opacity: formStatus === 'submitting' ? 0.6 : 1,
                     }}
                     disabled={formStatus === 'submitting'}

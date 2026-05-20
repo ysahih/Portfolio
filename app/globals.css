@@ -6,9 +6,9 @@
 :root,
 [data-theme='dark'] {
   --accent: #4fc3f7;
-  --bg: #070710;
-  --navbar-bg-scrolled: rgba(7, 7, 16, 0.85);
-  --navbar-bg-mobile: rgba(7, 7, 16, 0.95);
+  --bg: #06060f;
+  --navbar-bg-scrolled: rgba(6, 6, 15, 0.85);
+  --navbar-bg-mobile: rgba(6, 6, 15, 0.95);
   --text-primary: rgba(255, 255, 255, 0.95);
   --text-secondary: rgba(255, 255, 255, 0.55);
   --text-muted: rgba(255, 255, 255, 0.28);
@@ -16,6 +16,11 @@
   --border: rgba(255, 255, 255, 0.08);
   --star-color: 255, 255, 255;
   --cursor-color: 255, 255, 255;
+  --accent-tint: rgba(79, 195, 247, 0.08);
+  --accent-tint-border: rgba(79, 195, 247, 0.18);
+  --accent-glow: rgba(79, 195, 247, 0.25);
+  --input-bg: rgba(255, 255, 255, 0.06);
+  --on-accent: #06060f;
 }
 
 [data-theme='light'] {
@@ -30,6 +35,11 @@
   --border: rgba(10, 15, 30, 0.10);
   --star-color: 10, 15, 30;
   --cursor-color: 10, 15, 30;
+  --accent-tint: rgba(2, 132, 199, 0.08);
+  --accent-tint-border: rgba(2, 132, 199, 0.18);
+  --accent-glow: rgba(2, 132, 199, 0.20);
+  --input-bg: rgba(10, 15, 30, 0.06);
+  --on-accent: #ffffff;
 }
 
 /* ── Hide default cursor for custom cursor ───────────────── */
