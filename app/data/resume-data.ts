@@ -157,7 +157,7 @@ export const RESUME_DATA = {
     {
       company: "Im'enSe",
       position: "Frontend Developer",
-      logo: 'https://media.licdn.com/dms/image/v2/C4E0BAQGwBEMaD6MB4Q/company-logo_200_200/company-logo_200_200/0/1670258446221?e=1749686400&v=beta&t=ke4p83O45mws8hx8rE5qkaD8KH5-aI1hPa6gesmqx_U',
+      logo: '/image.png',
       location: "Tangier, Morocco",
       startDate: "Aug 2024",
       endDate: "Present",

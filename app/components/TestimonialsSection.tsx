@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon, QuoteIcon } from 'lucide-react';
+import SectionHeader from './SectionHeader';
 
 interface Testimonial {
   id: number;
@@ -112,21 +113,13 @@ const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden bg-gray-50 dark:bg-gray-900" id="testimonials">
+    <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="testimonials">
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Results & Testimonials</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            See what my clients say about the results they've achieved
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="Results & Testimonials"
+          subtitle="See what my clients say about the results they've achieved"
+          centered
+        />
 
         {/* Main Testimonial Carousel */}
         <motion.div
@@ -136,9 +129,9 @@ const TestimonialsSection: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 overflow-hidden">
+          <div className="relative rounded-2xl p-8 md:p-12 overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
             {/* Quote Icon */}
-            <div className="absolute top-6 left-6 text-primary/20 dark:text-primary-light/20">
+            <div className="absolute top-6 left-6" style={{ color: 'rgba(79,195,247,0.15)' }}>
               <QuoteIcon className="w-12 h-12" />
             </div>
 
@@ -159,13 +152,13 @@ const TestimonialsSection: React.FC = () => {
                 </div>
 
                 {/* Content */}
-                <blockquote className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+                <blockquote className="text-lg md:text-xl mb-8 leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
                   "{testimonials[currentIndex].content}"
                 </blockquote>
 
                 {/* Author */}
                 <div className="flex items-center justify-center space-x-4">
-                  <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+                  <div className="w-16 h-16 rounded-full overflow-hidden" style={{ background: 'var(--surface)' }}>
                     <img
                       src={testimonials[currentIndex].avatar}
                       alt={testimonials[currentIndex].name}
@@ -174,10 +167,10 @@ const TestimonialsSection: React.FC = () => {
                     />
                   </div>
                   <div className="text-left">
-                    <h4 className="font-semibold text-gray-900 dark:text-white">
+                    <h4 className="font-semibold">
                       {testimonials[currentIndex].name}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                       {testimonials[currentIndex].role} at {testimonials[currentIndex].company}
                     </p>
                   </div>
@@ -188,18 +181,20 @@ const TestimonialsSection: React.FC = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevTestimonial}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-700 p-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-all duration-300"
+              style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
               aria-label="Previous testimonial"
             >
-              <ChevronLeftIcon className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+              <ChevronLeftIcon className="w-6 h-6" />
             </button>
             
             <button
               onClick={nextTestimonial}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white dark:bg-gray-700 p-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full transition-all duration-300"
+              style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
               aria-label="Next testimonial"
             >
-              <ChevronRightIcon className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+              <ChevronRightIcon className="w-6 h-6" />
             </button>
           </div>
 
@@ -209,11 +204,8 @@ const TestimonialsSection: React.FC = () => {
               <button
                 key={index}
                 onClick={() => goToTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'bg-primary dark:bg-primary-light scale-125'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                }`}
+                className={`w-3 h-3 rounded-full transition-all duration-300`}
+                style={{ background: index === currentIndex ? 'var(--accent)' : 'var(--border)', transform: index === currentIndex ? 'scale(1.25)' : 'scale(1)' }}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
@@ -230,26 +222,29 @@ const TestimonialsSection: React.FC = () => {
         >
           <motion.div
             variants={itemVariants}
-            className="text-center bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+            className="text-center rounded-xl p-6"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
           >
-            <div className="text-3xl font-bold text-primary dark:text-primary-light mb-2">50%</div>
-            <div className="text-gray-600 dark:text-gray-300">Project Traffic Share</div>
+            <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent)' }}>50%</div>
+            <div style={{ color: 'var(--text-secondary)' }}>Project Traffic Share</div>
           </motion.div>
           
           <motion.div
             variants={itemVariants}
-            className="text-center bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+            className="text-center rounded-xl p-6"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
           >
-            <div className="text-3xl font-bold text-primary dark:text-primary-light mb-2">5+</div>
-            <div className="text-gray-600 dark:text-gray-300">Cities Across Morocco</div>
+            <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent)' }}>5+</div>
+            <div style={{ color: 'var(--text-secondary)' }}>Cities Across Morocco</div>
           </motion.div>
           
           <motion.div
             variants={itemVariants}
-            className="text-center bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+            className="text-center rounded-xl p-6"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
           >
-            <div className="text-3xl font-bold text-primary dark:text-primary-light mb-2">10</div>
-            <div className="text-gray-600 dark:text-gray-300">Page Views (Real-time)</div>
+            <div className="text-3xl font-bold mb-2" style={{ color: 'var(--accent)' }}>10</div>
+            <div style={{ color: 'var(--text-secondary)' }}>Page Views (Real-time)</div>
           </motion.div>
         </motion.div>
       </div>

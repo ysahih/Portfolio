@@ -54,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
   };
 
   return (
-    <footer className="bg-white dark:bg-gray-900 py-12 px-6 md:px-12">
+    <footer style={{ background: 'rgba(255,255,255,0.03)', borderTop: '1px solid var(--border)' }} className="py-12 px-6 md:px-12">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -69,12 +69,12 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
             >
               <div className="flex items-center">
                 <img src="./ucefLogo.png" alt="Logo" className="h-14 w-14" />
-                <span className="text-2xl font-bold gradient-text bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                <span className="text-2xl font-bold" style={{ color: 'var(--accent)' }}>
                   Youssef Sahih
                 </span>
               </div>
             </a>
-            <p className="text-gray-600 dark:text-gray-400 mt-4 mb-6 max-w-md">
+            <p className="opacity-60 mt-4 mb-6 max-w-md">
               Professional web developer specializing in React, Next.js, and modern web technologies. 
               Building fast, mobile-ready websites for local businesses.
             </p>
@@ -85,7 +85,10 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors"
+                  className="transition-colors"
+                  style={{ opacity: 0.6 }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1'; (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.6'; (e.currentTarget as HTMLElement).style.color = ''; }}
                   whileHover={{ y: -3 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -97,7 +100,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
 
           {/* Quick Links */}
           <div className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white">
+            <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -105,7 +108,10 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
                 <li key={item.id}>
                   <a
                     href={`#${item.id}`}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors"
+                    className="transition-colors"
+                    style={{ opacity: 0.6 }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1'; (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.6'; (e.currentTarget as HTMLElement).style.color = ''; }}
                     onClick={(e) => {
                       e.preventDefault();
                       scrollToSection(item.id);
@@ -120,14 +126,17 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
 
           {/* Contact Info */}
           <div className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white">
+            <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
               Contact
             </h3>
             <ul className="space-y-2">
               <li>
                 <a
                   href="mailto:ucefsahih@gmail.com"
-                  className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors"
+                  className="transition-colors"
+                  style={{ opacity: 0.6 }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1'; (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.6'; (e.currentTarget as HTMLElement).style.color = ''; }}
                 >
                   ucefsahih@gmail.com
                 </a>
@@ -135,21 +144,24 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               <li>
                 <a
                   href="tel:+212708978739"
-                  className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors"
+                  className="transition-colors"
+                  style={{ opacity: 0.6 }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1'; (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.6'; (e.currentTarget as HTMLElement).style.color = ''; }}
                 >
                   +212 708 978 739
                 </a>
               </li>
-              <li className="text-gray-600 dark:text-gray-400">Morocco</li>
+              <li className="opacity-60">Morocco</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
-            © {new Date().getFullYear()} Youssef Sahih — Web Developer | sahih.tech
+        <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center" style={{ borderTop: '1px solid var(--border)' }}>
+          <p className="opacity-60 text-sm">
+            © {new Date().getFullYear()} Youssef Sahih — Web Developer
           </p>
-          <p className="text-gray-600 dark:text-gray-400 text-sm mt-2 md:mt-0">
+          <p className="opacity-60 text-sm mt-2 md:mt-0">
             Designed & Built with <span className="text-red-500">♥</span> by
             Youssef Sahih
           </p>
@@ -158,9 +170,8 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
 
       {/* Scroll to top button */}
       <motion.button
-        className={`fixed bottom-6 right-6 p-3 rounded-full bg-primary text-white shadow-lg ${
-          showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"
-        } transition-opacity duration-300`}
+        className={`fixed bottom-6 right-6 p-3 rounded-full shadow-lg z-40 ${showScrollTop ? "opacity-100" : "opacity-0 pointer-events-none"} transition-opacity duration-300`}
+        style={{ background: 'var(--accent)', color: '#070710' }}
         onClick={scrollToTop}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}

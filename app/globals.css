@@ -2,13 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design-token color system ───────────────────────────── */
+:root,
+[data-theme='dark'] {
+  --accent: #4fc3f7;
+  --bg: #070710;
+  --navbar-bg-scrolled: rgba(7, 7, 16, 0.85);
+  --navbar-bg-mobile: rgba(7, 7, 16, 0.95);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-muted: rgba(255, 255, 255, 0.28);
+  --surface: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.08);
+  --star-color: 255, 255, 255;
+  --cursor-color: 255, 255, 255;
+}
+
+[data-theme='light'] {
+  --accent: #0284c7;
+  --bg: #eef2f7;
+  --navbar-bg-scrolled: rgba(238, 242, 247, 0.90);
+  --navbar-bg-mobile: rgba(238, 242, 247, 0.98);
+  --text-primary: rgba(10, 15, 30, 0.90);
+  --text-secondary: rgba(10, 15, 30, 0.55);
+  --text-muted: rgba(10, 15, 30, 0.35);
+  --surface: rgba(10, 15, 30, 0.05);
+  --border: rgba(10, 15, 30, 0.10);
+  --star-color: 10, 15, 30;
+  --cursor-color: 10, 15, 30;
+}
+
+/* ── Hide default cursor for custom cursor ───────────────── */
+*, *::before, *::after {
+  cursor: none !important;
+}
+
+/* ── Custom cursor ring expansion ────────────────────────── */
+.cursor-expanded {
+  width: 56px !important;
+  height: 56px !important;
+  margin-left: -28px !important;
+  margin-top: -28px !important;
+  mix-blend-mode: difference !important;
+  background: var(--accent) !important;
+  opacity: 0.9 !important;
+}
+
 @layer base {
   :root {
     --background-light: 0 0% 100%;
-    --background-dark: 222.2 84% 4.9%;
+    --background-dark: 7 47% 4%;
     --text-light: 222.2 47.4% 11.2%;
     --text-dark: 210 40% 98%;
-    --primary: 221.2 83.2% 53.3%;
+    --primary: 199 89% 64%;
     --primary-dark: 222.2 47.4% 11.2%;
     --primary-light: 210 40% 98%;
     --secondary: 142.1 76.2% 36.3%;
@@ -22,6 +68,8 @@
 
   body {
     @apply min-h-screen font-sans antialiased;
+    background: var(--bg);
+    color: var(--text-primary);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -35,31 +83,26 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--accent), #81d4fa);
   }
-  
+
   .glass-card {
-    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
   }
 }
 
 /* Animations */
 @keyframes floating {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .animate-floating {
@@ -72,29 +115,24 @@
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/50 dark:bg-primary/70 rounded-full;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  background: var(--border);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/70 dark:bg-primary/90;
+  background: var(--accent);
 }
 
 /* Focus styles for accessibility */
 :focus-visible {
-  @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
-
-/* Smooth theme transition */
-* {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-} 

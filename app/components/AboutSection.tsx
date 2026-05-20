@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import SectionHeader from './SectionHeader';
 import { CodeIcon, BookOpenIcon, BrainCircuitIcon, GraduationCapIcon } from 'lucide-react';
 
 interface AboutProps {
@@ -58,24 +59,14 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
 
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12 relative overflow-hidden" id="about">
-      {/* Background shape */}
-      <div className="absolute right-0 top-0 w-96 h-96 bg-primary/5 dark:bg-primary/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl -z-10" />
-      <div className="absolute left-0 bottom-0 w-96 h-96 bg-secondary/5 dark:bg-secondary/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl -z-10" />
+      <div className="absolute right-0 top-0 w-96 h-96 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl -z-10" style={{ background: 'rgba(79,195,247,0.06)' }} />
+      <div className="absolute left-0 bottom-0 w-96 h-96 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl -z-10" style={{ background: 'rgba(79,195,247,0.04)' }} />
       
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-        </motion.div>
+        <SectionHeader title="About Me" />
 
         <div className="flex flex-col lg:flex-row gap-12 items-center">
-          {/* Left side - Image */}
+          {/* Left side */}
           <motion.div 
             className="w-full lg:w-5/12"
             initial={{ opacity: 0, x: -50 }}
@@ -83,19 +74,15 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-20 rounded-lg transform rotate-3 scale-105" />
-              <div className="absolute inset-0 bg-white dark:bg-gray-800 rounded-lg transform -rotate-3 scale-105" />
-              <div className="relative bg-surface-light dark:bg-surface-dark p-6 rounded-lg shadow-xl">
-                <h3 className="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Who I Am</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                  {data.summary}
+            <div className="relative p-6 rounded-lg" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+              <h3 className="text-2xl font-semibold mb-4" style={{ color: 'var(--accent)' }}>Who I Am</h3>
+              <p className="leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                {data.summary}
+              </p>
+              <div className="pt-4" style={{ borderTop: '1px solid var(--border)' }}>
+                <p className="font-medium" style={{ color: 'var(--text-primary)' }}>
+                  Currently pursuing my passion for programming in the 42 network, working toward a Master&apos;s Degree in IT Architecture.
                 </p>
-                <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <p className="font-medium text-gray-700 dark:text-gray-200">
-                    Currently pursuing my passion for programming in the 42 network, working toward a Master's Degree in IT Architecture.
-                  </p>
-                </div>
               </div>
             </div>
           </motion.div>
@@ -108,20 +95,21 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h3 className="text-2xl font-semibold mb-6 text-center lg:text-left">My Qualities</h3>
+            <h3 className="text-2xl font-semibold mb-6 text-center lg:text-left" style={{ color: 'var(--text-primary)' }}>My Qualities</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {qualities.map((quality, index) => (
                 <motion.div 
                   key={index}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+                  className="p-6 rounded-lg group"
+                  style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
                   variants={itemVariants}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ y: -5, borderColor: 'var(--accent)' }}
                 >
-                  <div className="mb-4 inline-flex p-3 bg-primary/10 dark:bg-primary/20 rounded-lg text-primary dark:text-primary-light group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors duration-300">
+                  <div className="mb-4 inline-flex p-3 rounded-lg" style={{ background: 'rgba(79,195,247,0.1)', color: 'var(--accent)' }}>
                     {quality.icon}
                   </div>
-                  <h4 className="text-xl font-semibold mb-2">{quality.title}</h4>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <h4 className="text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{quality.title}</h4>
+                  <p style={{ color: 'var(--text-secondary)' }}>
                     {quality.description}
                   </p>
                 </motion.div>
@@ -132,8 +120,8 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
               className="mt-8 text-center lg:text-left"
               variants={itemVariants}
             >
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                I am <span className="font-semibold text-primary dark:text-primary-light">passionate about solving problems</span> through code and building applications that provide genuine value.
+              <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+                I am <span className="font-semibold" style={{ color: 'var(--accent)' }}>passionate about solving problems</span> through code and building applications that provide genuine value.
               </p>
             </motion.div>
           </motion.div>

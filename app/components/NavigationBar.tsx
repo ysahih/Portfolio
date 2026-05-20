@@ -21,6 +21,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
     { id: "tech-stack", label: "Tech Stack" },
     { id: "skills", label: "Skills" },
     { id: "experience", label: "Experience" },
+    { id: "education", label: "Education" },
     { id: "projects", label: "Projects" },
     { id: "testimonials", label: "Results" },
     { id: "contact", label: "Contact" },
@@ -49,9 +50,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/80 dark:bg-background-dark/80 shadow-md backdrop-blur-md"
+          ? "shadow-md backdrop-blur-md"
           : "bg-transparent"
       }`}
+      style={isScrolled ? { background: 'var(--navbar-bg-scrolled)' } : {}}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -73,7 +75,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
               alt="Logo"
               className="h-14 w-14"
             />
-            <span className="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+            <span style={{ color: 'var(--accent)' }}>
               Youssef
             </span>
           </div>
@@ -85,11 +87,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
             <motion.a
               key={item.id}
               href={`#${item.id}`}
-              className={`text-sm font-medium transition-colors duration-300 hover:text-primary relative ${
-                activeSection === item.id
-                  ? "text-primary dark:text-primary-light"
-                  : "text-gray-600 dark:text-gray-300"
-              }`}
+              className="text-sm font-medium transition-colors duration-300 relative"
+              style={{
+                color: activeSection === item.id ? 'var(--accent)' : 'var(--text-secondary)',
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={(e) => {
@@ -100,7 +101,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
               {item.label}
               {activeSection === item.id && (
                 <motion.span
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary dark:bg-primary-light"
+                  className="absolute -bottom-1 left-0 right-0 h-px"
+                  style={{ background: 'var(--accent)' }}
                   layoutId="navIndicator"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
@@ -110,7 +112,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
 
           <motion.button
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            className="p-2 rounded-full bg-surface-light dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+            className="p-2 rounded-full transition-colors duration-300"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
@@ -118,7 +121,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
             {theme === "dark" ? (
               <SunIcon className="h-5 w-5 text-yellow-400" />
             ) : (
-              <MoonIcon className="h-5 w-5 text-gray-600" />
+              <MoonIcon className="h-5 w-5" style={{ color: 'var(--text-secondary)' }} />
             )}
           </motion.button>
         </div>
@@ -127,7 +130,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
         <div className="flex items-center space-x-4 lg:hidden">
           <motion.button
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-            className="p-2 rounded-full bg-surface-light dark:bg-surface-dark hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+            className="p-2 rounded-full transition-colors duration-300"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
@@ -135,12 +139,13 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
             {theme === "dark" ? (
               <SunIcon className="h-5 w-5 text-yellow-400" />
             ) : (
-              <MoonIcon className="h-5 w-5 text-gray-600" />
+              <MoonIcon className="h-5 w-5" style={{ color: 'var(--text-secondary)' }} />
             )}
           </motion.button>
 
           <motion.button
-            className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+            className="p-2 rounded-md transition-colors duration-300"
+            style={{ color: 'var(--text-primary)' }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -157,7 +162,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <motion.div
-          className="absolute top-full left-0 right-0 bg-white dark:bg-background-dark shadow-lg rounded-b-lg py-4 lg:hidden"
+          className="absolute top-full left-0 right-0 shadow-lg rounded-b-lg py-4 lg:hidden"
+          style={{ background: 'var(--navbar-bg-mobile)', border: '1px solid var(--border)' }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -168,11 +174,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className={`py-2 text-base font-medium transition-colors duration-300 hover:text-primary ${
-                  activeSection === item.id
-                    ? "text-primary dark:text-primary-light"
-                    : "text-gray-600 dark:text-gray-300"
-                }`}
+                className="py-2 text-base font-medium transition-colors duration-300"
+                style={{
+                  color: activeSection === item.id ? 'var(--accent)' : 'var(--text-secondary)',
+                }}
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(item.id);

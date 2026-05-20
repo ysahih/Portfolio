@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import SectionHeader from './SectionHeader';
 
 interface TechItem {
   name: string;
@@ -50,19 +51,10 @@ const TechStackSection: React.FC = () => {
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="tech-stack">
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Tech Stack</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Modern technologies and tools I use to build fast, scalable, and maintainable applications
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="Tech Stack"
+          subtitle="Modern technologies and tools I use to build fast, scalable, and maintainable applications"
+        />
 
         <motion.div
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
@@ -75,17 +67,18 @@ const TechStackSection: React.FC = () => {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-md hover:shadow-lg transition-all duration-300 group text-center"
+              className="rounded-xl p-4 transition-all duration-300 group text-center"
+              style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
               whileHover={{ y: -5, scale: 1.05 }}
             >
               <div className="flex flex-col items-center">
                 <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                   <i className={`${tech.icon} colored`}></i>
                 </div>
-                <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-1">
+                <h3 className="text-sm font-medium mb-1">
                   {tech.name}
                 </h3>
-                <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
+                <span className="text-xs px-2 py-1 rounded-full" style={{ color: 'var(--text-muted)', background: 'rgba(255,255,255,0.05)' }}>
                   {tech.category}
                 </span>
               </div>
@@ -101,11 +94,11 @@ const TechStackSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
-            <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+          <div className="rounded-2xl p-8" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+            <h3 className="text-xl font-semibold mb-4">
               Always Learning & Growing
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto" style={{ color: 'var(--text-secondary)' }}>
               I stay up-to-date with the latest technologies and best practices to deliver cutting-edge solutions. 
               My diverse background in both frontend and backend development allows me to create comprehensive, 
               full-stack applications that meet modern business needs.

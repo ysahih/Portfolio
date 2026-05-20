@@ -3,6 +3,7 @@
 import { useState, FormEvent, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon, MessageCircleIcon } from 'lucide-react';
+import SectionHeader from './SectionHeader';
 import { toast } from 'react-hot-toast';
 import emailjs from 'emailjs-com';
 
@@ -144,21 +145,14 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="contact">
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Let's Build Your Website</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Ready to grow your business online? Let's discuss how I can help you reach more customers and increase your revenue.
-          </p>
-          
+        <SectionHeader
+          title="Let's Build Your Website"
+          subtitle="Ready to grow your business online? Let's discuss how I can help you reach more customers and increase your revenue."
+          centered
+        />
+
           {/* Quick CTA Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <div className="flex flex-wrap justify-center gap-4 mb-16 -mt-8">
             <motion.a
               href={`https://wa.me/${contact.tel.replace(/\D/g, '')}?text=Hi%20Youssef,%20I'm%20interested%20in%20building%20a%20website%20for%20my%20business.`}
               target="_blank"
@@ -181,7 +175,6 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
               Send Email
             </motion.a>
           </div>
-        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
@@ -198,12 +191,12 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                 className="flex items-start space-x-4"
                 variants={itemVariants}
               >
-                <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg text-primary dark:text-primary-light">
+                <div className="bg-primary/10 p-3 rounded-lg" style={{ color: 'var(--accent)' }}>
                   <MailIcon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-medium text-lg mb-1">Email</h4>
-                  <a href={`mailto:${contact.email}`} className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors">
+                  <a href={`mailto:${contact.email}`} className="transition-colors" style={{ color: 'var(--text-secondary)' }} onMouseEnter={e => (e.currentTarget.style.color='var(--accent)')} onMouseLeave={e => (e.currentTarget.style.color='var(--text-secondary)')}>
                     {contact.email}
                   </a>
                 </div>
@@ -213,12 +206,12 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                 className="flex items-start space-x-4"
                 variants={itemVariants}
               >
-                <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg text-primary dark:text-primary-light">
+                <div className="bg-primary/10 p-3 rounded-lg" style={{ color: 'var(--accent)' }}>
                   <PhoneIcon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-medium text-lg mb-1">Phone</h4>
-                  <a href={`tel:${contact.tel}`} className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors">
+                  <a href={`tel:${contact.tel}`} className="transition-colors" style={{ color: 'var(--text-secondary)' }} onMouseEnter={e => (e.currentTarget.style.color='var(--accent)')} onMouseLeave={e => (e.currentTarget.style.color='var(--text-secondary)')}>
                     {contact.tel}
                   </a>
                 </div>
@@ -228,12 +221,12 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                 className="flex items-start space-x-4"
                 variants={itemVariants}
               >
-                <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-lg text-primary dark:text-primary-light">
+                <div className="bg-primary/10 p-3 rounded-lg" style={{ color: 'var(--accent)' }}>
                   <MapPinIcon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
                   <h4 className="font-medium text-lg mb-1">Location</h4>
-                  <p className="text-gray-600 dark:text-gray-300">{location}</p>
+                  <p style={{ color: 'var(--text-secondary)' }}>{location}</p>
                 </div>
               </motion.div>
             </div>
@@ -250,7 +243,10 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     href={platform.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light hover:shadow-lg transition-all duration-300"
+                    className="p-3 rounded-lg transition-all duration-300"
+                    style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--accent)'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; }}
                     whileHover={{ y: -5 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -268,12 +264,12 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
+            <div className="rounded-xl p-8" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
               <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="name" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
                     Name
                   </label>
                   <input
@@ -282,16 +278,15 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border ${
-                      errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-                    } focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.name ? '#ef4444' : 'var(--border)' }}
                     placeholder="Your name"
                   />
                   {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
                     Email
                   </label>
                   <input
@@ -300,16 +295,15 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border ${
-                      errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-                    } focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.email ? '#ef4444' : 'var(--border)' }}
                     placeholder="your.email@example.com"
                   />
                   {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="subject" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
                     Subject
                   </label>
                   <input
@@ -318,16 +312,15 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border ${
-                      errors.subject ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-                    } focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.subject ? '#ef4444' : 'var(--border)' }}
                     placeholder="What is this regarding?"
                   />
                   {errors.subject && <p className="mt-1 text-sm text-red-500">{errors.subject}</p>}
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
                     Message
                   </label>
                   <textarea
@@ -336,9 +329,8 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={5}
-                    className={`w-full px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border ${
-                      errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-                    } focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
+                    style={{ background: 'rgba(255,255,255,0.06)', color: 'var(--text-primary)', borderColor: errors.message ? '#ef4444' : 'var(--border)' }}
                     placeholder="Your message here..."
                   />
                   {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
@@ -347,15 +339,14 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                 <div>
                   <motion.button
                     type="submit"
-                    className={`w-full py-3 px-6 rounded-lg text-white font-medium flex items-center justify-center transition-all duration-300 ${
-                      formStatus === 'submitting'
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : formStatus === 'success'
-                        ? 'bg-green-500 hover:bg-green-600'
-                        : formStatus === 'error'
-                        ? 'bg-red-500 hover:bg-red-600'
-                        : 'bg-primary hover:bg-primary-dark'
+                    className={`w-full py-3 px-6 rounded-lg font-medium flex items-center justify-center transition-all duration-300 ${
+                      formStatus === 'submitting' ? 'cursor-not-allowed' : ''
                     }`}
+                    style={{
+                      background: formStatus === 'submitting' ? 'rgba(255,255,255,0.15)' : formStatus === 'success' ? '#22c55e' : formStatus === 'error' ? '#ef4444' : 'var(--accent)',
+                      color: formStatus === 'success' || formStatus === 'error' ? '#fff' : '#070710',
+                      opacity: formStatus === 'submitting' ? 0.6 : 1,
+                    }}
                     disabled={formStatus === 'submitting'}
                     whileHover={formStatus !== 'submitting' ? { scale: 1.02 } : {}}
                     whileTap={formStatus !== 'submitting' ? { scale: 0.98 } : {}}

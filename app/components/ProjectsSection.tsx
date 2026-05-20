@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLinkIcon, GithubIcon, CodeIcon } from 'lucide-react';
+import SectionHeader from './SectionHeader';
 
 interface Project {
   title: string;
@@ -69,19 +70,10 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="projects">
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">My Projects</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A showcase of my technical projects and applications, demonstrating my skills and expertise in various technologies.
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="My Projects"
+          subtitle="A showcase of my technical projects and applications, demonstrating my skills and expertise in various technologies."
+        />
 
         {/* Filter controls */}
         <motion.div 
@@ -91,32 +83,20 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <motion.button
-            className={`px-4 py-2 rounded-full transition-all duration-300 ${
-              activeFilter === 'All'
-                ? "bg-primary text-white shadow-md shadow-primary/20"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-            }`}
-            onClick={() => setActiveFilter('All')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            All Projects
-          </motion.button>
-          
-          {categories.map((category, index) => (
+          {['All', ...categories].map((cat, index) => (
             <motion.button
               key={index}
-              className={`px-4 py-2 rounded-full transition-all duration-300 ${
-                activeFilter === category
-                  ? "bg-primary text-white shadow-md shadow-primary/20"
-                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              }`}
-              onClick={() => setActiveFilter(category)}
+              className="px-4 py-2 rounded text-sm font-mono transition-all duration-200"
+              style={{
+                background: activeFilter === cat ? 'var(--accent)' : 'var(--surface)',
+                color: activeFilter === cat ? '#070710' : 'var(--text-secondary)',
+                border: `1px solid ${activeFilter === cat ? 'var(--accent)' : 'var(--border)'}`,
+              }}
+              onClick={() => setActiveFilter(cat as string)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {category}
+              {cat || 'All Projects'}
             </motion.button>
           ))}
         </motion.div>
@@ -137,8 +117,9 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
               initial="hidden"
               animate="visible"
               exit="hidden"
-              className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ y: -10 }}
+              className="rounded-xl overflow-hidden"
+              style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+              whileHover={{ y: -8, borderColor: 'var(--accent)' }}
               onHoverStart={() => setHoveredProject(project.title)}
               onHoverEnd={() => setHoveredProject(null)}
               onClick={() => setSelectedProject(project)}
@@ -151,11 +132,9 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                   loading="lazy"
                   width={600}
                   height={400}
-                  style={{ 
-                    transform: hoveredProject === project.title ? 'scale(1.1)' : 'scale(1)'
-                  }}
+                  style={{ transform: hoveredProject === project.title ? 'scale(1.1)' : 'scale(1)' }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
                   <h3 className="text-white text-xl font-bold">{project.title}</h3>
                 </div>
               </div>
@@ -163,30 +142,27 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
               <div className="p-5">
                 {project.featured && (
                   <div className="mb-3">
-                    <span className="px-2 py-1 text-xs bg-primary/10 text-primary dark:text-primary-light rounded-full font-medium">
-                      Featured Project
+                    <span className="px-2 py-1 text-xs rounded font-mono" style={{ background: 'rgba(79,195,247,0.1)', color: 'var(--accent)', border: '1px solid rgba(79,195,247,0.2)' }}>
+                      Featured
                     </span>
                   </div>
                 )}
                 
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                <p className="mb-4 line-clamp-3 text-sm" style={{ color: 'var(--text-secondary)' }}>
                   {project.description}
                 </p>
                 
                 {project.impact && (
-                  <div className="mb-4 p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
-                    <p className="text-sm font-medium text-green-800 dark:text-green-200">
+                  <div className="mb-4 p-3 rounded" style={{ background: 'rgba(79,195,247,0.06)', border: '1px solid rgba(79,195,247,0.15)' }}>
+                    <p className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
                       🎯 {project.impact}
                     </p>
                   </div>
                 )}
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.techStack.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full"
-                    >
+                  {project.techStack.map((tech, ti) => (
+                    <span key={ti} className="px-2 py-1 text-xs rounded font-mono" style={{ background: 'var(--border)', color: 'var(--text-muted)' }}>
                       {tech}
                     </span>
                   ))}
@@ -194,11 +170,9 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                 
                 <div className="flex justify-between items-center">
                   <button 
-                    className="text-primary dark:text-primary-light font-medium hover:underline flex items-center gap-1"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedProject(project);
-                    }}
+                    className="font-medium flex items-center gap-1 text-sm"
+                    style={{ color: 'var(--accent)' }}
+                    onClick={(e) => { e.stopPropagation(); setSelectedProject(project); }}
                   >
                     <CodeIcon className="w-4 h-4" />
                     View Details
@@ -208,14 +182,11 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                       href={project.link.href}
                       target={project.link.href.startsWith('/') ? '_self' : '_blank'}
                       rel="noopener noreferrer"
-                      className="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light transition-colors flex items-center gap-1"
+                      className="flex items-center gap-1 text-sm transition-colors"
+                      style={{ color: 'var(--text-muted)' }}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      {project.link.href.startsWith('/') ? (
-                        <ExternalLinkIcon className="w-4 h-4" />
-                      ) : (
-                        <GithubIcon className="w-4 h-4" />
-                      )}
+                      <ExternalLinkIcon className="w-4 h-4" />
                       <span className="text-xs">{project.link.label}</span>
                     </a>
                   )}
@@ -229,14 +200,16 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
         <AnimatePresence>
           {selectedProject && (
             <motion.div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              style={{ background: 'rgba(0,0,0,0.7)' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
             >
               <motion.div 
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+                className="rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+                style={{ background: '#0d0d1a', border: '1px solid var(--border)' }}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
@@ -244,44 +217,23 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="relative h-64 md:h-80">
-                  <img 
-                    src={getProjectImage(selectedProject.title)} 
-                    alt={`${selectedProject.title} - Project Screenshot`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    width={800}
-                    height={400}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+                  <img src={getProjectImage(selectedProject.title)} alt={selectedProject.title} className="w-full h-full object-cover" loading="lazy" width={800} height={400} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
                     <h3 className="text-white text-2xl md:text-3xl font-bold">{selectedProject.title}</h3>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      {selectedProject.techStack.map((tech, techIndex) => (
-                        <span 
-                          key={techIndex}
-                          className="px-2 py-1 text-xs bg-white/20 text-white rounded-full"
-                        >
-                          {tech}
-                        </span>
+                      {selectedProject.techStack.map((tech, ti) => (
+                        <span key={ti} className="px-2 py-1 text-xs bg-white/20 text-white rounded-full">{tech}</span>
                       ))}
                     </div>
                   </div>
                 </div>
-
                 <div className="p-6">
-                  <p className="text-gray-600 dark:text-gray-300 mb-6">
-                    {selectedProject.description}
-                  </p>
-                  
+                  <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>{selectedProject.description}</p>
                   {selectedProject.link && (
                     <div className="flex justify-end">
-                      <a
-                        href={selectedProject.link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 bg-primary text-white rounded-lg flex items-center gap-2 hover:bg-primary-dark transition-colors"
-                      >
-                        <GithubIcon className="w-4 h-4" />
-                        View on GitHub
+                      <a href={selectedProject.link.href} target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg flex items-center gap-2 text-sm font-medium" style={{ background: 'var(--accent)', color: '#070710' }}>
+                        <ExternalLinkIcon className="w-4 h-4" />
+                        {selectedProject.link.label || 'View Project'}
                       </a>
                     </div>
                   )}

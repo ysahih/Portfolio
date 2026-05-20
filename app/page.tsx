@@ -57,7 +57,7 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark overflow-x-hidden">
+    <div className="min-h-screen flex flex-col overflow-x-hidden" style={{ background: 'transparent' }}>
       <NavigationBar activeSection={activeSection} />
 
       <motion.main 

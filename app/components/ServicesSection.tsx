@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { 
+import {
   GlobeIcon, 
   SearchIcon, 
   BarChart3Icon, 
@@ -11,6 +11,7 @@ import {
   ShieldIcon,
   UsersIcon
 } from 'lucide-react';
+import SectionHeader from './SectionHeader';
 
 interface Service {
   icon: React.ComponentType<any>;
@@ -71,53 +72,26 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden bg-gray-50 dark:bg-gray-900" id="services">
+    <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="services">
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What I Offer</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="mt-4 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Professional web development services designed to help your business grow online
-          </p>
-        </motion.div>
+        <SectionHeader
+          title="What I Offer"
+          subtitle="Professional web development services designed to help your business grow online"
+        />
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group"
-              whileHover={{ y: -5 }}
-            >
+            <motion.div key={index} variants={itemVariants} className="rounded-xl p-6 group" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }} whileHover={{ y: -5, borderColor: 'var(--accent)' }}>
               <div className="flex flex-col items-center text-center">
-                <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-full mb-4 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
-                  <service.icon className="w-8 h-8 text-primary dark:text-primary-light" />
+                <div className="p-4 rounded-full mb-4" style={{ background: 'rgba(79,195,247,0.1)', color: 'var(--accent)' }}>
+                  <service.icon className="w-8 h-8" />
                 </div>
-                
-                <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                  {service.title}
-                </h3>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
-                  {service.description}
-                </p>
-                
+                <h3 className="text-xl font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>{service.title}</h3>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>{service.description}</p>
                 <ul className="space-y-2 text-left w-full">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                      <div className="w-1.5 h-1.5 bg-primary dark:bg-primary-light rounded-full mr-2 flex-shrink-0" />
+                  {service.features.map((feature, fi) => (
+                    <li key={fi} className="flex items-center text-sm" style={{ color: 'var(--text-secondary)' }}>
+                      <div className="w-1.5 h-1.5 rounded-full mr-2 flex-shrink-0" style={{ background: 'var(--accent)' }} />
                       {feature}
                     </li>
                   ))}
@@ -127,28 +101,12 @@ const ServicesSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Ready to grow your business online?
-            </h3>
-            <p className="text-lg mb-6 opacity-90">
-              Let's discuss how I can help you reach more customers and increase your revenue
-            </p>
-            <motion.a
-              href="#contact"
-              className="inline-block bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Let's build your website
+        <motion.div className="text-center mt-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}>
+          <div className="rounded-2xl p-8" style={{ background: 'rgba(79,195,247,0.08)', border: '1px solid rgba(79,195,247,0.2)' }}>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Ready to grow your business online?</h3>
+            <p className="text-lg mb-6" style={{ color: 'var(--text-secondary)' }}>Let&apos;s discuss how I can help you reach more customers and increase your revenue</p>
+            <motion.a href="#contact" className="inline-block px-8 py-3 rounded-lg font-semibold text-sm" style={{ background: 'var(--accent)', color: '#070710' }} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              Let&apos;s build your website
             </motion.a>
           </div>
         </motion.div>
