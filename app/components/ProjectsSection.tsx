@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLinkIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
@@ -28,6 +28,122 @@ const CATEGORY_COLORS: Record<string, string> = {
   'Personal Project': '#4fc3f7',
 };
 
+const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> = {
+  'Pong — Multiplayer Platform': {
+    command: 'docker compose up --build',
+    output: ['✓ postgres:5432', '✓ nestjs api :3001', '✓ next.js :3000', '→ ready in 2.3s'],
+  },
+  'Sentra — Meeting Intelligence': {
+    command: 'npm run electron:dev',
+    output: ['✓ whisper model loaded', '✓ assemblyai connected', '✓ claude api ready', '→ listening...'],
+  },
+  'IRC Server': {
+    command: './ircserv 6667 password',
+    output: ['[IRC] binding to port 6667', '[IRC] server ready', '[IRC] waiting for clients...'],
+  },
+  'Inception': {
+    command: 'docker compose up -d',
+    output: ['✓ mariadb', '✓ wordpress', '✓ nginx + TLS', '→ https://localhost'],
+  },
+  'Cub3D': {
+    command: 'make && ./cub3D map.cub',
+    output: ['[cub3D] parsing map...', '[cub3D] init miniLibX', '[cub3D] rendering 60fps'],
+  },
+};
+
+function TerminalCard({ title }: { title: string }) {
+  const data = PROJECT_TERMINALS[title] ?? { command: 'npm start', output: ['→ ready'] };
+  const [typedCmd, setTypedCmd] = useState('');
+  const [outputLines, setOutputLines] = useState<string[]>([]);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting && !started) setStarted(true); },
+      { threshold: 0.4 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    let i = 0;
+    setTypedCmd('');
+    setOutputLines([]);
+    const typing = setInterval(() => {
+      i++;
+      setTypedCmd(data.command.slice(0, i));
+      if (i >= data.command.length) {
+        clearInterval(typing);
+        let lineIndex = 0;
+        const outputInterval = setInterval(() => {
+          if (lineIndex >= data.output.length) {
+            clearInterval(outputInterval);
+            return;
+          }
+          setOutputLines((prev) => [...prev, data.output[lineIndex]]);
+          lineIndex++;
+          if (lineIndex >= data.output.length) clearInterval(outputInterval);
+        }, 180);
+      }
+    }, 35);
+    return () => clearInterval(typing);
+  }, [started, data.command, data.output]);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        width: '100%',
+        aspectRatio: '16/9',
+        background: '#0a0a0f',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderRadius: '8px 8px 0 0',
+        overflow: 'hidden',
+        fontFamily: 'ui-monospace, "Cascadia Code", "Fira Code", monospace',
+        flexShrink: 0,
+      }}
+    >
+      {/* title bar */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '7px 12px', background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+        <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57', display: 'inline-block' }} />
+        <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ffbd2e', display: 'inline-block' }} />
+        <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840', display: 'inline-block' }} />
+        <span style={{ marginLeft: 8, fontSize: '0.68rem', color: 'rgba(255,255,255,0.25)', letterSpacing: '0.06em' }}>
+          {title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}
+        </span>
+      </div>
+      {/* terminal body */}
+      <div style={{ padding: '10px 14px', fontSize: '0.72rem', lineHeight: 1.75 }}>
+        <div>
+          <span style={{ color: '#28c840' }}>➜</span>
+          <span style={{ color: '#4fc3f7', marginLeft: 6 }}>~/projects</span>
+          <span style={{ color: 'rgba(255,255,255,0.3)', marginLeft: 6 }}>$</span>
+          <span style={{ color: '#e2e8f0', marginLeft: 6 }}>{typedCmd}</span>
+          {typedCmd.length < data.command.length && started && (
+            <span style={{ display: 'inline-block', width: 6, height: '0.8em', background: '#4fc3f7', marginLeft: 1, verticalAlign: 'text-bottom', animation: 'termBlink 1s step-end infinite' }} />
+          )}
+        </div>
+        {outputLines.filter(Boolean).map((line, i) => (
+          <div
+            key={i}
+            style={{
+              color: line.startsWith('✓') ? '#28c840' : line.startsWith('→') ? '#4fc3f7' : line.startsWith('[') ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.35)',
+              paddingLeft: 16,
+            }}
+          >
+            {line}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const accentColor = CATEGORY_COLORS[project.category] || 'var(--accent)';
 
@@ -38,58 +154,23 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 28 }}
       transition={{ duration: 0.45, delay: index * 0.07, ease: EASE }}
-      className="flex flex-col rounded-xl overflow-hidden group"
+      className="flex flex-col overflow-hidden group"
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
+        borderRadius: '8px',
       }}
       whileHover={{ y: -4, borderColor: accentColor } as any}
     >
-      {/* Card visual header */}
-      <div
-        className="relative h-40 flex flex-col items-start justify-end p-5 overflow-hidden"
-        style={{
-          background: 'var(--surface)',
-          borderBottom: '1px solid var(--border)',
-        }}
-      >
-        {/* Background grid */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `linear-gradient(${accentColor}22 1px, transparent 1px), linear-gradient(90deg, ${accentColor}22 1px, transparent 1px)`,
-            backgroundSize: '32px 32px',
-          }}
-        />
-        {/* Glow */}
-        <div
-          className="absolute top-0 right-0 w-32 h-32 blur-3xl opacity-20"
-          style={{ background: accentColor }}
-        />
-
-        <div className="relative z-10 w-full">
-          {project.featured && (
-            <span
-              className="text-xs font-mono uppercase tracking-widest mb-2 block"
-              style={{ color: accentColor, letterSpacing: '0.12em' }}
-            >
-              ✦ Featured
-            </span>
-          )}
-          <h3
-            className="text-lg font-bold leading-tight"
-            style={{ color: 'var(--text-primary)', fontFamily: 'monospace' }}
-          >
-            {project.title}
-          </h3>
-          <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>
-            {project.category}
-          </p>
-        </div>
-      </div>
+      <TerminalCard title={project.title} />
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-5">
+      <div className="flex flex-col flex-1 p-5" style={{ borderRadius: '0 0 8px 8px' }}>
+        {project.featured && (
+          <span className="text-xs font-mono uppercase tracking-widest mb-2 block" style={{ color: accentColor, letterSpacing: '0.12em' }}>
+            ✦ Featured
+          </span>
+        )}
         <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: 'var(--text-secondary)' }}>
           {project.description}
         </p>
