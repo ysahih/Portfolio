@@ -20,7 +20,7 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
         <SectionHeader title="About Me" index="01" />
 
         <motion.div
-          className="space-y-6"
+          className="space-y-6 about-panel"
           variants={staggerContainer(0.12)}
           initial="hidden"
           whileInView="visible"

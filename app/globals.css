@@ -218,6 +218,25 @@
   mask: radial-gradient(72% 58% at 38% 50%, #000 0%, #000 42%, transparent 72%);
 }
 
+/* ── About panel: soft frosted scrim so body text reads over stars ── */
+.about-panel {
+  position: relative;
+  isolation: isolate;
+}
+.about-panel::before {
+  content: '';
+  position: absolute;
+  inset: -28px -32px;
+  z-index: -1;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* Fade the scrim's edges so it blends into the section, not a hard box */
+  -webkit-mask: radial-gradient(120% 110% at 50% 50%, #000 60%, transparent 100%);
+  mask: radial-gradient(120% 110% at 50% 50%, #000 60%, transparent 100%);
+}
+
 /* ── Skill chips ─────────────────────────────────────────── */
 .skill-chip {
   transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease, transform 0.18s ease;

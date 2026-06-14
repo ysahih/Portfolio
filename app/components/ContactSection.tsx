@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { toast } from 'react-hot-toast';
-import emailjs from 'emailjs-com';
 import { viewportOnce } from '../lib/motion';
 
 interface ContactProps {
@@ -75,36 +74,32 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
     }
   };
 
-  useEffect(() => {
-    emailjs.init('k7Xbdqofx3sBAJf3I');
-  }, []);
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       toast.error('Please fix the errors in the form');
       return;
     }
-    
+
     setFormStatus('submitting');
-    
+
     try {
-      await emailjs.send(
-        'service_s5tsk8o',
-        'template_9rbucml',
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        },
-        'user_id'
-      );
-      
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Request failed');
+      }
+
       setFormStatus('success');
       toast.success('Message sent successfully!');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
+
       // Reset to idle after 3 seconds
       setTimeout(() => {
         setFormStatus('idle');
@@ -112,8 +107,8 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
     } catch (error) {
       setFormStatus('error');
       toast.error('Failed to send message. Please try again.');
-      console.error('Email error:', error);
-      
+      console.error('Contact error:', error);
+
       // Reset to idle after 3 seconds
       setTimeout(() => {
         setFormStatus('idle');
