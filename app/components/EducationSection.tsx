@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { GraduationCapIcon, CalendarIcon, BookOpenIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
+import { viewportOnce } from '../lib/motion';
 
 interface Education {
   school: string;
@@ -29,14 +30,15 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
   };
 
   const itemVariants = {
-    hidden: { x: -50, opacity: 0 },
+    // y-offset (not x) so reveals never cause horizontal overflow on mobile
+    hidden: { y: 32, opacity: 0 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 12,
+        damping: 14,
       },
     },
   };
@@ -45,6 +47,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
     <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="education">
       <div className="container mx-auto max-w-6xl relative">
         <SectionHeader
+          index="05"
           title="Education"
           subtitle="My academic background and educational qualifications that have shaped my skills and knowledge."
         />
@@ -52,14 +55,14 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
         <div className="relative">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px transform -translate-x-1/2 md:translate-x-0" style={{ background: 'var(--border)' }} />
 
-          <motion.div className="space-y-12" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}>
+          <motion.div className="space-y-12" variants={containerVariants} initial="hidden" whileInView="visible" viewport={viewportOnce}>
             {education.map((edu, index) => (
-              <motion.div key={index} className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} variants={itemVariants}>
-                <div className="absolute left-4 md:left-1/2 w-8 h-8 rounded-full border-2 transform -translate-x-1/2 flex items-center justify-center z-10" style={{ background: 'var(--bg)', borderColor: 'var(--accent)', color: 'var(--accent)' }}>
+              <motion.div key={index} className={`relative flex items-start md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`} variants={itemVariants}>
+                <div className="absolute left-4 md:left-1/2 top-5 md:top-1/2 w-8 h-8 rounded-full border-2 transform -translate-x-1/2 md:-translate-y-1/2 flex items-center justify-center z-10" style={{ background: 'var(--bg)', borderColor: 'var(--accent)', color: 'var(--accent)' }}>
                   <GraduationCapIcon className="w-4 h-4" />
                 </div>
-                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
-                  <motion.div className="p-6 rounded-lg" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }} whileHover={{ y: -4, borderColor: 'var(--accent)' }}>
+                <div className={`w-full md:w-5/12 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
+                  <motion.div className="p-6 rounded-lg" style={{ background: 'var(--card-surface)', border: '1px solid var(--border)', boxShadow: '0 12px 32px -16px rgba(0,0,0,0.6)' }} whileHover={{ y: -4, borderColor: 'var(--accent)' }}>
                     <h3 className="text-xl font-bold mb-1" style={{ color: 'var(--text-primary)' }}>{edu.school}</h3>
                     <p className="font-medium mb-3" style={{ color: 'var(--accent)' }}>{edu.degree}</p>
                     <div className={`flex items-center gap-2 text-sm mb-4 ${index % 2 === 0 ? 'justify-start md:justify-end' : 'justify-start'}`} style={{ color: 'var(--text-muted)' }}>

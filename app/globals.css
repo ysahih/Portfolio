@@ -21,6 +21,9 @@
   --accent-glow: rgba(79, 195, 247, 0.25);
   --input-bg: rgba(255, 255, 255, 0.06);
   --on-accent: #06060f;
+  --name-solid: #ffffff;
+  /* Opaque card surface so content reads cleanly over the starfield */
+  --card-surface: #0d0d18;
 }
 
 [data-theme='light'] {
@@ -40,11 +43,15 @@
   --accent-glow: rgba(2, 132, 199, 0.20);
   --input-bg: rgba(10, 15, 30, 0.06);
   --on-accent: #ffffff;
+  --name-solid: #0a0f1e;
+  --card-surface: #ffffff;
 }
 
-/* ── Hide default cursor for custom cursor ───────────────── */
-*, *::before, *::after {
-  cursor: none !important;
+/* ── Hide default cursor for custom cursor (fine pointers only) ── */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 /* ── Custom cursor ring expansion ────────────────────────── */
@@ -150,4 +157,104 @@
 @keyframes termBlink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
+}
+
+/* ── Aurora mesh (hero backdrop) ─────────────────────────── */
+@keyframes auroraDrift {
+  0%   { transform: translate3d(-4%, -2%, 0) scale(1.05); }
+  50%  { transform: translate3d(4%, 3%, 0) scale(1.15); }
+  100% { transform: translate3d(-4%, -2%, 0) scale(1.05); }
+}
+
+.aurora-mesh {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 45% at 25% 30%, var(--accent-glow), transparent 60%),
+    radial-gradient(35% 40% at 78% 28%, rgba(129, 212, 250, 0.18), transparent 60%),
+    radial-gradient(45% 50% at 60% 75%, var(--accent-tint), transparent 65%);
+  filter: blur(60px) saturate(1.1);
+  animation: auroraDrift 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── Content veil ────────────────────────────────────────────
+   A fixed layer above the StarField (z -50) but below all content.
+   Transparent across the hero (top viewport) then fades to ~85% of
+   the page background, so stars stay vivid in the hero and calm
+   down behind every section's text.                                */
+.content-veil {
+  position: fixed;
+  inset: 0;
+  z-index: -40;
+  pointer-events: none;
+  /* Uniform calm layer: knocks the starfield back so it reads as
+     ambient texture, not competing detail, behind every section.
+     The hero re-brightens locally via its own transparent-centered
+     scrim, keeping the constellation vivid where it matters.        */
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+}
+
+/* ── Hero readability scrim ──────────────────────────────── */
+/* Two layers: a darkening vignette + a soft backdrop-blur of the
+   stars directly behind the text, both fading out toward the edges
+   via a mask so the starfield stays crisp at the margins.          */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(80% 65% at 38% 50%,
+      color-mix(in srgb, var(--bg) 82%, transparent) 0%,
+      color-mix(in srgb, var(--bg) 55%, transparent) 40%,
+      transparent 72%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Confine the blur to a soft ellipse behind the content */
+  -webkit-mask: radial-gradient(72% 58% at 38% 50%, #000 0%, #000 42%, transparent 72%);
+  mask: radial-gradient(72% 58% at 38% 50%, #000 0%, #000 42%, transparent 72%);
+}
+
+/* ── Skill chips ─────────────────────────────────────────── */
+.skill-chip {
+  transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+.skill-chip:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background: var(--accent-tint) !important;
+  transform: translateY(-2px);
+}
+
+/* ── Hero name ───────────────────────────────────────────── */
+.hero-name-sheen {
+  /* Clean solid color — no sheen. */
+  color: var(--name-solid);
+}
+
+/* ── No-JS / animation-failure safety net ────────────────────
+   If JS is disabled the page still renders fully visible (Framer
+   would otherwise leave initial="hidden" elements at opacity 0).  */
+.no-js [data-framer-hidden] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* ── Reduced-motion guard: respect user preference globally ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .aurora-mesh,
+  .animate-floating,
+  .animate-pulse-slow {
+    animation: none !important;
+  }
 }

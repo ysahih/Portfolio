@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { BriefcaseIcon, CalendarIcon, MapPinIcon, CheckIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
+import { viewportOnce } from '../lib/motion';
 
 interface Experience {
   company: string;
@@ -32,14 +33,15 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
   };
 
   const itemVariants = {
-    hidden: { x: -50, opacity: 0 },
+    // y-offset (not x) so reveals never cause horizontal overflow on mobile
+    hidden: { y: 32, opacity: 0 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 12,
+        damping: 14,
       },
     },
   };
@@ -54,6 +56,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
     <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="experience">
       <div className="container mx-auto max-w-6xl relative">
         <SectionHeader
+          index="03"
           title="Work Experience"
           subtitle="My professional journey and key accomplishments in the tech industry."
         />
@@ -67,31 +70,35 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             {experience.map((exp, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
-                className={`relative flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+                className={`relative flex items-start md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 variants={itemVariants}
               >
-                {/* Timeline point */}
-                <div className="absolute left-4 md:left-1/2 w-8 h-8 rounded-full border-2 transform -translate-x-1/2 flex items-center justify-center z-10" style={{ background: 'var(--bg)', borderColor: 'var(--accent)', color: 'var(--accent)' }}>
+                {/* Timeline point — anchored to top on mobile, centered on desktop */}
+                <div className="absolute left-4 md:left-1/2 top-5 md:top-1/2 w-8 h-8 rounded-full border-2 transform -translate-x-1/2 md:-translate-y-1/2 flex items-center justify-center z-10" style={{ background: 'var(--bg)', borderColor: 'var(--accent)', color: 'var(--accent)' }}>
                   <BriefcaseIcon className="w-4 h-4" />
                 </div>
 
-                {/* Content */}
-                <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
-                  <motion.div 
+                {/* Content — left padding on mobile clears the timeline rail */}
+                <div className={`w-full md:w-5/12 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
+                  <motion.div
                     className="p-6 rounded-lg"
-                    style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+                    style={{
+                      background: 'var(--card-surface)',
+                      border: '1px solid var(--border)',
+                      boxShadow: '0 12px 32px -16px rgba(0,0,0,0.6)',
+                    }}
                     whileHover={{ y: -4, borderColor: 'var(--accent)' }}
                   >
                     <div className="flex items-center gap-4 mb-4">
-                      <div className={`w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center ${index % 2 === 1 ? 'order-1' : 'md:order-2'}`} style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+                      <div className={`w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0 ${index % 2 === 1 ? 'md:order-1' : 'md:order-2'}`} style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
                         <img src={exp.logo || generateDefaultLogo(exp.company)} alt={`${exp.company} logo`} className="w-10 h-10 object-contain" />
                       </div>
-                      <div className={index % 2 === 1 ? 'order-2' : 'md:order-1 md:text-right'}>
+                      <div className={index % 2 === 1 ? 'md:order-2' : 'md:order-1 md:text-right'}>
                         <h3 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{exp.position}</h3>
                         <p className="font-medium" style={{ color: 'var(--accent)' }}>{exp.company}</p>
                       </div>
@@ -121,7 +128,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                         <ul className={`space-y-1 ${index % 2 === 0 ? 'md:text-right' : 'text-left'}`}>
                           {exp.achievements.map((ach, ai) => (
                             <li key={ai} className="flex items-start gap-2">
-                              <CheckIcon className={`w-4 h-4 mt-1 flex-shrink-0 ${index % 2 === 0 ? 'md:order-2' : 'order-1'}`} style={{ color: 'var(--accent)' }} />
+                              <CheckIcon className={`w-4 h-4 mt-1 flex-shrink-0 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`} style={{ color: 'var(--accent)' }} />
                               <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{ach}</span>
                             </li>
                           ))}

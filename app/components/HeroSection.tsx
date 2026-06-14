@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDownIcon, DownloadIcon } from 'lucide-react';
 import { useMagnetic } from '../hooks/useMagnetic';
+import { EASE, SPRING_SOFT, useReducedMotion } from '../lib/motion';
 
 interface HeroProps {
   data: {
@@ -23,33 +24,115 @@ const SPECIALTIES = [
   'NestJS & Node.js',
 ];
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-function AnimatedName({ name }: { name: string }) {
+function AnimatedName({ name, reduced }: { name: string; reduced: boolean }) {
   const words = name.split(' ');
+  const containerRef = useRef<HTMLSpanElement>(null);
+  // Per-letter cursor-reactive tilt: letters lean toward the pointer.
+  const [origin, setOrigin] = useState<{ x: number; y: number } | null>(null);
+
+  useEffect(() => {
+    if (reduced) return;
+    const onMove = (e: MouseEvent) => setOrigin({ x: e.clientX, y: e.clientY });
+    const onLeave = () => setOrigin(null);
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseleave', onLeave);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseleave', onLeave);
+    };
+  }, [reduced]);
+
   let charOffset = 0;
   return (
-    <span aria-label={name} style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '0 0.22em', justifyContent: 'inherit' }}>
+    <span
+      ref={containerRef}
+      aria-label={name}
+      className="hero-name-wrap"
+      style={{
+        display: 'inline-flex',
+        flexWrap: 'wrap',
+        gap: '0 0.22em',
+        justifyContent: 'inherit',
+        perspective: 600,
+        position: 'relative',
+      }}
+    >
       {words.map((word, wi) => {
         const wordStart = charOffset;
         charOffset += word.length + 1;
         return (
           <span key={wi} style={{ display: 'inline-flex', whiteSpace: 'nowrap' }}>
             {word.split('').map((char, ci) => (
-              <motion.span
+              <Letter
                 key={ci}
-                initial={{ y: 64, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: (wordStart + ci) * 0.032, duration: 0.62, ease: EASE }}
-                style={{ display: 'inline-block' }}
-              >
-                {char}
-              </motion.span>
+                char={char}
+                delay={(wordStart + ci) * 0.032}
+                origin={origin}
+                reduced={reduced}
+              />
             ))}
           </span>
         );
       })}
     </span>
+  );
+}
+
+function Letter({
+  char,
+  delay,
+  origin,
+  reduced,
+}: {
+  char: string;
+  delay: number;
+  origin: { x: number; y: number } | null;
+  reduced: boolean;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0, lift: 0 });
+
+  useEffect(() => {
+    if (reduced || !origin || !ref.current) {
+      setTilt({ rx: 0, ry: 0, lift: 0 });
+      return;
+    }
+    const rect = ref.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = origin.x - cx;
+    const dy = origin.y - cy;
+    const dist = Math.hypot(dx, dy);
+    const radius = 220; // influence radius
+    if (dist > radius) {
+      setTilt({ rx: 0, ry: 0, lift: 0 });
+      return;
+    }
+    const strength = 1 - dist / radius;
+    setTilt({
+      ry: (dx / radius) * 22 * strength,
+      rx: -(dy / radius) * 22 * strength,
+      lift: strength * 10,
+    });
+  }, [origin, reduced]);
+
+  return (
+    <motion.span
+      ref={ref}
+      initial={{ y: 64, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay, duration: 0.62, ease: EASE }}
+      style={{ display: 'inline-block', transformStyle: 'preserve-3d' }}
+    >
+      <motion.span
+        className="hero-name-sheen"
+        style={{ display: 'inline-block' }}
+        animate={{ rotateX: tilt.rx, rotateY: tilt.ry, z: tilt.lift }}
+        transition={SPRING_SOFT}
+      >
+        {char === ' ' ? ' ' : char}
+      </motion.span>
+    </motion.span>
   );
 }
 
@@ -86,12 +169,36 @@ function CyclingSubtitle() {
 const HeroSection: React.FC<HeroProps> = ({ data }) => {
   const viewWorkRef = useRef<HTMLAnchorElement>(null);
   const resumeRef = useRef<HTMLAnchorElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   useMagnetic(viewWorkRef, 0.35);
   useMagnetic(resumeRef, 0.35);
 
+  const reduced = useReducedMotion();
+
+  // Scroll-driven parallax + fade as the hero leaves the viewport.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 120]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, reduced ? 1 : 0]);
+  const auroraY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : 200]);
+
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 py-20 md:py-32 relative overflow-hidden">
-      <div className="container mx-auto max-w-6xl relative z-10">
+    <div
+      ref={sectionRef}
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-12 py-20 md:py-32 relative overflow-hidden"
+    >
+      {/* Aurora mesh backdrop — layers with the StarField for depth */}
+      {!reduced && <motion.div className="aurora-mesh" style={{ y: auroraY }} aria-hidden />}
+
+      {/* Readability scrim — soft radial vignette so text stays crisp over the stars */}
+      <div className="hero-scrim" aria-hidden />
+
+      <motion.div
+        className="container mx-auto max-w-6xl relative z-10"
+        style={{ y: contentY, opacity: contentOpacity }}
+      >
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Left content */}
           <div className="w-full md:w-7/12 text-center md:text-left">
@@ -103,7 +210,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
                 color: 'var(--text-primary)',
               }}
             >
-              <AnimatedName name={data.name} />
+              <AnimatedName name={data.name} reduced={reduced} />
             </h1>
 
             <motion.p
@@ -149,7 +256,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6, ease: EASE }}
             >
-              <a
+              <motion.a
                 ref={viewWorkRef}
                 href="#projects"
                 onClick={(e) => {
@@ -162,12 +269,15 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
                   color: 'var(--on-accent)',
                   boxShadow: '0 0 20px var(--accent-glow)',
                 }}
+                whileHover={reduced ? undefined : { scale: 1.04, boxShadow: '0 0 32px var(--accent-glow)' }}
+                whileTap={reduced ? undefined : { scale: 0.97 }}
+                transition={SPRING_SOFT}
               >
                 <ArrowDownIcon className="w-4 h-4" />
                 View My Work
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 ref={resumeRef}
                 href="/resume.pdf"
                 target="_blank"
@@ -178,10 +288,13 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
                   background: 'var(--surface)',
                   color: 'var(--text-primary)',
                 }}
+                whileHover={reduced ? undefined : { scale: 1.04, borderColor: 'var(--accent)' }}
+                whileTap={reduced ? undefined : { scale: 0.97 }}
+                transition={SPRING_SOFT}
               >
                 <DownloadIcon className="w-4 h-4" />
                 Resume
-              </a>
+              </motion.a>
             </motion.div>
           </div>
 
@@ -215,7 +328,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

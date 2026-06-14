@@ -35,6 +35,22 @@ const IDLE_DRIFT_THRESHOLD = 1000; // 1 second
 const TARGET_FPS = 60;
 const FRAME_TIME = 1000 / TARGET_FPS;
 
+// Cursor gravity / constellation tuning
+const GRAVITY_RADIUS = 180;        // px: stars within this are affected by the cursor
+const GRAVITY_RADIUS_SQ = GRAVITY_RADIUS * GRAVITY_RADIUS;
+const LINK_RADIUS = 130;           // px: max distance to draw a constellation link
+const LINK_RADIUS_SQ = LINK_RADIUS * LINK_RADIUS;
+
+/** Convert a #rrggbb (or #rgb) hex string to "r, g, b" for rgba() interpolation. */
+function hexToRgb(hex: string): string | null {
+  let h = hex.replace('#', '').trim();
+  if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+  if (h.length !== 6) return null;
+  const n = parseInt(h, 16);
+  if (Number.isNaN(n)) return null;
+  return `${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}`;
+}
+
 export default function StarField({
   starCount = STAR_COUNT,
   layers = LAYERS,
@@ -50,6 +66,7 @@ export default function StarField({
   const lastFrameTimeRef = useRef(Date.now());
   const [theme, setTheme] = useState('dark');
   const starRGBRef = useRef('255, 255, 255');
+  const accentRGBRef = useRef('79, 195, 247');
 
   // Watch for theme changes
   useEffect(() => {
@@ -57,6 +74,12 @@ export default function StarField({
       const t = document.documentElement.getAttribute('data-theme') ?? 'dark';
       setTheme(t);
       starRGBRef.current = t === 'light' ? '180, 210, 255' : '255, 255, 255';
+      // Accent for constellation links: read the live token and convert to "r, g, b".
+      const accent = getComputedStyle(document.documentElement)
+        .getPropertyValue('--accent')
+        .trim();
+      const rgb = hexToRgb(accent);
+      if (rgb) accentRGBRef.current = rgb;
     };
     update();
     const observer = new MutationObserver(update);
@@ -141,8 +164,13 @@ export default function StarField({
 
     const timeSinceMouseMove = now - lastMouseMoveRef.current;
     const isIdleDrift = timeSinceMouseMove > IDLE_DRIFT_THRESHOLD;
+    const mx = mouseRef.current.x;
+    const my = mouseRef.current.y;
 
-    // Draw and update stars
+    // First pass: compute each star's rendered position (incl. cursor gravity)
+    // and stash it so we can both draw the star and link near-neighbours.
+    const near: { x: number; y: number; pull: number }[] = [];
+
     starsRef.current.forEach((star) => {
       let x = star.x;
       let y = star.y;
@@ -150,8 +178,8 @@ export default function StarField({
       // Apply parallax effect
       if (!isIdleDrift) {
         const parallaxFactor = PARALLAX_FACTORS[star.layer];
-        x += (mouseRef.current.x - canvas.width / 2) * parallaxFactor;
-        y += (mouseRef.current.y - canvas.height / 2) * parallaxFactor;
+        x += (mx - canvas.width / 2) * parallaxFactor;
+        y += (my - canvas.height / 2) * parallaxFactor;
       } else {
         // Apply idle drift
         star.x += star.vx;
@@ -167,12 +195,52 @@ export default function StarField({
         y = star.y;
       }
 
+      // Cursor gravity: stars near the pointer get pulled toward it and brighten.
+      let opacity = star.opacity;
+      let radius = star.radius;
+      if (!isIdleDrift) {
+        const dx = mx - x;
+        const dy = my - y;
+        const distSq = dx * dx + dy * dy;
+        if (distSq < GRAVITY_RADIUS_SQ) {
+          const dist = Math.sqrt(distSq) || 1;
+          const pull = 1 - dist / GRAVITY_RADIUS; // 1 at cursor → 0 at edge
+          x += (dx / dist) * pull * 14;
+          y += (dy / dist) * pull * 14;
+          opacity = Math.min(1, opacity + pull * 0.6);
+          radius += pull * 0.9;
+          near.push({ x, y, pull });
+        }
+      }
+
       // Draw star
       ctx.beginPath();
-      ctx.arc(x, y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${starRGBRef.current}, ${star.opacity})`;
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${starRGBRef.current}, ${opacity})`;
       ctx.fill();
     });
+
+    // Second pass: draw constellation links between stars near the cursor.
+    if (near.length > 1) {
+      for (let i = 0; i < near.length; i++) {
+        for (let j = i + 1; j < near.length; j++) {
+          const dx = near[i].x - near[j].x;
+          const dy = near[i].y - near[j].y;
+          const dSq = dx * dx + dy * dy;
+          if (dSq < LINK_RADIUS_SQ) {
+            const d = Math.sqrt(dSq);
+            const strength = (1 - d / LINK_RADIUS) * Math.min(near[i].pull, near[j].pull);
+            if (strength <= 0.02) continue;
+            ctx.beginPath();
+            ctx.moveTo(near[i].x, near[i].y);
+            ctx.lineTo(near[j].x, near[j].y);
+            ctx.strokeStyle = `rgba(${accentRGBRef.current}, ${strength * 0.5})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    }
 
     // Draw and update shooting stars
     shootingStarsRef.current = shootingStarsRef.current.filter((shootingStar) => {

@@ -82,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}
       >
         <StarField />
+        {/* Calms the starfield below the hero so every section's text stays readable */}
+        <div className="content-veil" aria-hidden />
         <CustomCursor />
         <ThemeProvider>
           <Toaster position="top-right" />

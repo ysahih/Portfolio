@@ -140,6 +140,26 @@ export const RESUME_DATA = {
       featured: false,
     },
     {
+      title: "Sash — Unix Shell",
+      techStack: ["C", "Processes", "Pipes", "Signals", "Parsing"],
+      description:
+        "A Bash-like Unix shell written in C. Implements command execution, built-ins (cd, echo, pwd, export, exit), input/output redirection (<, >, >>, <<), pipelines, environment variable expansion, and Unix signal handling (Ctrl+C/Ctrl+\\/Ctrl+D).",
+      link: { label: "GitHub", href: "https://github.com/ysahih/Sash" },
+      impact: "Bash-like shell with pipes, redirection & signals",
+      category: "System Programming",
+      featured: false,
+    },
+    {
+      title: "CVE Vulnerability Analyzer",
+      techStack: ["Python", "NVD API", "pandas", "Requests"],
+      description:
+        "A Python tool that fetches Common Vulnerabilities and Exposures (CVE) data from the National Vulnerability Database (NVD), filters and processes it with pandas, and surfaces vulnerability descriptions for analysis.",
+      link: { label: "GitHub", href: "https://github.com/ysahih/CVE-Vulnerability-Analyzer" },
+      impact: "Security data tooling over the NVD CVE database",
+      category: "Security",
+      featured: false,
+    },
+    {
       title: "Inception",
       techStack: ["Docker", "Nginx", "MariaDB", "WordPress", "DevOps"],
       description:

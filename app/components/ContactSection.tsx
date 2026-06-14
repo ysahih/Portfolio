@@ -6,6 +6,7 @@ import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircle
 import SectionHeader from './SectionHeader';
 import { toast } from 'react-hot-toast';
 import emailjs from 'emailjs-com';
+import { viewportOnce } from '../lib/motion';
 
 interface ContactProps {
   contact: {
@@ -146,6 +147,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
     <div className="py-20 px-4 sm:px-6 md:px-12 overflow-hidden" id="contact">
       <div className="container mx-auto max-w-6xl">
         <SectionHeader
+          index="06"
           title="Get in Touch"
           subtitle="Have a project in mind or want to collaborate? I'd love to hear from you."
           centered
@@ -171,7 +173,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
           >
             <h3 className="text-2xl font-semibold mb-8">Contact Information</h3>
             
@@ -250,10 +252,10 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={viewportOnce}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="rounded-xl p-8" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+            <div className="rounded-xl p-8" style={{ background: 'var(--card-surface)', border: '1px solid var(--border)', boxShadow: '0 12px 40px -16px rgba(0,0,0,0.6)' }}>
               <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">

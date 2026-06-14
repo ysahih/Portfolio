@@ -14,13 +14,27 @@ export default function CustomCursor() {
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
+    // Only run the custom cursor on precise pointers (mouse/trackpad).
+    // Touch devices keep their native behaviour (cursor restored via CSS).
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      if (!window.matchMedia('(pointer: fine)').matches) {
+        dot.style.display = 'none';
+        ring.style.display = 'none';
+        return;
+      }
+    }
+
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+    // Dot trails the pointer ever so slightly for a smoother, less robotic feel.
+    const dotPosRef = { x: mouseRef.current.x, y: mouseRef.current.y };
 
     const animate = () => {
-      ringPosRef.current.x = lerp(ringPosRef.current.x, mouseRef.current.x, 0.12);
-      ringPosRef.current.y = lerp(ringPosRef.current.y, mouseRef.current.y, 0.12);
+      ringPosRef.current.x = lerp(ringPosRef.current.x, mouseRef.current.x, 0.16);
+      ringPosRef.current.y = lerp(ringPosRef.current.y, mouseRef.current.y, 0.16);
+      dotPosRef.x = lerp(dotPosRef.x, mouseRef.current.x, 0.45);
+      dotPosRef.y = lerp(dotPosRef.y, mouseRef.current.y, 0.45);
 
-      dot.style.transform = `translate(${mouseRef.current.x - 3}px, ${mouseRef.current.y - 3}px)`;
+      dot.style.transform = `translate(${dotPosRef.x - 3}px, ${dotPosRef.y - 3}px)`;
       ring.style.transform = `translate(${ringPosRef.current.x - 18}px, ${ringPosRef.current.y - 18}px)`;
 
       rafRef.current = requestAnimationFrame(animate);

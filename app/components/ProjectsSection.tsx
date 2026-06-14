@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLinkIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
+import { useReducedMotion, useFinePointer } from '../lib/motion';
 
 interface Project {
   title: string;
@@ -26,6 +27,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   'DevOps': '#22d3ee',
   'Graphics Programming': '#a78bfa',
   'Personal Project': '#4fc3f7',
+  'Security': '#f43f5e',
 };
 
 const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> = {
@@ -48,6 +50,14 @@ const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> =
   'Cub3D': {
     command: 'make && ./cub3D map.cub',
     output: ['[cub3D] parsing map...', '[cub3D] init miniLibX', '[cub3D] rendering 60fps'],
+  },
+  'Sash — Unix Shell': {
+    command: 'make && ./sash',
+    output: ['sash$ ls -la | grep .c > files.txt', 'sash$ export PATH=$PATH:/usr/local', '→ signals & pipes ready'],
+  },
+  'CVE Vulnerability Analyzer': {
+    command: 'python cve_analyzer.py',
+    output: ['→ fetching NVD feed...', '✓ 248,193 CVEs loaded', '✓ filtered with pandas', '→ CVE-2024-XXXX ready'],
   },
 };
 
@@ -146,22 +156,84 @@ function TerminalCard({ title }: { title: string }) {
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const accentColor = CATEGORY_COLORS[project.category] || 'var(--accent)';
+  const reduced = useReducedMotion();
+  const finePointer = useFinePointer();
+  const interactive = !reduced && finePointer;
+
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Cursor position within the card (0..1), springed for smoothness.
+  const px = useMotionValue(0.5);
+  const py = useMotionValue(0.5);
+  const sx = useSpring(px, { stiffness: 220, damping: 26, mass: 0.7 });
+  const sy = useSpring(py, { stiffness: 220, damping: 26, mass: 0.7 });
+
+  // Map cursor position → subtle 3D tilt (degrees).
+  const rotateY = useTransform(sx, [0, 1], [6, -6]);
+  const rotateX = useTransform(sy, [0, 1], [-6, 6]);
+
+  // Spotlight follows the raw pointer position; build the gradient string
+  // from both axes via a single combined transform.
+  const spotlight = useTransform(
+    [px, py],
+    ([x, y]: number[]) =>
+      `radial-gradient(220px circle at ${x * 100}% ${y * 100}%, ${accentColor}22, transparent 70%)`
+  );
+  const [hovered, setHovered] = useState(false);
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!interactive || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    px.set((e.clientX - rect.left) / rect.width);
+    py.set((e.clientY - rect.top) / rect.height);
+  };
+
+  const handleLeave = () => {
+    px.set(0.5);
+    py.set(0.5);
+    setHovered(false);
+  };
 
   return (
     <motion.div
+      ref={cardRef}
       layout
       initial={{ opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 28 }}
       transition={{ duration: 0.45, delay: index * 0.07, ease: EASE }}
-      className="flex flex-col overflow-hidden group"
+      className="relative flex flex-col overflow-hidden group"
       style={{
-        background: 'var(--surface)',
+        background: 'var(--card-surface)',
         border: '1px solid var(--border)',
         borderRadius: '8px',
+        rotateX: interactive ? rotateX : 0,
+        rotateY: interactive ? rotateY : 0,
+        transformPerspective: 900,
+        borderColor: hovered ? accentColor : 'var(--border)',
+        transition: 'border-color 0.25s ease',
+        boxShadow: hovered
+          ? `0 18px 50px -12px ${accentColor}40, 0 0 0 1px ${accentColor}30`
+          : '0 12px 32px -16px rgba(0,0,0,0.6)',
       }}
-      whileHover={{ y: -4, borderColor: accentColor } as any}
+      onMouseMove={handleMove}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={handleLeave}
+      whileHover={interactive ? { y: -4 } : undefined}
     >
+      {/* Cursor spotlight */}
+      {interactive && (
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-20"
+          style={{
+            opacity: hovered ? 1 : 0,
+            transition: 'opacity 0.3s ease',
+            background: spotlight,
+          }}
+        />
+      )}
+
       <TerminalCard title={project.title} />
 
       {/* Content */}
@@ -209,7 +281,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
-const FILTERS = ['All', 'Personal Project', 'System Programming', 'DevOps', 'Graphics Programming'];
+const FILTERS = ['All', 'Personal Project', 'System Programming', 'DevOps', 'Graphics Programming', 'Security'];
 
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -222,7 +294,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12" id="projects">
       <div className="container mx-auto max-w-6xl">
-        <SectionHeader title="Projects" />
+        <SectionHeader title="Projects" index="04" />
 
         {/* Filter */}
         <motion.div

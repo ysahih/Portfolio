@@ -52,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
   };
 
   return (
-    <footer style={{ background: 'var(--surface)', borderTop: '1px solid var(--border)' }} className="py-12 px-6 md:px-12">
+    <footer style={{ background: 'var(--card-surface)', borderTop: '1px solid var(--border)' }} className="py-12 px-6 md:px-12">
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
