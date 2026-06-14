@@ -102,9 +102,9 @@ export default function StarField({
         stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 1.5 + 0.5 + layer * 0.3,
+          radius: Math.random() * 1.6 + 0.6 + layer * 0.3,
           layer,
-          opacity: Math.random() * 0.5 + 0.3 + layer * 0.1,
+          opacity: Math.random() * 0.45 + 0.5 + layer * 0.1,
           vx: (Math.random() - 0.5) * 0.1,
           vy: (Math.random() - 0.5) * 0.1,
         });

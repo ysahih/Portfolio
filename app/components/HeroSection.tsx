@@ -203,10 +203,13 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
           {/* Left content */}
           <div className="w-full md:w-7/12 text-center md:text-left">
             <h1
-              className="font-extrabold mb-4 leading-none tracking-tight"
+              className="mb-4"
               style={{
-                fontSize: 'clamp(3.5rem, 8vw, 7rem)',
-                fontFamily: 'var(--font-syne), sans-serif',
+                fontSize: 'clamp(3.75rem, 8.5vw, 7.5rem)',
+                fontFamily: 'var(--font-display), sans-serif',
+                fontWeight: 800,
+                lineHeight: 0.92,
+                letterSpacing: '-0.035em',
                 color: 'var(--text-primary)',
               }}
             >

@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { ThemeProvider } from './Contexts/ThemeContext';
-import { Inter, Syne } from 'next/font/google';
+import { Inter, Syne, Bricolage_Grotesque } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import StarField from './components/StarField';
 import CustomCursor from './components/CustomCursor';
@@ -18,6 +18,14 @@ const syne = Syne({
   weight: '800',
   display: 'swap',
   variable: '--font-syne',
+});
+
+// Display font for the hero name — distinctive, modern grotesque
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+  display: 'swap',
+  variable: '--font-display',
 });
 
 export const metadata: Metadata = {
@@ -78,7 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body
-        className={`${inter.className} ${syne.variable} antialiased`}
+        className={`${inter.className} ${syne.variable} ${bricolage.variable} antialiased`}
         style={{ background: 'var(--bg)', color: 'var(--text-primary)' }}
       >
         <StarField />
