@@ -10,6 +10,7 @@ interface HeroProps {
   data: {
     name: string;
     title: string;
+    availability: string;
     about: string;
     avatarUrl: string;
     contact: { email: string };
@@ -224,6 +225,16 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               transition={{ delay: 0.7, duration: 0.6, ease: EASE }}
             >
               {data.title}
+            </motion.p>
+
+            <motion.p
+              className="text-sm mb-3 font-mono"
+              style={{ color: 'var(--accent)' }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.6, ease: EASE }}
+            >
+              {data.availability}
             </motion.p>
 
             <motion.div

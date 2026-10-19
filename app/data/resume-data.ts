@@ -11,6 +11,9 @@ export const RESUME_DATA = {
     { name: "French", level: "A2, in progress" },
   ],
 
+  availability:
+    "Open to a 24-month apprenticeship from the January 2027 intake — frontend, fullstack or QA automation.",
+
   about:
     "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
 
@@ -52,7 +55,7 @@ export const RESUME_DATA = {
     },
     {
       school: "1337 Coding School — 42 Network",
-      degree: "Advanced Software Engineering Program (Équivalent Bac +5)",
+      degree: "Software Engineering Program",
       start: "2022",
       end: "2026",
       location: "Khouribga, Morocco",
@@ -139,13 +142,13 @@ export const RESUME_DATA = {
       featured: true,
     },
     {
-      title: "Pong — Multiplayer Platform",
+      title: "ft_transcendence — Multiplayer Platform",
       techStack: ["Next.js", "NestJS", "TypeScript", "Socket.io", "PostgreSQL", "Prisma", "Docker", "OAuth", "JWT"],
       description:
-        "Architected full-stack end-to-end: Next.js frontend, NestJS REST API, PostgreSQL/Prisma backend. Implemented JWT auth with OAuth 2.0, 2FA, refresh token rotation, rate limiting, and guard middleware. Engineered real-time multiplayer with Socket.io, matchmaking, and full chat system with public/private channels. Containerized with Docker Compose.",
+        "42 Network project. Architected full-stack end-to-end: Next.js frontend, NestJS REST API, PostgreSQL/Prisma backend. Implemented JWT auth with OAuth 2.0, 2FA, refresh token rotation, rate limiting, and guard middleware. Engineered real-time multiplayer with Socket.io, matchmaking, and full chat system with public/private channels. Containerized with Docker Compose.",
       link: { label: "GitHub", href: "https://github.com/ysahih/PingPong" },
       impact: "Real-time multiplayer gaming platform",
-      category: "Personal Project",
+      category: "Web Development",
       featured: true,
     },
     {

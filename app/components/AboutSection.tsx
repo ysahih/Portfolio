@@ -42,7 +42,7 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
           >
             Trained at{' '}
             <span style={{ color: 'var(--accent)' }}>1337</span> — part of the 42 Network — from 2022 to 2026, a curriculum built on systems programming, algorithms, network architecture, and peer-to-peer collaboration with no lectures and no instructors. Now transferring to{' '}
-            <span style={{ color: 'var(--accent)' }}>42 Paris</span> to prepare the RNCP level 7 IT Architecture Expert title.
+            <span style={{ color: 'var(--accent)' }}>42 Paris</span> to prepare the RNCP level 7 IT Architecture Expert title. Looking for a 24-month apprenticeship starting with the January 2027 intake, on frontend, fullstack or QA automation work.
           </motion.p>
 
           <motion.div className="flex gap-8 pt-4" variants={staggerContainer(0.08)}>

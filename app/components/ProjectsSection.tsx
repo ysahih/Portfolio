@@ -28,6 +28,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   'DevOps': '#22d3ee',
   'Graphics Programming': '#a78bfa',
   'Personal Project': '#4fc3f7',
+  'Web Development': '#34d399',
   'Security': '#f43f5e',
 };
 
@@ -36,9 +37,9 @@ const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> =
     command: 'npm test',
     output: ['✓ 8 concurrent webhooks → 1 processed', '✓ pricing → checkout → active (playwright)', '→ live on vercel'],
   },
-  'Pong — Multiplayer Platform': {
+  'ft_transcendence — Multiplayer Platform': {
     command: 'docker compose up --build',
-    output: ['✓ postgres:5432', '✓ nestjs api :3001', '✓ next.js :3000', '→ ready in 2.3s'],
+    output: ['✓ postgres:5432', '✓ nestjs api :3001', '✓ next.js :3000', '→ ready'],
   },
   'Sentra — Meeting Intelligence': {
     command: 'npm run electron:dev',
@@ -302,7 +303,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
-const FILTERS = ['All', 'Personal Project', 'System Programming', 'DevOps', 'Graphics Programming', 'Security'];
+const FILTERS = ['All', 'Personal Project', 'Web Development', 'System Programming', 'DevOps', 'Graphics Programming', 'Security'];
 
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
   const [activeFilter, setActiveFilter] = useState('All');
