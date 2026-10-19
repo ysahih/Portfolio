@@ -112,6 +112,17 @@ export const RESUME_DATA = {
 
   projects: [
     {
+      title: "billing-service",
+      techStack: ["TypeScript", "Next.js 15", "PostgreSQL", "Prisma", "Playwright", "Vitest", "GitHub Actions", "Stripe"],
+      description:
+        "Webhook-driven billing where Stripe is the source of truth and the database is a read model. Idempotency through a unique constraint on the event id, written inside the same transaction as the state change. The test suite fires 8 copies of one webhook concurrently and asserts exactly one is processed. A Playwright run covers the pricing page through Stripe Checkout to an active account.",
+      link: { label: "GitHub", href: "https://github.com/ysahih/billing-service" },
+      liveLink: { label: "Live demo", href: "https://billing-service-tau.vercel.app" },
+      impact: "Stripe subscription billing, deployed",
+      category: "Personal Project",
+      featured: true,
+    },
+    {
       title: "Pong — Multiplayer Platform",
       techStack: ["Next.js", "NestJS", "TypeScript", "Socket.io", "PostgreSQL", "Prisma", "Docker", "OAuth", "JWT"],
       description:

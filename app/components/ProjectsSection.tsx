@@ -11,6 +11,7 @@ interface Project {
   techStack: readonly string[];
   description: string;
   link: { label: string; href: string };
+  liveLink?: { label: string; href: string };
   impact: string;
   category: string;
   featured: boolean;
@@ -31,6 +32,10 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> = {
+  'billing-service': {
+    command: 'npm test',
+    output: ['✓ 8 concurrent webhooks → 1 processed', '✓ pricing → checkout → active (playwright)', '→ live on vercel'],
+  },
   'Pong — Multiplayer Platform': {
     command: 'docker compose up --build',
     output: ['✓ postgres:5432', '✓ nestjs api :3001', '✓ next.js :3000', '→ ready in 2.3s'],
@@ -264,18 +269,34 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           )}
         </div>
 
-        <a
-          href={project.link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-sm font-medium transition-colors"
-          style={{ color: accentColor }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.75')}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
-        >
-          <ExternalLinkIcon className="w-4 h-4" />
-          {project.link.label}
-        </a>
+        <div className="relative z-30 flex flex-wrap items-center gap-4">
+          {project.liveLink && (
+            <a
+              href={project.liveLink.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded transition-opacity"
+              style={{ background: accentColor, color: '#06060f' }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
+            >
+              <ExternalLinkIcon className="w-4 h-4" />
+              {project.liveLink.label}
+            </a>
+          )}
+          <a
+            href={project.link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-sm font-medium transition-colors"
+            style={{ color: accentColor }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.75')}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
+          >
+            <ExternalLinkIcon className="w-4 h-4" />
+            {project.link.label}
+          </a>
+        </div>
       </div>
     </motion.div>
   );
