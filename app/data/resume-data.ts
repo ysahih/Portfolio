@@ -37,10 +37,18 @@ export const RESUME_DATA = {
 
   education: [
     {
+      school: "42 Paris",
+      degree: "IT Architecture Expert, RNCP title level 7 (EQF 7)",
+      start: "Oct 2026",
+      end: "present",
+      location: "Paris, France",
+      description: "Preparing RNCP 39774, \"Expert en architecture informatique\". Software architecture, systems, networking, data architecture.",
+    },
+    {
       school: "1337 Coding School — 42 Network",
       degree: "Advanced Software Engineering Program (Équivalent Bac +5)",
       start: "2022",
-      end: "present",
+      end: "2026",
       location: "Khouribga, Morocco",
       description: "Algorithms & Data Structures, System Programming, Network Programming, Web Architecture, Relational Databases",
     },
