@@ -29,21 +29,21 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: 'Youssef Sahih — Frontend & Fullstack Engineer',
-  description: 'Fullstack Engineer with 3+ years building production systems — React/Next.js frontends, NestJS backends, PostgreSQL databases, and containerized deployments.',
-  keywords: ['frontend engineer', 'fullstack engineer', 'React', 'Next.js', 'TypeScript', 'NestJS', 'Node.js', 'Morocco'],
+  title: 'Youssef Sahih — Frontend Engineer — React, TypeScript, Testing',
+  description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
+  keywords: ['frontend engineer', 'React', 'TypeScript', 'Next.js', 'Cypress', 'Playwright', 'end-to-end testing', 'Paris', 'Morocco'],
   authors: [{ name: 'Youssef Sahih' }],
   openGraph: {
     type: 'website',
     url: 'https://sahih.codes/',
-    title: 'Youssef Sahih — Frontend & Fullstack Engineer',
-    description: 'Fullstack Engineer with 3+ years building production systems — React/Next.js frontends, NestJS backends, PostgreSQL databases, and containerized deployments.',
+    title: 'Youssef Sahih — Frontend Engineer — React, TypeScript, Testing',
+    description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
     images: [{ url: 'https://sahih.codes/portfolio-preview.png' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Youssef Sahih — Frontend & Fullstack Engineer',
-    description: 'Fullstack Engineer with 3+ years building production systems — React/Next.js frontends, NestJS backends, PostgreSQL databases, and containerized deployments.',
+    title: 'Youssef Sahih — Frontend Engineer — React, TypeScript, Testing',
+    description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
     images: ['https://sahih.codes/portfolio-preview.png'],
   },
   icons: {
@@ -69,8 +69,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: 'Youssef Sahih',
               url: 'https://sahih.codes',
               image: 'https://sahih.codes/ysahih.png',
-              description: 'Fullstack Engineer with 3+ years building production systems across the entire stack.',
-              jobTitle: 'Frontend & Fullstack Engineer',
+              description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
+              jobTitle: 'Frontend Engineer',
               worksFor: { '@type': 'Organization', name: "Im'enSe" },
               address: { '@type': 'PostalAddress', addressCountry: 'Morocco' },
               email: 'youssefsahih9@gmail.com',
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 'https://www.linkedin.com/in/youssef-sahih/',
                 'https://x.com/uc3f02',
               ],
-              knowsAbout: ['React', 'Next.js', 'TypeScript', 'NestJS', 'Node.js', 'PostgreSQL', 'Docker', 'Real-Time Systems', 'AI Integration'],
+              knowsAbout: ['React', 'Next.js', 'TypeScript', 'Cypress', 'Playwright', 'NestJS', 'Node.js', 'PostgreSQL', 'Docker', 'Real-Time Systems', 'AI Integration'],
             }),
           }}
         />

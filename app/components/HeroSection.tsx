@@ -223,7 +223,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6, ease: EASE }}
             >
-              Frontend & Fullstack Engineer
+              {data.title}
             </motion.p>
 
             <motion.div

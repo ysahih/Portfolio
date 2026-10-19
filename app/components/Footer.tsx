@@ -73,7 +73,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               </div>
             </a>
             <p className="opacity-60 mt-4 mb-6 max-w-md">
-              Frontend &amp; Fullstack Engineer building production-grade web applications with React, Next.js, and Node.js.
+              Frontend engineer building production web applications with React and TypeScript, and the test suites behind them.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((link, index) => (
@@ -149,14 +149,14 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
                   +212 708 978 739
                 </a>
               </li>
-              <li className="opacity-60">Morocco</li>
+              <li className="opacity-60">Morocco — relocating to Paris, October 2026</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center" style={{ borderTop: '1px solid var(--border)' }}>
           <p className="opacity-60 text-sm">
-            © 2026 Youssef Sahih — Frontend &amp; Fullstack Engineer
+            © 2026 Youssef Sahih — Frontend Engineer
           </p>
           <p className="opacity-60 text-sm mt-2 md:mt-0">
             Designed & Built with <span className="text-red-500">♥</span> by

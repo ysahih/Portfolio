@@ -31,7 +31,7 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
             style={{ color: 'var(--text-secondary)' }}
             variants={revealUp}
           >
-            Fullstack Engineer with 3+ years building production systems across the entire stack — React/Next.js frontends, NestJS/Node.js backends, PostgreSQL databases, and containerized cloud deployments. Currently a Frontend Developer at{' '}
+            Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects. Currently a Frontend Developer at{' '}
             <span style={{ color: 'var(--accent)' }}>Im&apos;enSe</span>, building QHSE-sector web applications with React 18 and TypeScript.
           </motion.p>
 
@@ -40,8 +40,9 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
             style={{ color: 'var(--text-secondary)' }}
             variants={revealUp}
           >
-            Pursuing an Advanced Software Engineering degree (Équivalent Bac +5) at{' '}
-            <span style={{ color: 'var(--accent)' }}>1337</span> — part of the 42 Network — with a curriculum built on systems programming, algorithms, network architecture, and peer-to-peer collaboration with no lectures and no instructors.
+            Trained at{' '}
+            <span style={{ color: 'var(--accent)' }}>1337</span> — part of the 42 Network — from 2022 to 2026, a curriculum built on systems programming, algorithms, network architecture, and peer-to-peer collaboration with no lectures and no instructors. Now transferring to{' '}
+            <span style={{ color: 'var(--accent)' }}>42 Paris</span> to prepare the RNCP level 7 IT Architecture Expert title.
           </motion.p>
 
           <motion.div className="flex gap-8 pt-4" variants={staggerContainer(0.08)}>

@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon } from 'lucide-react';
+import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircleIcon, LanguagesIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { toast } from 'react-hot-toast';
 import { viewportOnce } from '../lib/motion';
@@ -18,6 +18,7 @@ interface ContactProps {
     }[];
   };
   location: string;
+  languages: readonly { name: string; level: string }[];
 }
 
 type FormData = {
@@ -29,7 +30,7 @@ type FormData = {
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
+const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }) => {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -213,6 +214,23 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location }) => {
                 <div className="flex-1">
                   <h4 className="font-medium text-lg mb-1">Location</h4>
                   <p style={{ color: 'var(--text-secondary)' }}>{location}</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="flex items-start space-x-4"
+                variants={itemVariants}
+              >
+                <div className="bg-primary/10 p-3 rounded-lg" style={{ color: 'var(--accent)' }}>
+                  <LanguagesIcon className="w-6 h-6" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-medium text-lg mb-1">Languages</h4>
+                  <ul style={{ color: 'var(--text-secondary)' }}>
+                    {languages.map((lang) => (
+                      <li key={lang.name}>{lang.name} — {lang.level}</li>
+                    ))}
+                  </ul>
                 </div>
               </motion.div>
             </div>

@@ -2,14 +2,20 @@ import { GitHubIcon, LinkedInIcon, XIcon } from "../components/icons";
 
 export const RESUME_DATA = {
   name: "Youssef Sahih",
-  title: "Frontend & Fullstack Engineer",
-  location: "Morocco",
+  title: "Frontend Engineer — React, TypeScript, Testing",
+  location: "Morocco — relocating to Paris, October 2026",
+
+  languages: [
+    { name: "Arabic", level: "Native" },
+    { name: "English", level: "Fluent (C1)" },
+    { name: "French", level: "A2, in progress" },
+  ],
 
   about:
-    "Fullstack Engineer with 3+ years building production systems across the entire stack — React/Next.js frontends, NestJS/Node.js backends, PostgreSQL databases, and containerized cloud deployments. Experienced in real-time architecture, REST API design, JWT/OAuth authentication, CI/CD pipelines, and AI-powered integrations.",
+    "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
 
   summary:
-    "Fullstack Engineer with 3+ years building production systems across the entire stack — React/Next.js frontends, NestJS/Node.js backends, PostgreSQL databases, and containerized cloud deployments. Experienced in real-time architecture, REST API design, JWT/OAuth authentication, CI/CD pipelines, and AI-powered integrations.",
+    "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
 
   avatarUrl: "./ysahih.png",
 

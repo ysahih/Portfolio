@@ -81,6 +81,7 @@ export default function Portfolio() {
           <ContactSection
             contact={{ ...RESUME_DATA.contact, social: [...RESUME_DATA.contact.social] }}
             location={RESUME_DATA.location}
+            languages={RESUME_DATA.languages}
           />
         </motion.section>
       </motion.main>
