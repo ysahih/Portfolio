@@ -55,23 +55,25 @@ export const RESUME_DATA = {
   ],
 
   skills: [
-    "React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "Tailwind CSS",
+    "React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "SCSS", "Tailwind CSS", "Design Tokens", "Formik", "Yup", "react-i18next",
+    "React Router v6", "TanStack Table", "Recharts", "Framer Motion", "react-dnd", "dayjs",
     "Node.js", "NestJS", "Express.js", "Python", "REST API Design", "WebSockets", "Socket.io",
     "JWT", "OAuth 2.0", "2FA", "Refresh Token Rotation", "Session Management", "Rate Limiting", "Middleware",
     "PostgreSQL", "MySQL", "Prisma ORM", "Relational Modeling",
-    "Docker", "Docker Compose", "GitHub Actions", "Vercel", "Railway", "VPS Deployment",
+    "Git", "CI/CD", "Docker", "Docker Compose", "GitHub Actions", "Vercel", "Railway", "VPS Deployment",
     "Whisper AI", "AssemblyAI", "Claude API", "LLM Integration",
-    "Cypress", "Jest", "React Testing Library", "Postman", "Vite", "Electron", "Git", "Jira", "Agile/Scrum",
+    "Cypress", "Playwright", "Jest", "Vitest", "React Testing Library", "Network Mocking", "Test Fixtures", "Postman", "Vite", "Electron", "Jira", "Agile/Scrum",
   ],
 
   skillCategories: [
-    { label: "Frontend", skills: ["React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "Tailwind CSS"] },
+    { label: "Frontend", skills: ["React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "SCSS", "Tailwind CSS", "Design Tokens", "Formik", "Yup", "react-i18next"] },
+    { label: "Libraries", skills: ["React Router v6", "TanStack Table", "Recharts", "Framer Motion", "react-dnd", "dayjs"] },
     { label: "Backend", skills: ["Node.js", "NestJS", "Express.js", "Python", "REST API Design", "WebSockets", "Socket.io"] },
     { label: "Auth & Security", skills: ["JWT", "OAuth 2.0", "2FA", "Refresh Token Rotation", "Session Management", "Rate Limiting", "Middleware"] },
     { label: "Database", skills: ["PostgreSQL", "MySQL", "Prisma ORM", "Relational Modeling"] },
-    { label: "DevOps & CI/CD", skills: ["Docker", "Docker Compose", "GitHub Actions", "Vercel", "Railway", "VPS Deployment"] },
+    { label: "DevOps & CI/CD", skills: ["Git", "CI/CD", "Docker", "Docker Compose", "GitHub Actions", "Vercel", "Railway", "VPS Deployment"] },
     { label: "AI & LLM", skills: ["Whisper AI", "AssemblyAI", "Claude API", "LLM Integration"] },
-    { label: "Testing & Tools", skills: ["Cypress", "Jest", "React Testing Library", "Postman", "Vite", "Electron", "Git", "Jira", "Agile/Scrum"] },
+    { label: "Testing & Tools", skills: ["Cypress", "Playwright", "Jest", "Vitest", "React Testing Library", "Network Mocking", "Test Fixtures", "Postman", "Vite", "Electron", "Jira", "Agile/Scrum"] },
   ],
 
   experience: [
