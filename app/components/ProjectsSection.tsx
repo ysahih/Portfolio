@@ -63,7 +63,7 @@ const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> =
   },
   'CVE Vulnerability Analyzer': {
     command: 'python cve_analyzer.py',
-    output: ['→ fetching NVD feed...', '✓ 248,193 CVEs loaded', '✓ filtered with pandas', '→ CVE-2024-XXXX ready'],
+    output: ['→ fetching NVD feed...', '✓ NVD feed loaded', '✓ filtered with pandas', '→ report ready'],
   },
 };
 
@@ -101,7 +101,10 @@ function TerminalCard({ title }: { title: string }) {
             clearInterval(outputInterval);
             return;
           }
-          setOutputLines((prev) => [...prev, data.output[lineIndex]]);
+          // Read the line before incrementing: the state updater runs later,
+          // after lineIndex has already moved on.
+          const line = data.output[lineIndex];
+          setOutputLines((prev) => [...prev, line]);
           lineIndex++;
           if (lineIndex >= data.output.length) clearInterval(outputInterval);
         }, 180);
@@ -129,7 +132,7 @@ function TerminalCard({ title }: { title: string }) {
         <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ff5f57', display: 'inline-block' }} />
         <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#ffbd2e', display: 'inline-block' }} />
         <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28c840', display: 'inline-block' }} />
-        <span style={{ marginLeft: 8, fontSize: '0.68rem', color: 'rgba(255,255,255,0.25)', letterSpacing: '0.06em' }}>
+        <span style={{ marginLeft: 8, fontSize: '0.68rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.06em' }}>
           {title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}
         </span>
       </div>
@@ -249,6 +252,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             ✦ Featured
           </span>
         )}
+        <h3 className="text-lg font-bold leading-snug" style={{ color: 'var(--text-primary)' }}>
+          {project.title}
+        </h3>
+        <p className="text-sm mb-3" style={{ color: accentColor }}>
+          {project.impact}
+        </p>
         <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: 'var(--text-secondary)' }}>
           {project.description}
         </p>
@@ -264,7 +273,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </span>
           ))}
           {project.techStack.length > 5 && (
-            <span className="text-xs px-2 py-0.5" style={{ color: 'var(--text-muted)' }}>
+            <span className="text-xs px-2 py-0.5" style={{ color: 'var(--text-secondary)' }}>
               +{project.techStack.length - 5}
             </span>
           )}

@@ -153,7 +153,7 @@ export const RESUME_DATA = {
     },
     {
       title: "Sentra — Meeting Intelligence",
-      techStack: ["React", "TypeScript", "Electron", "Node.js", "Whisper AI", "AssemblyAI", "Claude API", "GitHub Actions"],
+      techStack: ["React", "TypeScript", "Electron", "Node.js", "whisper.cpp", "AssemblyAI", "Claude API", "GitHub Actions"],
       description:
         "Dual-pipeline Electron desktop app: offline local Whisper inference + cloud AssemblyAI diarization. Node.js backend for audio chunking, model orchestration, and streaming JSON updates to React UI. Claude API for transcript-grounded research chat; packaged via Electron Builder with GitHub Actions CI/CD.",
       link: { label: "GitHub", href: "https://github.com/ysahih/sentra-challenge" },
