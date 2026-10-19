@@ -66,7 +66,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               }}
             >
               <div className="flex items-center">
-                <img src="./ucefLogo.png" alt="Logo" className="h-14 w-14" />
+                <img src="/logo-128.png" alt="Logo" className="h-14 w-14" />
                 <span className="text-2xl font-bold" style={{ color: 'var(--accent)' }}>
                   Youssef Sahih
                 </span>

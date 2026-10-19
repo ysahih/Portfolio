@@ -68,7 +68,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
         >
           <div className="flex items-center">
             <img
-              src="./ucefLogo.png"
+              src="/logo-128.png"
               alt="Logo"
               className="h-14 w-14"
             />

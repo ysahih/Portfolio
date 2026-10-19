@@ -47,8 +47,8 @@ export const metadata: Metadata = {
     images: ['https://sahih.codes/portfolio-preview.png'],
   },
   icons: {
-    icon: '/ucefLogo.png',
-    apple: '/ucefLogo.png',
+    icon: '/logo-128.png',
+    apple: '/logo-128.png',
   },
 };
 
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@type': 'Person',
               name: 'Youssef Sahih',
               url: 'https://sahih.codes',
-              image: 'https://sahih.codes/ysahih.png',
+              image: 'https://sahih.codes/ysahih.jpg',
               description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
               jobTitle: 'Frontend Engineer',
               worksFor: { '@type': 'Organization', name: "Im'enSe" },
