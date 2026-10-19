@@ -29,21 +29,21 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: 'Youssef Sahih — Frontend Engineer — React, TypeScript, Testing',
-  description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
-  keywords: ['frontend engineer', 'React', 'TypeScript', 'Next.js', 'Cypress', 'Playwright', 'end-to-end testing', 'Paris', 'Morocco'],
+  title: 'Youssef Sahih — Software Engineer — React, TypeScript, Testing',
+  description: 'Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
+  keywords: ['software engineer', 'frontend engineer', 'React', 'TypeScript', 'Next.js', 'Cypress', 'Playwright', 'end-to-end testing', 'Paris', 'Morocco'],
   authors: [{ name: 'Youssef Sahih' }],
   openGraph: {
     type: 'website',
     url: 'https://sahih.codes/',
-    title: 'Youssef Sahih — Frontend Engineer — React, TypeScript, Testing',
-    description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
+    title: 'Youssef Sahih — Software Engineer — React, TypeScript, Testing',
+    description: 'Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
     images: [{ url: 'https://sahih.codes/portfolio-preview.png' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Youssef Sahih — Frontend Engineer — React, TypeScript, Testing',
-    description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
+    title: 'Youssef Sahih — Software Engineer — React, TypeScript, Testing',
+    description: 'Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
     images: ['https://sahih.codes/portfolio-preview.png'],
   },
   icons: {
@@ -65,8 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: 'Youssef Sahih',
               url: 'https://sahih.codes',
               image: 'https://sahih.codes/ysahih.jpg',
-              description: 'Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
-              jobTitle: 'Frontend Engineer',
+              description: 'Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
+              jobTitle: 'Software Engineer',
               worksFor: { '@type': 'Organization', name: "Im'enSe" },
               address: { '@type': 'PostalAddress', addressCountry: 'Morocco' },
               email: 'youssefsahih9@gmail.com',

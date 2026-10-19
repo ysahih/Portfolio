@@ -73,7 +73,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               </div>
             </a>
             <p className="opacity-60 mt-4 mb-6 max-w-md">
-              Frontend engineer building production web applications with React and TypeScript, and the test suites behind them.
+              Software engineer building production web applications with React and TypeScript, and the test suites behind them.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((link, index) => (
@@ -157,7 +157,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
 
         <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center" style={{ borderTop: '1px solid var(--border)' }}>
           <p className="opacity-60 text-sm">
-            © 2026 Youssef Sahih — Frontend Engineer
+            © 2026 Youssef Sahih — Software Engineer
           </p>
           <p className="opacity-60 text-sm mt-2 md:mt-0">
             Designed & Built with <span className="text-red-500">♥</span> by

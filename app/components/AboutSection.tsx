@@ -31,7 +31,7 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
             style={{ color: 'var(--text-secondary)' }}
             variants={revealUp}
           >
-            Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects. Currently a Frontend Developer at{' '}
+            Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects. Currently a Frontend Developer at{' '}
             <span style={{ color: 'var(--accent)' }}>Im&apos;enSe</span>, building QHSE-sector web applications with React 18 and TypeScript.
           </motion.p>
 

@@ -2,7 +2,7 @@ import { GitHubIcon, LinkedInIcon, XIcon } from "../components/icons";
 
 export const RESUME_DATA = {
   name: "Youssef Sahih",
-  title: "Frontend Engineer — React, TypeScript, Testing",
+  title: "Software Engineer — React, TypeScript, Testing",
   location: "Morocco — relocating to Paris, 27 October 2026",
 
   languages: [
@@ -14,7 +14,7 @@ export const RESUME_DATA = {
   availability: "Open to a 24-month apprenticeship · Jan 2027 · Paris",
 
   headline:
-    "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features.",
+    "Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features.",
 
   heroStats: [
     { value: "138", label: "Merged pull requests" },
@@ -23,10 +23,10 @@ export const RESUME_DATA = {
   ],
 
   about:
-    "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
+    "Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
 
   summary:
-    "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
+    "Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
 
   avatarUrl: "/ysahih.jpg",
 
