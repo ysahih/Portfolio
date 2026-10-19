@@ -80,6 +80,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
                 <motion.a
                   key={index}
                   href={link.url}
+                  aria-label={link.name}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors"

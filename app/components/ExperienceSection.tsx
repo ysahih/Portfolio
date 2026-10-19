@@ -115,9 +115,9 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                         <span>{exp.location}</span>
                       </div>
                       {exp.scale && (
-                        <div className={`flex items-center gap-2 text-sm ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`} style={{ color: 'var(--text-muted)' }}>
-                          <GitPullRequestIcon className="w-4 h-4 flex-shrink-0" />
-                          <span>{exp.scale}</span>
+                        <div className={`flex items-start gap-2 text-sm ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`} style={{ color: 'var(--text-muted)' }}>
+                          <GitPullRequestIcon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${index % 2 === 0 ? 'md:order-2' : ''}`} />
+                          <span className={index % 2 === 0 ? 'md:text-right' : ''}>{exp.scale}</span>
                         </div>
                       )}
                       <p className="py-3 my-3" style={{ color: 'var(--text-secondary)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>

@@ -245,6 +245,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                   <motion.a
                     key={index}
                     href={platform.url}
+                    aria-label={platform.name}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-lg transition-all duration-300"
