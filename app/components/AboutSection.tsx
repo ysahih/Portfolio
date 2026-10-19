@@ -47,8 +47,8 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
           <motion.div className="flex gap-8 pt-4" variants={staggerContainer(0.08)}>
             {[
               { value: '3+', label: 'Years experience' },
-              { value: '20+', label: 'Projects delivered' },
-              { value: '7', label: 'Languages in i18n pipeline' },
+              { value: '138', label: 'Merged pull requests' },
+              { value: '7', label: 'Locales in production i18n' },
             ].map((stat, i) => (
               <motion.div key={i} variants={staggerItem}>
                 <div className="text-2xl font-bold" style={{ color: 'var(--accent)' }}>{stat.value}</div>

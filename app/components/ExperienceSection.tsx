@@ -123,6 +123,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                           </span>
                         ))}
                       </div>
+                      {exp.achievements.length > 0 && (
                       <div className="space-y-2">
                         <h4 className={`text-sm font-semibold ${index % 2 === 0 ? 'md:text-right' : 'text-left'}`} style={{ color: 'var(--text-primary)' }}>Key Achievements:</h4>
                         <ul className={`space-y-1 ${index % 2 === 0 ? 'md:text-right' : 'text-left'}`}>
@@ -134,6 +135,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                           ))}
                         </ul>
                       </div>
+                      )}
                     </div>
                   </motion.div>
                 </div>
