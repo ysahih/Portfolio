@@ -61,8 +61,8 @@ export const RESUME_DATA = {
     {
       school: "Chouaïb Doukkali University",
       degree: "Associate's Degree in English Studies",
-      start: "2020",
-      end: "2022",
+      start: "2022",
+      end: "2023",
       location: "El Jadida, Morocco",
       description: "",
     },
