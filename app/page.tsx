@@ -48,9 +48,10 @@ export default function Portfolio() {
         animate="visible"
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
       >
-        <motion.section id="home" variants={fadeInUp}>
+        {/* No fade on the hero: it must paint before hydration for a fast LCP. */}
+        <section id="home">
           <HeroSection data={RESUME_DATA as any} />
-        </motion.section>
+        </section>
 
         <motion.section id="about" variants={fadeInUp}>
           <AboutSection data={RESUME_DATA} />

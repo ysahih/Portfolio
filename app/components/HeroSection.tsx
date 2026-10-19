@@ -257,8 +257,8 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
             <motion.p
               className="mb-8 text-base md:text-lg max-w-xl"
               style={{ color: 'var(--text-secondary)' }}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 16 }}
+              animate={{ y: 0 }}
               transition={{ delay: 1.0, duration: 0.6, ease: EASE }}
             >
               {data.about}
