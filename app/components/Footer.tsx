@@ -149,7 +149,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
                   +212 708 978 739
                 </a>
               </li>
-              <li className="opacity-60">Morocco — relocating to Paris, October 2026</li>
+              <li className="opacity-60">Morocco — relocating to Paris, 27 October 2026</li>
             </ul>
           </div>
         </div>

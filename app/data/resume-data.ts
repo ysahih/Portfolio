@@ -3,11 +3,11 @@ import { GitHubIcon, LinkedInIcon, XIcon } from "../components/icons";
 export const RESUME_DATA = {
   name: "Youssef Sahih",
   title: "Frontend Engineer — React, TypeScript, Testing",
-  location: "Morocco — relocating to Paris, October 2026",
+  location: "Morocco — relocating to Paris, 27 October 2026",
 
   languages: [
     { name: "Arabic", level: "Native" },
-    { name: "English", level: "Fluent (C1)" },
+    { name: "English", level: "Fluent, working language (C1)" },
     { name: "French", level: "A2, in progress" },
   ],
 
@@ -48,7 +48,7 @@ export const RESUME_DATA = {
       start: "Oct 2026",
       end: "present",
       location: "Paris, France",
-      description: "Preparing RNCP 39774, \"Expert en architecture informatique\". Software architecture, systems, networking, data architecture.",
+      description: "Preparing RNCP 39774, \"Expert en architecture informatique\". Software architecture, systems, networking, data architecture. Level 14 and Work Experience validated; eligible for a 24-month apprenticeship contract.",
     },
     {
       school: "1337 Coding School — 42 Network",
@@ -56,7 +56,7 @@ export const RESUME_DATA = {
       start: "2022",
       end: "2026",
       location: "Khouribga, Morocco",
-      description: "Algorithms & Data Structures, System Programming, Network Programming, Web Architecture, Relational Databases",
+      description: "Systems and network programming in C/C++, algorithms, web architecture, relational databases. Peer-learning, code review and project-based assessment, no lectures.",
     },
     {
       school: "Chouaïb Doukkali University",
@@ -69,24 +69,24 @@ export const RESUME_DATA = {
   ],
 
   skills: [
-    "React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "SCSS", "Tailwind CSS", "Design Tokens", "Formik", "Yup", "react-i18next",
+    "React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "SCSS", "Tailwind CSS", "Design Tokens", "Redux Toolkit", "RTK Query", "Formik", "Yup", "react-i18next",
     "React Router v6", "TanStack Table", "Recharts", "Framer Motion", "react-dnd", "dayjs",
-    "Node.js", "NestJS", "Express.js", "Python", "REST API Design", "WebSockets", "Socket.io",
+    "Node.js", "NestJS", "Express.js", "REST API Design", "WebSockets", "Socket.io", "Python", "C", "C++98",
     "JWT", "OAuth 2.0", "2FA", "Refresh Token Rotation", "Session Management", "Rate Limiting", "Middleware",
-    "PostgreSQL", "MySQL", "Prisma ORM", "Relational Modeling",
-    "Git", "CI/CD", "Docker", "Docker Compose", "GitHub Actions", "Vercel", "Railway", "VPS Deployment",
-    "Whisper AI", "AssemblyAI", "Claude API", "LLM Integration",
+    "PostgreSQL", "MySQL", "MongoDB", "SQL", "Prisma ORM", "Relational Modeling",
+    "Git", "CI/CD", "Docker", "Docker Compose", "Nginx", "GitHub Actions", "Vercel", "Railway", "VPS Deployment",
+    "Claude Code", "Claude API", "whisper.cpp", "AssemblyAI", "LLM Integration",
     "Cypress", "Playwright", "Jest", "Vitest", "React Testing Library", "Network Mocking", "Test Fixtures", "Postman", "Vite", "Electron", "Jira", "Agile/Scrum",
   ],
 
   skillCategories: [
-    { label: "Frontend", skills: ["React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "SCSS", "Tailwind CSS", "Design Tokens", "Formik", "Yup", "react-i18next"] },
+    { label: "Frontend", skills: ["React.js", "Next.js", "TypeScript", "JavaScript", "HTML5/CSS", "SCSS", "Tailwind CSS", "Design Tokens", "Redux Toolkit", "RTK Query", "Formik", "Yup", "react-i18next"] },
     { label: "Libraries", skills: ["React Router v6", "TanStack Table", "Recharts", "Framer Motion", "react-dnd", "dayjs"] },
-    { label: "Backend", skills: ["Node.js", "NestJS", "Express.js", "Python", "REST API Design", "WebSockets", "Socket.io"] },
+    { label: "Backend & Systems", skills: ["Node.js", "NestJS", "Express.js", "REST API Design", "WebSockets", "Socket.io", "Python", "C", "C++98"] },
     { label: "Auth & Security", skills: ["JWT", "OAuth 2.0", "2FA", "Refresh Token Rotation", "Session Management", "Rate Limiting", "Middleware"] },
-    { label: "Database", skills: ["PostgreSQL", "MySQL", "Prisma ORM", "Relational Modeling"] },
-    { label: "DevOps & CI/CD", skills: ["Git", "CI/CD", "Docker", "Docker Compose", "GitHub Actions", "Vercel", "Railway", "VPS Deployment"] },
-    { label: "AI & LLM", skills: ["Whisper AI", "AssemblyAI", "Claude API", "LLM Integration"] },
+    { label: "Database", skills: ["PostgreSQL", "MySQL", "MongoDB", "SQL", "Prisma ORM", "Relational Modeling"] },
+    { label: "DevOps & CI/CD", skills: ["Git", "CI/CD", "Docker", "Docker Compose", "Nginx", "GitHub Actions", "Vercel", "Railway", "VPS Deployment"] },
+    { label: "AI & LLM", skills: ["Claude Code", "Claude API", "whisper.cpp", "AssemblyAI", "LLM Integration"] },
     { label: "Testing & Tools", skills: ["Cypress", "Playwright", "Jest", "Vitest", "React Testing Library", "Network Mocking", "Test Fixtures", "Postman", "Vite", "Electron", "Jira", "Agile/Scrum"] },
   ],
 
@@ -110,7 +110,7 @@ export const RESUME_DATA = {
         "Developed and maintained 30+ React 18 modules using TypeScript, Redux Toolkit, and RTK Query in production",
         "Route-level code splitting across the app's route files, a lazy-loading image component with blur placeholders, and a cache-key fix that stopped filtered result sets collapsing into a single entry",
         "Resolved non-deterministic hook ordering bugs and optimistic UI timing issues through precise cache lifecycle management",
-        "~1,500 translation keys across 7 locales; collaborated with backend on REST API contracts and payload design",
+        "~1,500 translation keys across 7 locales; 94 custom hooks; 1,538 typed interfaces across 465 files; collaborated with backend on REST API contracts and payload design",
       ],
     },
     {
@@ -121,7 +121,7 @@ export const RESUME_DATA = {
       startDate: "Dec 2022",
       endDate: "Aug 2024",
       description: "Web applications for direct clients, remote and solo, alongside the 1337 cursus. Owned scoping through deployment. Client-owned code, nothing public.",
-      skills: ["React", "Next.js", "Node.js", "PostgreSQL"],
+      skills: ["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "Docker"],
       achievements: [],
     },
   ],
@@ -153,16 +153,16 @@ export const RESUME_DATA = {
       techStack: ["React", "TypeScript", "Electron", "Node.js", "Whisper AI", "AssemblyAI", "Claude API", "GitHub Actions"],
       description:
         "Dual-pipeline Electron desktop app: offline local Whisper inference + cloud AssemblyAI diarization. Node.js backend for audio chunking, model orchestration, and streaming JSON updates to React UI. Claude API for transcript-grounded research chat; packaged via Electron Builder with GitHub Actions CI/CD.",
-      link: { label: "GitHub", href: "https://github.com/ysahih" },
+      link: { label: "GitHub", href: "https://github.com/ysahih/sentra-challenge" },
       impact: "AI-powered meeting intelligence desktop app",
       category: "Personal Project",
       featured: true,
     },
     {
       title: "IRC Server",
-      techStack: ["C++", "Socket Programming", "Network Protocols"],
+      techStack: ["C++98", "BSD Sockets", "Non-blocking I/O", "Network Protocols"],
       description:
-        "Internet Relay Chat server implementing the IRC protocol to C++98 standard with multi-client support, channel management, and operator commands.",
+        "IRC server written to protocol in C++98 with no networking library: raw sockets, non-blocking I/O, concurrent multi-client handling, per-channel state, operator commands, and partial-message buffering across reads.",
       link: { label: "GitHub", href: "https://github.com/ysahih/IRC" },
       impact: "Multi-client IRC server implementation",
       category: "System Programming",
