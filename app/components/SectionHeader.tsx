@@ -29,19 +29,28 @@ export default function SectionHeader({ title, subtitle, centered = false, index
         </motion.span>
       )}
 
-      {/* Title reveals through a clip mask, line by line */}
-      <div style={{ overflow: 'hidden' }} className={centered ? 'flex justify-center' : ''}>
+      {/* Title reveals through a clip mask. The in-view trigger lives on the
+          mask, not the title: the title starts fully clipped, so observing it
+          directly never fires and it stays hidden. */}
+      <motion.div
+        style={{ overflow: 'hidden' }}
+        className={centered ? 'flex justify-center' : ''}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+      >
         <motion.h2
           className="text-3xl md:text-4xl font-bold"
           style={{ color: 'var(--text-primary)' }}
-          initial={reduced ? { opacity: 0 } : { y: '110%' }}
-          whileInView={reduced ? { opacity: 1 } : { y: '0%' }}
-          viewport={viewportOnce}
+          variants={{
+            hidden: reduced ? { opacity: 0 } : { y: '110%' },
+            visible: reduced ? { opacity: 1 } : { y: '0%' },
+          }}
           transition={{ duration: 0.7, ease: EASE }}
         >
           {title}
         </motion.h2>
-      </div>
+      </motion.div>
 
       {/* Accent line that draws itself in from the left */}
       <motion.div
