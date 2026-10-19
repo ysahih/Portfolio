@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { BriefcaseIcon, CalendarIcon, MapPinIcon, CheckIcon } from 'lucide-react';
+import { BriefcaseIcon, CalendarIcon, MapPinIcon, CheckIcon, GitPullRequestIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { viewportOnce } from '../lib/motion';
 
@@ -13,6 +13,7 @@ interface Experience {
   startDate: string;
   endDate: string;
   description: string;
+  scale?: string;
   skills: readonly string[];
   achievements: readonly string[];
 }
@@ -113,6 +114,12 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                         <MapPinIcon className="w-4 h-4 flex-shrink-0" />
                         <span>{exp.location}</span>
                       </div>
+                      {exp.scale && (
+                        <div className={`flex items-center gap-2 text-sm ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`} style={{ color: 'var(--text-muted)' }}>
+                          <GitPullRequestIcon className="w-4 h-4 flex-shrink-0" />
+                          <span>{exp.scale}</span>
+                        </div>
+                      )}
                       <p className="py-3 my-3" style={{ color: 'var(--text-secondary)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
                         {exp.description}
                       </p>
