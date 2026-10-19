@@ -11,19 +11,12 @@ interface HeroProps {
     name: string;
     title: string;
     availability: string;
-    about: string;
+    headline: string;
+    heroStats: readonly { value: string; label: string }[];
     avatarUrl: string;
     contact: { email: string };
   };
 }
-
-const SPECIALTIES = [
-  'React & Next.js',
-  'TypeScript',
-  'Real-Time Systems',
-  'AI-Powered Apps',
-  'NestJS & Node.js',
-];
 
 function AnimatedName({ name, reduced }: { name: string; reduced: boolean }) {
   const words = name.split(' ');
@@ -48,12 +41,11 @@ function AnimatedName({ name, reduced }: { name: string; reduced: boolean }) {
     <span
       ref={containerRef}
       aria-label={name}
-      className="hero-name-wrap"
+      className="hero-name-wrap justify-center md:justify-start"
       style={{
         display: 'inline-flex',
         flexWrap: 'wrap',
         gap: '0 0.22em',
-        justifyContent: 'inherit',
         perspective: 600,
         position: 'relative',
       }}
@@ -137,36 +129,6 @@ function Letter({
   );
 }
 
-function CyclingSubtitle() {
-  const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const cycle = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIndex((i) => (i + 1) % SPECIALTIES.length);
-        setVisible(true);
-      }, 350);
-    }, 2800);
-    return () => clearInterval(cycle);
-  }, []);
-
-  return (
-    <div style={{ display: 'inline-block', overflow: 'hidden', height: '1.4em', verticalAlign: 'bottom', minWidth: 280 }}>
-      <motion.span
-        key={index}
-        initial={{ clipPath: 'inset(0 100% 0 0)' }}
-        animate={{ clipPath: visible ? 'inset(0 0% 0 0)' : 'inset(0 0 0 100%)' }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        style={{ display: 'inline-block', color: 'var(--accent)', fontWeight: 600 }}
-      >
-        {SPECIALTIES[index]}
-      </motion.span>
-    </div>
-  );
-}
-
 const HeroSection: React.FC<HeroProps> = ({ data }) => {
   const viewWorkRef = useRef<HTMLAnchorElement>(null);
   const resumeRef = useRef<HTMLAnchorElement>(null);
@@ -227,25 +189,40 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               {data.title}
             </motion.p>
 
-            <motion.p
-              className="text-sm mb-3 font-mono"
-              style={{ color: 'var(--accent)' }}
+            <motion.div
+              className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full text-xs md:text-sm font-mono"
+              style={{ color: 'var(--accent)', background: 'var(--accent-tint)', border: '1px solid var(--accent-tint-border)' }}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6, ease: EASE }}
             >
+              <span className="relative flex h-2 w-2 flex-shrink-0" aria-hidden>
+                {!reduced && <span className="absolute inline-flex h-full w-full rounded-full animate-ping" style={{ background: 'var(--accent)', opacity: 0.6 }} />}
+                <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: 'var(--accent)' }} />
+              </span>
               {data.availability}
-            </motion.p>
-
-            <motion.div
-              className="text-xl md:text-2xl mb-6"
-              style={{ color: 'var(--text-secondary)' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
-            >
-              <CyclingSubtitle />
             </motion.div>
+
+            {/* Proof first: the numbers that back the title. Rendered visible
+                from the server (y-only motion) so they don't delay first paint. */}
+            <motion.dl
+              className="flex justify-center md:justify-start gap-8 md:gap-10 mb-8"
+              initial={{ y: 16 }}
+              animate={{ y: 0 }}
+              transition={{ delay: 0.9, duration: 0.6, ease: EASE }}
+            >
+              {data.heroStats.map((stat) => (
+                <div key={stat.label} className="flex flex-col-reverse text-center md:text-left">
+                  <dt className="text-xs md:text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>{stat.label}</dt>
+                  <dd
+                    className="text-3xl md:text-4xl font-bold leading-none"
+                    style={{ color: 'var(--accent)', fontFamily: 'var(--font-display), sans-serif', letterSpacing: '-0.02em' }}
+                  >
+                    {stat.value}
+                  </dd>
+                </div>
+              ))}
+            </motion.dl>
 
             <motion.hr
               style={{ borderColor: 'var(--border)', transformOrigin: 'left', marginBottom: '2rem' }}
@@ -261,7 +238,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               animate={{ y: 0 }}
               transition={{ delay: 1.0, duration: 0.6, ease: EASE }}
             >
-              {data.about}
+              {data.headline}
             </motion.p>
 
             <motion.div

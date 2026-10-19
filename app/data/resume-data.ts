@@ -11,8 +11,16 @@ export const RESUME_DATA = {
     { name: "French", level: "A2, in progress" },
   ],
 
-  availability:
-    "Open to a 24-month apprenticeship from the January 2027 intake — frontend, fullstack or QA automation.",
+  availability: "Open to a 24-month apprenticeship · Jan 2027 · Paris",
+
+  headline:
+    "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features.",
+
+  heroStats: [
+    { value: "138", label: "Merged pull requests" },
+    { value: "109", label: "Cypress specs" },
+    { value: "133", label: "Playwright tests" },
+  ],
 
   about:
     "Frontend engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
