@@ -10,9 +10,9 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#3B82F6', // Blue
-          dark: '#2563EB',
-          light: '#60A5FA',
+          DEFAULT: '#F2B544', // Saffron, matches --accent
+          dark: '#8F5A00',
+          light: '#F7CD7A',
         },
         secondary: {
           DEFAULT: '#10B981', // Green

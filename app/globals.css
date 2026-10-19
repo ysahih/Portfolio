@@ -2,49 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design-token color system ───────────────────────────── */
+/* ── Design-token color system ───────────────────────────────
+   Night ink + saffron. The background is a blue-black night so the
+   starfield reads as sky; saffron is the single warm signal used for
+   emphasis. Category hues are tokens so they hold AA contrast in both
+   themes (all text pairs checked at >= 4.5:1).                      */
 :root,
 [data-theme='dark'] {
-  --accent: #4fc3f7;
-  --bg: #06060f;
-  --navbar-bg-scrolled: rgba(6, 6, 15, 0.85);
-  --navbar-bg-mobile: rgba(6, 6, 15, 0.95);
-  --text-primary: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(255, 255, 255, 0.55);
-  --text-muted: rgba(255, 255, 255, 0.28);
-  --surface: rgba(255, 255, 255, 0.04);
-  --border: rgba(255, 255, 255, 0.08);
-  --star-color: 255, 255, 255;
-  --cursor-color: 255, 255, 255;
-  --accent-tint: rgba(79, 195, 247, 0.08);
-  --accent-tint-border: rgba(79, 195, 247, 0.18);
-  --accent-glow: rgba(79, 195, 247, 0.25);
-  --input-bg: rgba(255, 255, 255, 0.06);
-  --on-accent: #06060f;
-  --name-solid: #ffffff;
+  --accent: #f2b544;
+  --accent-2: #8fb4ff;
+  --bg: #0a0c16;
+  --navbar-bg-scrolled: rgba(10, 12, 22, 0.85);
+  --navbar-bg-mobile: rgba(10, 12, 22, 0.96);
+  --text-primary: #eceef5;
+  --text-secondary: #a3a9bc;
+  --text-muted: #7a8098;
+  --surface: rgba(236, 238, 245, 0.04);
+  --border: rgba(236, 238, 245, 0.09);
+  --star-color: 236, 238, 245;
+  --cursor-color: 236, 238, 245;
+  --accent-tint: rgba(242, 181, 68, 0.10);
+  --accent-tint-border: rgba(242, 181, 68, 0.24);
+  --accent-glow: rgba(242, 181, 68, 0.20);
+  --input-bg: rgba(236, 238, 245, 0.06);
+  --on-accent: #1a1405;
+  --name-solid: #f5f6fa;
   /* Opaque card surface so content reads cleanly over the starfield */
-  --card-surface: #0d0d18;
+  --card-surface: #121524;
+
+  --cat-personal: #f2b544;
+  --cat-web: #6fd3be;
+  --cat-systems: #f2905f;
+  --cat-devops: #8fb4ff;
+  --cat-graphics: #c3a6ff;
+  --cat-security: #ff7a8f;
+  --on-category: #1a1405;
 }
 
 [data-theme='light'] {
-  --accent: #0284c7;
-  --bg: #eef2f7;
-  --navbar-bg-scrolled: rgba(238, 242, 247, 0.90);
-  --navbar-bg-mobile: rgba(238, 242, 247, 0.98);
-  --text-primary: rgba(10, 15, 30, 0.90);
-  --text-secondary: rgba(10, 15, 30, 0.55);
-  --text-muted: rgba(10, 15, 30, 0.35);
-  --surface: rgba(10, 15, 30, 0.05);
-  --border: rgba(10, 15, 30, 0.10);
-  --star-color: 10, 15, 30;
-  --cursor-color: 10, 15, 30;
-  --accent-tint: rgba(2, 132, 199, 0.08);
-  --accent-tint-border: rgba(2, 132, 199, 0.18);
-  --accent-glow: rgba(2, 132, 199, 0.20);
-  --input-bg: rgba(10, 15, 30, 0.06);
+  --accent: #8f5a00;
+  --accent-2: #2f5bd3;
+  --bg: #f2f3f8;
+  --navbar-bg-scrolled: rgba(242, 243, 248, 0.90);
+  --navbar-bg-mobile: rgba(242, 243, 248, 0.98);
+  --text-primary: #12152a;
+  --text-secondary: #474d66;
+  --text-muted: #5f6580;
+  --surface: rgba(18, 21, 42, 0.04);
+  --border: rgba(18, 21, 42, 0.11);
+  --star-color: 18, 21, 42;
+  --cursor-color: 18, 21, 42;
+  --accent-tint: rgba(143, 90, 0, 0.08);
+  --accent-tint-border: rgba(143, 90, 0, 0.22);
+  --accent-glow: rgba(242, 181, 68, 0.28);
+  --input-bg: rgba(18, 21, 42, 0.05);
   --on-accent: #ffffff;
-  --name-solid: #0a0f1e;
+  --name-solid: #12152a;
   --card-surface: #ffffff;
+
+  --cat-personal: #8f5a00;
+  --cat-web: #0b7a64;
+  --cat-systems: #b4471a;
+  --cat-devops: #2f5bd3;
+  --cat-graphics: #6d44c9;
+  --cat-security: #c0264a;
+  --on-category: #ffffff;
 }
 
 /* ── Hide default cursor for custom cursor (fine pointers only) ── */
@@ -101,7 +123,7 @@
 
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, var(--accent), #81d4fa);
+    background-image: linear-gradient(135deg, var(--accent), var(--accent-2));
   }
 
   .glass-card {
@@ -173,7 +195,7 @@
   pointer-events: none;
   background:
     radial-gradient(40% 45% at 25% 30%, var(--accent-glow), transparent 60%),
-    radial-gradient(35% 40% at 78% 28%, rgba(129, 212, 250, 0.18), transparent 60%),
+    radial-gradient(35% 40% at 78% 28%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 60%),
     radial-gradient(45% 50% at 60% 75%, var(--accent-tint), transparent 65%);
   filter: blur(60px) saturate(1.1);
   animation: auroraDrift 18s ease-in-out infinite;

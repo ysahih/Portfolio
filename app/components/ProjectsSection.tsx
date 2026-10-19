@@ -24,12 +24,12 @@ interface ProjectsSectionProps {
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'System Programming': '#f97316',
-  'DevOps': '#22d3ee',
-  'Graphics Programming': '#a78bfa',
-  'Personal Project': '#4fc3f7',
-  'Web Development': '#34d399',
-  'Security': '#f43f5e',
+  'System Programming': 'var(--cat-systems)',
+  'DevOps': 'var(--cat-devops)',
+  'Graphics Programming': 'var(--cat-graphics)',
+  'Personal Project': 'var(--cat-personal)',
+  'Web Development': 'var(--cat-web)',
+  'Security': 'var(--cat-security)',
 };
 
 const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> = {
@@ -119,7 +119,7 @@ function TerminalCard({ title }: { title: string }) {
       style={{
         width: '100%',
         aspectRatio: '16/9',
-        background: '#0a0a0f',
+        background: '#0a0c16',
         border: '1px solid rgba(255,255,255,0.07)',
         borderRadius: '8px 8px 0 0',
         overflow: 'hidden',
@@ -140,18 +140,18 @@ function TerminalCard({ title }: { title: string }) {
       <div style={{ padding: '10px 14px', fontSize: '0.72rem', lineHeight: 1.75 }}>
         <div>
           <span style={{ color: '#28c840' }}>➜</span>
-          <span style={{ color: '#4fc3f7', marginLeft: 6 }}>~/projects</span>
+          <span style={{ color: '#8fb4ff', marginLeft: 6 }}>~/projects</span>
           <span style={{ color: 'rgba(255,255,255,0.3)', marginLeft: 6 }}>$</span>
           <span style={{ color: '#e2e8f0', marginLeft: 6 }}>{typedCmd}</span>
           {typedCmd.length < data.command.length && started && (
-            <span style={{ display: 'inline-block', width: 6, height: '0.8em', background: '#4fc3f7', marginLeft: 1, verticalAlign: 'text-bottom', animation: 'termBlink 1s step-end infinite' }} />
+            <span style={{ display: 'inline-block', width: 6, height: '0.8em', background: '#f2b544', marginLeft: 1, verticalAlign: 'text-bottom', animation: 'termBlink 1s step-end infinite' }} />
           )}
         </div>
         {outputLines.filter(Boolean).map((line, i) => (
           <div
             key={i}
             style={{
-              color: line.startsWith('✓') ? '#28c840' : line.startsWith('→') ? '#4fc3f7' : line.startsWith('[') ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.35)',
+              color: line.startsWith('✓') ? '#28c840' : line.startsWith('→') ? '#8fb4ff' : line.startsWith('[') ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.35)',
               paddingLeft: 16,
             }}
           >
@@ -186,7 +186,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const spotlight = useTransform(
     [px, py],
     ([x, y]: number[]) =>
-      `radial-gradient(220px circle at ${x * 100}% ${y * 100}%, ${accentColor}22, transparent 70%)`
+      `radial-gradient(220px circle at ${x * 100}% ${y * 100}%, color-mix(in srgb, ${accentColor} 13%, transparent), transparent 70%)`
   );
   const [hovered, setHovered] = useState(false);
 
@@ -222,7 +222,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         borderColor: hovered ? accentColor : 'var(--border)',
         transition: 'border-color 0.25s ease',
         boxShadow: hovered
-          ? `0 18px 50px -12px ${accentColor}40, 0 0 0 1px ${accentColor}30`
+          ? `0 18px 50px -12px color-mix(in srgb, ${accentColor} 25%, transparent), 0 0 0 1px color-mix(in srgb, ${accentColor} 19%, transparent)`
           : '0 12px 32px -16px rgba(0,0,0,0.6)',
       }}
       onMouseMove={handleMove}
@@ -267,7 +267,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <span
               key={tech}
               className="text-xs px-2 py-0.5 rounded font-mono"
-              style={{ background: `${accentColor}15`, color: accentColor, border: `1px solid ${accentColor}30` }}
+              style={{ background: `color-mix(in srgb, ${accentColor} 8%, transparent)`, color: accentColor, border: `1px solid color-mix(in srgb, ${accentColor} 19%, transparent)` }}
             >
               {tech}
             </span>
@@ -286,7 +286,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded transition-opacity"
-              style={{ background: accentColor, color: '#06060f' }}
+              style={{ background: accentColor, color: 'var(--on-category)' }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = '0.85')}
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
             >
