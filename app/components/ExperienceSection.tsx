@@ -50,7 +50,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
   // Generate initials-based avatar without external requests
   const generateDefaultLogo = (companyName: string) => {
     const initials = companyName.split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
-    return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="%230D8ABC"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="52" font-family="monospace" font-weight="bold">${initials}</text></svg>`)}`;
+    return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><rect width="128" height="128" rx="16" fill="#121524"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="#f2b544" font-size="52" font-family="monospace" font-weight="bold">${initials}</text></svg>`)}`;
   };
 
   return (
