@@ -220,6 +220,11 @@ const en = {
       { name: 'English', level: 'Fluent, working language (C1)' },
       { name: 'French', level: 'A2, in progress' },
     ],
+    fallback: {
+      title: 'Email or phone',
+      body: 'The contact form is not available right now. The quickest way to reach me is directly:',
+      call: 'Call me',
+    },
     connect: 'Connect with me',
     form: {
       title: 'Send me a message',

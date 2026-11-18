@@ -16,11 +16,16 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: { name?: string; email?: string; subject?: string; message?: string };
+  let body: { name?: string; email?: string; subject?: string; message?: string; website?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 });
+  }
+
+  // Honeypot filled in: pretend success, send nothing.
+  if ((body.website ?? '').trim()) {
+    return NextResponse.json({ ok: true });
   }
 
   const name = (body.name ?? '').trim();
@@ -34,6 +39,9 @@ export async function POST(request: Request) {
   }
   if (!EMAIL_RE.test(email)) {
     return NextResponse.json({ error: 'Please provide a valid email.' }, { status: 400 });
+  }
+  if (name.length > 200 || subject.length > 200 || email.length > 320) {
+    return NextResponse.json({ error: 'Field too long.' }, { status: 400 });
   }
   if (message.length > 5000) {
     return NextResponse.json({ error: 'Message is too long.' }, { status: 400 });

@@ -222,6 +222,11 @@ const fr: Dictionary = {
       { name: 'Anglais', level: 'courant, langue de travail (C1)' },
       { name: 'Français', level: 'A2, en cours d’apprentissage' },
     ],
+    fallback: {
+      title: 'Par e-mail ou par téléphone',
+      body: 'Le formulaire n’est pas disponible pour le moment. Le plus simple est de me joindre directement\u00a0:',
+      call: 'M’appeler',
+    },
     connect: 'Me retrouver en ligne',
     form: {
       title: 'Envoyez-moi un message',

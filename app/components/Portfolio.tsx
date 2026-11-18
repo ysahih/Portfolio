@@ -13,7 +13,7 @@ import ContactSection from './ContactSection';
 import Footer from './Footer';
 import { RESUME_DATA } from '../data/resume-data';
 
-export default function Portfolio() {
+export default function Portfolio({ contactFormEnabled }: { contactFormEnabled: boolean }) {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function Portfolio() {
         </motion.section>
 
         <motion.section id="contact" variants={fadeInUp}>
-          <ContactSection />
+          <ContactSection formEnabled={contactFormEnabled} />
         </motion.section>
       </motion.main>
 

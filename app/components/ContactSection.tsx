@@ -18,7 +18,10 @@ type FormData = {
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-const ContactSection: React.FC = () => {
+/* formEnabled is resolved on the server (RESEND_API_KEY present at build
+   time). Without it the form is replaced by direct mailto/tel links, so a
+   visitor never meets a form that cannot deliver. */
+const ContactSection: React.FC<{ formEnabled: boolean }> = ({ formEnabled }) => {
   const { dict } = useDictionary();
   const t = dict.contact;
   const f = t.form;
@@ -30,6 +33,8 @@ const ContactSection: React.FC = () => {
     message: '',
   });
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
+  // Honeypot: hidden from people, often filled in by bots.
+  const [website, setWebsite] = useState('');
   const [errors, setErrors] = useState<Partial<FormData>>({});
 
   const validateForm = (): boolean => {
@@ -81,7 +86,7 @@ const ContactSection: React.FC = () => {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, website }),
       });
 
       if (!res.ok) {
@@ -262,9 +267,44 @@ const ContactSection: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="rounded-xl p-8" style={{ background: 'var(--card-surface)', border: '1px solid var(--border)', boxShadow: '0 12px 40px -16px rgba(0,0,0,0.6)' }}>
-              <h3 className="text-2xl font-semibold mb-6">{f.title}</h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <h3 className="text-2xl font-semibold mb-6">{formEnabled ? f.title : t.fallback.title}</h3>
+
+              {!formEnabled ? (
+                <div className="space-y-6">
+                  <p style={{ color: 'var(--text-secondary)' }}>{t.fallback.body}</p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="flex-1 py-3 px-6 rounded-lg font-medium flex items-center justify-center gap-2"
+                      style={{ background: 'var(--accent)', color: 'var(--on-accent)' }}
+                    >
+                      <MailIcon className="w-5 h-5" />
+                      {t.sendEmail}
+                    </a>
+                    <a
+                      href={`tel:${contact.tel.replace(/\s/g, '')}`}
+                      className="flex-1 py-3 px-6 rounded-lg font-medium flex items-center justify-center gap-2"
+                      style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+                    >
+                      <PhoneIcon className="w-5 h-5" />
+                      {t.fallback.call}
+                    </a>
+                  </div>
+                </div>
+              ) : (
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                  />
+                </div>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
                     {f.name}
@@ -375,6 +415,7 @@ const ContactSection: React.FC = () => {
                   </motion.button>
                 </div>
               </form>
+              )}
             </div>
           </motion.div>
         </div>
