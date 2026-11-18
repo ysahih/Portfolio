@@ -124,7 +124,8 @@ const en = {
       graphics: 'Graphics Programming',
       security: 'Security',
     },
-    liveDemo: 'Live demo',
+    liveDemo: 'Demo',
+    challengeLabel: 'The hard part:',
     repo: 'GitHub',
     filterAria: 'Filter projects by category',
     items: {
@@ -133,48 +134,64 @@ const en = {
         impact: 'Stripe subscription billing, deployed',
         description:
           'Webhook-driven billing where Stripe is the source of truth and the database is a read model. Idempotency through a unique constraint on the event id, written inside the same transaction as the state change. The test suite fires 8 copies of one webhook concurrently and asserts exactly one is processed. A Playwright run covers the pricing page through Stripe Checkout to an active account.',
+        challenge:
+          '',
       },
       transcendence: {
         title: 'ft_transcendence — Multiplayer Platform',
         impact: 'Real-time multiplayer gaming platform',
         description:
           '42 Network project. Architected full-stack end-to-end: Next.js frontend, NestJS REST API, PostgreSQL/Prisma backend. Implemented JWT auth with OAuth 2.0, 2FA, refresh token rotation, rate limiting, and guard middleware. Engineered real-time multiplayer with Socket.io, matchmaking, and full chat system with public/private channels. Containerized with Docker Compose.',
+        challenge:
+          'Keeping game state and chat in sync in real time over Socket.io, behind JWT, OAuth 2.0 and 2FA authentication.',
       },
       sentra: {
         title: 'Sentra — Meeting Intelligence',
         impact: 'AI-powered meeting intelligence desktop app',
         description:
           'Dual-pipeline Electron desktop app: offline local Whisper inference + cloud AssemblyAI diarization. Node.js backend for audio chunking, model orchestration, and streaming JSON updates to React UI. Claude API for transcript-grounded research chat; packaged via Electron Builder with GitHub Actions CI/CD.',
+        challenge:
+          'Running offline Whisper inference and cloud diarization side by side, and streaming both into a single React UI.',
       },
       irc: {
         title: 'IRC Server',
         impact: 'Multi-client IRC server implementation',
         description:
           'IRC server written to protocol in C++98 with no networking library: raw sockets, non-blocking I/O, concurrent multi-client handling, per-channel state, operator commands, and partial-message buffering across reads.',
+        challenge:
+          'Reassembling partial messages across non-blocking reads for many clients at once, with no networking library.',
       },
       sash: {
         title: 'Sash — Unix Shell',
         impact: 'Bash-like shell with pipes, redirection & signals',
         description:
           'A Bash-like Unix shell written in C. Implements command execution, built-ins (cd, echo, pwd, export, exit), input/output redirection (<, >, >>, <<), pipelines, environment variable expansion, and Unix signal handling (Ctrl+C/Ctrl+\\/Ctrl+D).',
+        challenge:
+          'Matching Bash behaviour for pipelines, redirections, heredocs and signals while managing child processes by hand.',
       },
       cve: {
         title: 'CVE Vulnerability Analyzer',
         impact: 'Security data tooling over the NVD CVE database',
         description:
           'A Python tool that fetches Common Vulnerabilities and Exposures (CVE) data from the National Vulnerability Database (NVD), filters and processes it with pandas, and surfaces vulnerability descriptions for analysis.',
+        challenge:
+          'Turning raw NVD API responses into a clean, filterable pandas dataset.',
       },
       inception: {
         title: 'Inception',
         impact: 'Containerized web application infrastructure',
         description:
           'Docker-based multi-container infrastructure with Nginx, WordPress, and MariaDB. Custom Dockerfiles only — no pre-built images. TLS via self-signed certificates.',
+        challenge:
+          'Building every image from a hand-written Dockerfile and wiring Nginx, WordPress and MariaDB together over TLS.',
       },
       cub3d: {
         title: 'Cub3D',
         impact: '3D graphics engine with raycasting',
         description:
           'First-person 3D raycaster in C using miniLibX. Implements DDA algorithm for wall rendering, texture mapping, and player collision detection.',
+        challenge:
+          'Implementing DDA raycasting and texture mapping in C on top of a minimal graphics library.',
       },
     },
   },

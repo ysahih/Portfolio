@@ -13,6 +13,7 @@ interface Project {
   title: string;
   techStack: readonly string[];
   description: string;
+  challenge: string;
   repo: string;
   liveUrl?: string;
   impact: string;
@@ -263,6 +264,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: 'var(--text-secondary)' }}>
           {project.description}
         </p>
+        {project.challenge && (
+          <p className="text-sm leading-relaxed mb-4 pl-3" style={{ color: 'var(--text-secondary)', borderLeft: `2px solid ${accentColor}` }}>
+            <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{t.challengeLabel}</strong>{" "}
+            {project.challenge}
+          </p>
+        )}
 
         <ul className="flex flex-wrap gap-1.5 mb-4">
           {project.techStack.slice(0, 5).map((tech) => (
@@ -285,6 +292,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.liveUrl && (
             <a
               href={project.liveUrl}
+              aria-label={`${t.liveDemo} — ${project.title}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded transition-opacity"
@@ -298,6 +306,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           )}
           <a
             href={project.repo}
+            aria-label={`${t.repo} — ${project.title}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-sm font-medium transition-colors"

@@ -126,7 +126,8 @@ const fr: Dictionary = {
       graphics: 'Programmation graphique',
       security: 'Sécurité',
     },
-    liveDemo: 'Démo en ligne',
+    liveDemo: 'Démo',
+    challengeLabel: 'Le défi\u00a0:',
     repo: 'GitHub',
     filterAria: 'Filtrer les projets par catégorie',
     items: {
@@ -135,48 +136,64 @@ const fr: Dictionary = {
         impact: 'Facturation par abonnement Stripe, déployée',
         description:
           'Facturation pilotée par webhooks, où Stripe est la source de vérité et la base de données un modèle de lecture. Idempotence assurée par une contrainte d’unicité sur l’identifiant d’événement, écrite dans la même transaction que le changement d’état. La suite de tests envoie 8 copies du même webhook en parallèle et vérifie qu’une seule est traitée. Un test Playwright couvre le parcours complet, de la page de tarifs à un compte actif via Stripe Checkout.',
+        challenge:
+          '',
       },
       transcendence: {
         title: 'ft_transcendence — Plateforme multijoueur',
         impact: 'Plateforme de jeu multijoueur en temps réel',
         description:
           'Projet du réseau 42. Architecture full-stack de bout en bout : frontend Next.js, API REST NestJS, backend PostgreSQL/Prisma. Authentification JWT avec OAuth 2.0, 2FA, rotation des refresh tokens, rate limiting et guards. Multijoueur en temps réel avec Socket.io, matchmaking et chat complet avec canaux publics et privés. Conteneurisé avec Docker Compose.',
+        challenge:
+          'Synchroniser l’état de jeu et le chat en temps réel via Socket.io, derrière une authentification JWT, OAuth 2.0 et 2FA.',
       },
       sentra: {
         title: 'Sentra — Intelligence de réunion',
         impact: 'Application desktop d’analyse de réunions par IA',
         description:
           'Application desktop Electron à double pipeline : inférence Whisper locale hors ligne et diarisation cloud via AssemblyAI. Backend Node.js pour le découpage audio, l’orchestration des modèles et le streaming de mises à jour JSON vers l’interface React. API Claude pour un chat de recherche ancré dans la transcription ; packagée avec Electron Builder et CI/CD GitHub Actions.',
+        challenge:
+          'Faire tourner l’inférence Whisper hors ligne et la diarisation cloud en parallèle, puis diffuser les deux dans une même interface React.',
       },
       irc: {
         title: 'Serveur IRC',
         impact: 'Implémentation d’un serveur IRC multi-clients',
         description:
           'Serveur IRC conforme au protocole, écrit en C++98 sans bibliothèque réseau : sockets bruts, I/O non bloquantes, gestion simultanée de plusieurs clients, état par canal, commandes opérateur et mise en tampon des messages partiels entre deux lectures.',
+        challenge:
+          'Reconstituer les messages partiels entre lectures non bloquantes pour de nombreux clients à la fois, sans bibliothèque réseau.',
       },
       sash: {
         title: 'Sash — Shell Unix',
         impact: 'Shell de type Bash : pipes, redirections et signaux',
         description:
           'Shell Unix de type Bash écrit en C. Exécution de commandes, built-ins (cd, echo, pwd, export, exit), redirections d’entrée/sortie (<, >, >>, <<), pipelines, expansion des variables d’environnement et gestion des signaux Unix (Ctrl+C / Ctrl+\\ / Ctrl+D).',
+        challenge:
+          'Reproduire le comportement de Bash pour les pipelines, redirections, heredocs et signaux, en gérant les processus enfants à la main.',
       },
       cve: {
         title: 'CVE Vulnerability Analyzer',
         impact: 'Outil d’analyse des données CVE de la base NVD',
         description:
           'Outil Python qui récupère les données CVE (Common Vulnerabilities and Exposures) depuis la National Vulnerability Database (NVD), les filtre et les traite avec pandas, puis met en avant les descriptions de vulnérabilités pour analyse.',
+        challenge:
+          'Transformer les réponses brutes de l’API NVD en un jeu de données pandas propre et filtrable.',
       },
       inception: {
         title: 'Inception',
         impact: 'Infrastructure web conteneurisée',
         description:
           'Infrastructure multi-conteneurs Docker avec Nginx, WordPress et MariaDB. Uniquement des Dockerfiles écrits à la main, aucune image préconstruite. TLS via certificats auto-signés.',
+        challenge:
+          'Construire chaque image à partir d’un Dockerfile écrit à la main et relier Nginx, WordPress et MariaDB en TLS.',
       },
       cub3d: {
         title: 'Cub3D',
         impact: 'Moteur graphique 3D par raycasting',
         description:
           'Raycaster 3D à la première personne en C avec miniLibX. Algorithme DDA pour le rendu des murs, mapping de textures et détection des collisions du joueur.',
+        challenge:
+          'Implémenter le raycasting DDA et le mapping de textures en C, avec une bibliothèque graphique minimale.',
       },
     },
   },
