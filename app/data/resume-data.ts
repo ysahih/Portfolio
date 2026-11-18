@@ -7,6 +7,14 @@ export const RESUME_DATA = {
   name: "Youssef Sahih",
   avatarUrl: "/ysahih.jpg",
 
+  /* TODO(Youssef): keep these two PDFs in public/ and commit them.
+     /cv.pdf is the French CV, /resume.pdf the English one. The download
+     buttons in the hero link straight to these paths. */
+  resumeFiles: {
+    fr: { href: "/cv.pdf", filename: "Youssef-Sahih-CV-FR.pdf" },
+    en: { href: "/resume.pdf", filename: "Youssef-Sahih-Resume-EN.pdf" },
+  },
+
   contact: {
     email: "youssefsahih9@gmail.com",
     tel: "+33 7 52 93 53 14",

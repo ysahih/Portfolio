@@ -40,7 +40,11 @@ const en = {
       { value: '133', label: 'Playwright tests' },
     ],
     viewWork: 'View my work',
-    resume: 'Résumé',
+    resume: {
+      primary: 'Download résumé',
+      secondary: 'CV en français',
+      secondaryLang: 'fr',
+    },
   },
 
   about: {

@@ -42,7 +42,11 @@ const fr: Dictionary = {
       { value: '133', label: 'Tests Playwright' },
     ],
     viewWork: 'Voir mes projets',
-    resume: 'CV',
+    resume: {
+      primary: 'Télécharger mon CV',
+      secondary: 'English résumé',
+      secondaryLang: 'en',
+    },
   },
 
   about: {

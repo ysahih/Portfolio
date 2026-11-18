@@ -120,9 +120,12 @@ function Letter({
 }
 
 const HeroSection: React.FC = () => {
-  const { dict } = useDictionary();
+  const { locale, dict } = useDictionary();
   const t = dict.hero;
   const data = RESUME_DATA;
+  const otherLocale = locale === 'fr' ? 'en' : 'fr';
+  const primaryCv = data.resumeFiles[locale];
+  const secondaryCv = data.resumeFiles[otherLocale];
   const viewWorkRef = useRef<HTMLAnchorElement>(null);
   const resumeRef = useRef<HTMLAnchorElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -263,9 +266,9 @@ const HeroSection: React.FC = () => {
 
               <motion.a
                 ref={resumeRef}
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={primaryCv.href}
+                download={primaryCv.filename}
+                type="application/pdf"
                 className="px-6 py-3 rounded-lg flex items-center gap-2 font-medium text-sm"
                 style={{
                   border: '1px solid var(--border)',
@@ -277,8 +280,21 @@ const HeroSection: React.FC = () => {
                 transition={SPRING_SOFT}
               >
                 <DownloadIcon className="w-4 h-4" />
-                {t.resume}
+                {t.resume.primary}
               </motion.a>
+
+              <a
+                href={secondaryCv.href}
+                download={secondaryCv.filename}
+                type="application/pdf"
+                hrefLang={otherLocale}
+                lang={t.resume.secondaryLang}
+                className="px-4 py-3 rounded-lg flex items-center gap-2 font-medium text-sm underline-offset-4 hover:underline"
+                style={{ color: 'var(--text-secondary)' }}
+              >
+                <DownloadIcon className="w-4 h-4" />
+                {t.resume.secondary}
+              </a>
             </motion.div>
           </div>
 
