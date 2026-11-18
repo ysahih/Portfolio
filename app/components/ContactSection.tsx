@@ -6,20 +6,8 @@ import { MailIcon, PhoneIcon, MapPinIcon, SendIcon, CheckCircleIcon, AlertCircle
 import SectionHeader from './SectionHeader';
 import { toast } from 'react-hot-toast';
 import { viewportOnce } from '../lib/motion';
-
-interface ContactProps {
-  contact: {
-    email: string;
-    tel: string;
-    social: {
-      name: string;
-      url: string;
-      icon: any;
-    }[];
-  };
-  location: string;
-  languages: readonly { name: string; level: string }[];
-}
+import { useDictionary } from '../i18n/DictionaryContext';
+import { RESUME_DATA } from '../data/resume-data';
 
 type FormData = {
   name: string;
@@ -30,7 +18,11 @@ type FormData = {
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }) => {
+const ContactSection: React.FC = () => {
+  const { dict } = useDictionary();
+  const t = dict.contact;
+  const f = t.form;
+  const contact = RESUME_DATA.contact;
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -44,21 +36,21 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
     const newErrors: Partial<FormData> = {};
     
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = f.errors.nameRequired;
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = f.errors.emailRequired;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = f.errors.emailInvalid;
     }
     
     if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
+      newErrors.subject = f.errors.subjectRequired;
     }
     
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = f.errors.messageRequired;
     }
     
     setErrors(newErrors);
@@ -79,7 +71,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
     e.preventDefault();
 
     if (!validateForm()) {
-      toast.error('Please fix the errors in the form');
+      toast.error(f.toastFix);
       return;
     }
 
@@ -98,7 +90,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
       }
 
       setFormStatus('success');
-      toast.success('Message sent successfully!');
+      toast.success(f.toastSuccess);
       setFormData({ name: '', email: '', subject: '', message: '' });
 
       // Reset to idle after 3 seconds
@@ -107,7 +99,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
       }, 3000);
     } catch (error) {
       setFormStatus('error');
-      toast.error('Failed to send message. Please try again.');
+      toast.error(f.toastError);
       console.error('Contact error:', error);
 
       // Reset to idle after 3 seconds
@@ -144,8 +136,8 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
       <div className="container mx-auto max-w-6xl">
         <SectionHeader
           index="06"
-          title="Get in Touch"
-          subtitle="Have a project in mind or want to collaborate? I'd love to hear from you."
+          title={t.title}
+          subtitle={t.subtitle}
           centered
         />
 
@@ -159,7 +151,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
               whileTap={{ scale: 0.95 }}
             >
               <MailIcon className="w-5 h-5" />
-              Send Email
+              {t.sendEmail}
             </motion.a>
           </div>
 
@@ -171,7 +163,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
             whileInView="visible"
             viewport={viewportOnce}
           >
-            <h3 className="text-2xl font-semibold mb-8">Contact Information</h3>
+            <h3 className="text-2xl font-semibold mb-8">{t.infoTitle}</h3>
             
             <div className="space-y-6">
               <motion.div 
@@ -182,7 +174,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                   <MailIcon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-lg mb-1">Email</h4>
+                  <h4 className="font-medium text-lg mb-1">{t.emailLabel}</h4>
                   <a href={`mailto:${contact.email}`} className="transition-colors" style={{ color: 'var(--text-secondary)' }} onMouseEnter={e => (e.currentTarget.style.color='var(--accent)')} onMouseLeave={e => (e.currentTarget.style.color='var(--text-secondary)')}>
                     {contact.email}
                   </a>
@@ -197,7 +189,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                   <PhoneIcon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-lg mb-1">Phone</h4>
+                  <h4 className="font-medium text-lg mb-1">{t.phoneLabel}</h4>
                   <a href={`tel:${contact.tel.replace(/\s/g, '')}`} className="transition-colors" style={{ color: 'var(--text-secondary)' }} onMouseEnter={e => (e.currentTarget.style.color='var(--accent)')} onMouseLeave={e => (e.currentTarget.style.color='var(--text-secondary)')}>
                     {contact.tel}
                   </a>
@@ -212,8 +204,8 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                   <MapPinIcon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-lg mb-1">Location</h4>
-                  <p style={{ color: 'var(--text-secondary)' }}>{location}</p>
+                  <h4 className="font-medium text-lg mb-1">{t.locationLabel}</h4>
+                  <p style={{ color: 'var(--text-secondary)' }}>{t.location}</p>
                 </div>
               </motion.div>
 
@@ -225,9 +217,9 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                   <LanguagesIcon className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-medium text-lg mb-1">Languages</h4>
+                  <h4 className="font-medium text-lg mb-1">{t.languagesLabel}</h4>
                   <ul style={{ color: 'var(--text-secondary)' }}>
-                    {languages.map((lang) => (
+                    {t.languages.map((lang) => (
                       <li key={lang.name}>{lang.name} — {lang.level}</li>
                     ))}
                   </ul>
@@ -239,7 +231,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
               className="mt-12"
               variants={itemVariants}
             >
-              <h4 className="font-medium text-lg mb-3">Connect with me</h4>
+              <h4 className="font-medium text-lg mb-3">{t.connect}</h4>
               <div className="flex space-x-4">
                 {contact.social.map((platform, index) => (
                   <motion.a
@@ -270,12 +262,12 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <div className="rounded-xl p-8" style={{ background: 'var(--card-surface)', border: '1px solid var(--border)', boxShadow: '0 12px 40px -16px rgba(0,0,0,0.6)' }}>
-              <h3 className="text-2xl font-semibold mb-6">Send Me a Message</h3>
+              <h3 className="text-2xl font-semibold mb-6">{f.title}</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
-                    Name
+                    {f.name}
                   </label>
                   <input
                     type="text"
@@ -285,14 +277,14 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
                     style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.name ? '#ef4444' : 'var(--border)' }}
-                    placeholder="Your name"
+                    placeholder={f.namePlaceholder}
                   />
                   {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
-                    Email
+                    {f.email}
                   </label>
                   <input
                     type="email"
@@ -302,14 +294,14 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
                     style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.email ? '#ef4444' : 'var(--border)' }}
-                    placeholder="your.email@example.com"
+                    placeholder={f.emailPlaceholder}
                   />
                   {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                 </div>
                 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
-                    Subject
+                    {f.subject}
                   </label>
                   <input
                     type="text"
@@ -319,14 +311,14 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                     onChange={handleInputChange}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
                     style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.subject ? '#ef4444' : 'var(--border)' }}
-                    placeholder="What is this regarding?"
+                    placeholder={f.subjectPlaceholder}
                   />
                   {errors.subject && <p className="mt-1 text-sm text-red-500">{errors.subject}</p>}
                 </div>
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>
-                    Message
+                    {f.message}
                   </label>
                   <textarea
                     id="message"
@@ -336,7 +328,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                     rows={5}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-primary/50`}
                     style={{ background: 'var(--input-bg)', color: 'var(--text-primary)', borderColor: errors.message ? '#ef4444' : 'var(--border)' }}
-                    placeholder="Your message here..."
+                    placeholder={f.messagePlaceholder}
                   />
                   {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                 </div>
@@ -362,22 +354,22 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
-                        Sending...
+                        {f.sending}
                       </span>
                     ) : formStatus === 'success' ? (
                       <span className="flex items-center">
                         <CheckCircleIcon className="w-5 h-5 mr-2" />
-                        Message Sent!
+                        {f.sent}
                       </span>
                     ) : formStatus === 'error' ? (
                       <span className="flex items-center">
                         <AlertCircleIcon className="w-5 h-5 mr-2" />
-                        Failed to Send
+                        {f.failed}
                       </span>
                     ) : (
                       <span className="flex items-center">
                         <SendIcon className="w-5 h-5 mr-2" />
-                        Send Message
+                        {f.send}
                       </span>
                     )}
                   </motion.button>

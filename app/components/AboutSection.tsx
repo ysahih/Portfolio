@@ -3,21 +3,15 @@
 import { motion } from 'framer-motion';
 import SectionHeader from './SectionHeader';
 import { revealUp, staggerContainer, staggerItem, viewportOnce } from '../lib/motion';
+import { useDictionary, Accented } from '../i18n/DictionaryContext';
 
-interface AboutProps {
-  data: {
-    name: string;
-    summary?: string;
-    about?: string;
-    avatarUrl?: string;
-  };
-}
-
-const AboutSection: React.FC<AboutProps> = ({ data }) => {
+const AboutSection: React.FC = () => {
+  const { dict } = useDictionary();
+  const t = dict.about;
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12 relative overflow-hidden" id="about">
       <div className="container mx-auto max-w-4xl">
-        <SectionHeader title="About Me" index="01" />
+        <SectionHeader title={t.title} index="01" />
 
         <motion.div
           className="space-y-6 about-panel"
@@ -26,31 +20,19 @@ const AboutSection: React.FC<AboutProps> = ({ data }) => {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <motion.p
-            className="text-base md:text-lg leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}
-            variants={revealUp}
-          >
-            Software engineer with three years in production React and TypeScript, who has owned the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects. Frontend Developer at{' '}
-            <span style={{ color: 'var(--accent)' }}>Im&apos;enSe</span> from August 2024 to October 2026, building QHSE-sector web applications with React 18 and TypeScript.
-          </motion.p>
-
-          <motion.p
-            className="text-base md:text-lg leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}
-            variants={revealUp}
-          >
-            Trained at{' '}
-            <span style={{ color: 'var(--accent)' }}>1337</span> — part of the 42 Network — from 2022 to October 2026, a curriculum built on systems programming, algorithms, network architecture, and peer-to-peer collaboration with no lectures and no instructors. Since November 2026 at{' '}
-            <span style={{ color: 'var(--accent)' }}>42 Paris</span>, preparing RNCP 39774 &laquo;&nbsp;Expert en architecture informatique&nbsp;&raquo; (level 7). Based in Paris 17e. Looking for a 24-month apprenticeship starting with the January 2027 intake, on frontend, fullstack or QA automation work.
-          </motion.p>
+          {t.paragraphs.map((para, i) => (
+            <motion.p
+              key={i}
+              className="text-base md:text-lg leading-relaxed"
+              style={{ color: 'var(--text-secondary)' }}
+              variants={revealUp}
+            >
+              <Accented text={para} />
+            </motion.p>
+          ))}
 
           <motion.div className="flex gap-8 pt-4" variants={staggerContainer(0.08)}>
-            {[
-              { value: '3+', label: 'Years experience' },
-              { value: '138', label: 'Merged pull requests' },
-              { value: '7', label: 'Locales in production i18n' },
-            ].map((stat, i) => (
+            {t.stats.map((stat, i) => (
               <motion.div key={i} variants={staggerItem}>
                 <div className="text-2xl font-bold" style={{ color: 'var(--accent)' }}>{stat.value}</div>
                 <div className="text-sm" style={{ color: 'var(--text-muted)' }}>{stat.label}</div>

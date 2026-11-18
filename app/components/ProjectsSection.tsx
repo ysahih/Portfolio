@@ -5,70 +5,69 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { ExternalLinkIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { useReducedMotion, useFinePointer } from '../lib/motion';
+import { useDictionary } from '../i18n/DictionaryContext';
+import { RESUME_DATA, type ProjectCategory, type ProjectId } from '../data/resume-data';
 
 interface Project {
+  id: ProjectId;
   title: string;
   techStack: readonly string[];
   description: string;
-  link: { label: string; href: string };
-  liveLink?: { label: string; href: string };
+  repo: string;
+  liveUrl?: string;
   impact: string;
-  category: string;
+  category: ProjectCategory;
   featured: boolean;
-}
-
-interface ProjectsSectionProps {
-  projects: readonly Project[];
 }
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-const CATEGORY_COLORS: Record<string, string> = {
-  'System Programming': 'var(--cat-systems)',
-  'DevOps': 'var(--cat-devops)',
-  'Graphics Programming': 'var(--cat-graphics)',
-  'Personal Project': 'var(--cat-personal)',
-  'Web Development': 'var(--cat-web)',
-  'Security': 'var(--cat-security)',
+const CATEGORY_COLORS: Record<ProjectCategory, string> = {
+  systems: 'var(--cat-systems)',
+  devops: 'var(--cat-devops)',
+  graphics: 'var(--cat-graphics)',
+  personal: 'var(--cat-personal)',
+  web: 'var(--cat-web)',
+  security: 'var(--cat-security)',
 };
 
-const PROJECT_TERMINALS: Record<string, { command: string; output: string[] }> = {
-  'billing-service': {
+const PROJECT_TERMINALS: Record<ProjectId, { command: string; output: string[] }> = {
+  billing: {
     command: 'npm test',
     output: ['✓ 8 concurrent webhooks → 1 processed', '✓ pricing → checkout → active (playwright)', '→ live on vercel'],
   },
-  'ft_transcendence — Multiplayer Platform': {
+  transcendence: {
     command: 'docker compose up --build',
     output: ['✓ postgres:5432', '✓ nestjs api :3001', '✓ next.js :3000', '→ ready'],
   },
-  'Sentra — Meeting Intelligence': {
+  sentra: {
     command: 'npm run electron:dev',
     output: ['✓ whisper model loaded', '✓ assemblyai connected', '✓ claude api ready', '→ listening...'],
   },
-  'IRC Server': {
+  irc: {
     command: './ircserv 6667 password',
     output: ['[IRC] binding to port 6667', '[IRC] server ready', '[IRC] waiting for clients...'],
   },
-  'Inception': {
+  inception: {
     command: 'docker compose up -d',
     output: ['✓ mariadb', '✓ wordpress', '✓ nginx + TLS', '→ https://localhost'],
   },
-  'Cub3D': {
+  cub3d: {
     command: 'make && ./cub3D map.cub',
     output: ['[cub3D] parsing map...', '[cub3D] init miniLibX', '[cub3D] rendering 60fps'],
   },
-  'Sash — Unix Shell': {
+  sash: {
     command: 'make && ./sash',
     output: ['sash$ ls -la | grep .c > files.txt', 'sash$ export PATH=$PATH:/usr/local', '→ signals & pipes ready'],
   },
-  'CVE Vulnerability Analyzer': {
+  cve: {
     command: 'python cve_analyzer.py',
     output: ['→ fetching NVD feed...', '✓ NVD feed loaded', '✓ filtered with pandas', '→ report ready'],
   },
 };
 
-function TerminalCard({ title }: { title: string }) {
-  const data = PROJECT_TERMINALS[title] ?? { command: 'npm start', output: ['→ ready'] };
+function TerminalCard({ id, title }: { id: ProjectId; title: string }) {
+  const data = PROJECT_TERMINALS[id];
   const [typedCmd, setTypedCmd] = useState('');
   const [outputLines, setOutputLines] = useState<string[]>([]);
   const [started, setStarted] = useState(false);
@@ -116,6 +115,7 @@ function TerminalCard({ title }: { title: string }) {
   return (
     <div
       ref={ref}
+      aria-hidden
       style={{
         width: '100%',
         aspectRatio: '16/9',
@@ -164,6 +164,8 @@ function TerminalCard({ title }: { title: string }) {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { dict } = useDictionary();
+  const t = dict.projects;
   const accentColor = CATEGORY_COLORS[project.category] || 'var(--accent)';
   const reduced = useReducedMotion();
   const finePointer = useFinePointer();
@@ -243,13 +245,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         />
       )}
 
-      <TerminalCard title={project.title} />
+      <TerminalCard id={project.id} title={project.title} />
 
       {/* Content */}
       <div className="flex flex-col flex-1 p-5" style={{ borderRadius: '0 0 8px 8px' }}>
         {project.featured && (
           <span className="text-xs font-mono uppercase tracking-widest mb-2 block" style={{ color: accentColor, letterSpacing: '0.12em' }}>
-            ✦ Featured
+            ✦ {t.featured}
           </span>
         )}
         <h3 className="text-lg font-bold leading-snug" style={{ color: 'var(--text-primary)' }}>
@@ -280,9 +282,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </ul>
 
         <div className="relative z-30 flex flex-wrap items-center gap-4">
-          {project.liveLink && (
+          {project.liveUrl && (
             <a
-              href={project.liveLink.href}
+              href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded transition-opacity"
@@ -291,11 +293,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
             >
               <ExternalLinkIcon className="w-4 h-4" />
-              {project.liveLink.label}
+              {t.liveDemo}
             </a>
           )}
           <a
-            href={project.link.href}
+            href={project.repo}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-sm font-medium transition-colors"
@@ -304,7 +306,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = '1')}
           >
             <ExternalLinkIcon className="w-4 h-4" />
-            {project.link.label}
+            {t.repo}
           </a>
         </div>
       </div>
@@ -312,23 +314,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
-const FILTERS = ['All', 'Personal Project', 'Web Development', 'System Programming', 'DevOps', 'Graphics Programming', 'Security'];
+const FILTERS = ['all', 'personal', 'web', 'systems', 'devops', 'graphics', 'security'] as const;
+type Filter = (typeof FILTERS)[number];
 
-const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
-  const [activeFilter, setActiveFilter] = useState('All');
+const ProjectsSection: React.FC = () => {
+  const { dict } = useDictionary();
+  const t = dict.projects;
+  const [activeFilter, setActiveFilter] = useState<Filter>('all');
 
-  const featured = projects.filter((p) => p.featured);
-  const filtered = activeFilter === 'All'
+  const projects: Project[] = RESUME_DATA.projects.map((meta) => ({ ...meta, ...t.items[meta.id] }));
+  const filtered = activeFilter === 'all'
     ? projects
     : projects.filter((p) => p.category === activeFilter);
 
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12" id="projects">
       <div className="container mx-auto max-w-6xl">
-        <SectionHeader title="Projects" index="04" />
+        <SectionHeader title={t.title} index="04" />
 
         {/* Filter */}
         <motion.div
+          role="group"
+          aria-label={t.filterAria}
           className="flex flex-wrap gap-2 mb-12"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -338,6 +345,8 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
           {FILTERS.map((cat) => (
             <button
               key={cat}
+              type="button"
+              aria-pressed={activeFilter === cat}
               onClick={() => setActiveFilter(cat)}
               className="px-4 py-1.5 rounded text-sm font-mono transition-all"
               style={{
@@ -346,7 +355,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
                 border: `1px solid ${activeFilter === cat ? 'var(--accent)' : 'var(--border)'}`,
               }}
             >
-              {cat}
+              {t.filters[cat]}
             </button>
           ))}
         </motion.div>
@@ -357,7 +366,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {filtered.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
+              <ProjectCard key={project.id} project={project} index={i} />
             ))}
           </motion.div>
         </AnimatePresence>

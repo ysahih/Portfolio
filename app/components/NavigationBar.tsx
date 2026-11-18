@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "../Contexts/ThemeContext";
 import { SunIcon, MoonIcon, Menu, X } from "lucide-react";
+import { useDictionary } from "../i18n/DictionaryContext";
 
 interface NavigationBarProps {
   activeSection: string;
@@ -11,18 +12,28 @@ interface NavigationBarProps {
 
 const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
   const { theme, toggleTheme } = useTheme();
+  const { dict } = useDictionary();
+  const t = dict.nav;
+  const themeLabel = theme === "dark" ? t.toLight : t.toDark;
+  const langSwitch = (
+    <a
+      href={t.langSwitch.href}
+      hrefLang={t.langSwitch.hrefLang}
+      lang={t.langSwitch.hrefLang}
+      aria-label={t.langSwitch.aria}
+      className="px-3 py-1.5 rounded-full text-xs font-mono font-semibold tracking-wider"
+      style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-primary)' }}
+    >
+      {t.langSwitch.label}
+    </a>
+  );
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "experience", label: "Experience" },
-    { id: "projects", label: "Projects" },
-    { id: "education", label: "Education" },
-    { id: "contact", label: "Contact" },
-  ];
+  const navItems = (Object.keys(t.items) as (keyof typeof t.items)[]).map((id) => ({
+    id,
+    label: t.items[id],
+  }));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +69,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
       <div className="container mx-auto flex justify-between items-center">
         <motion.a
           href="#home"
+          aria-label={t.homeAria}
           className="text-2xl font-bold flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -69,7 +81,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
           <div className="flex items-center">
             <img
               src="/logo-128.png"
-              alt="Logo"
+              alt=""
               className="h-14 w-14"
             />
             <span style={{ color: 'var(--accent)' }}>
@@ -107,8 +119,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
             </motion.a>
           ))}
 
+          {langSwitch}
+
           <motion.button
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label={themeLabel}
             className="p-2 rounded-full transition-colors duration-300"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
             whileHover={{ scale: 1.1 }}
@@ -125,8 +139,10 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center space-x-4 lg:hidden">
+          {langSwitch}
+
           <motion.button
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label={themeLabel}
             className="p-2 rounded-full transition-colors duration-300"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
             whileHover={{ scale: 1.1 }}
@@ -146,7 +162,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ activeSection }) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isMobileMenuOpen ? t.closeMenu : t.openMenu}
             aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (

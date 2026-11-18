@@ -3,21 +3,15 @@
 import { motion } from 'framer-motion';
 import SectionHeader from './SectionHeader';
 import { EASE, viewportOnce, staggerContainer, staggerItem } from '../lib/motion';
+import { useDictionary } from '../i18n/DictionaryContext';
 
-interface SkillCategory {
-  readonly label: string;
-  readonly skills: readonly string[];
-}
-
-interface SkillsSectionProps {
-  skillCategories: readonly SkillCategory[];
-}
-
-const SkillsSection: React.FC<SkillsSectionProps> = ({ skillCategories }) => {
+const SkillsSection: React.FC = () => {
+  const { dict } = useDictionary();
+  const skillCategories = dict.skills.categories;
   return (
     <div className="py-20 px-4 sm:px-6 md:px-12" id="skills">
       <div className="container mx-auto max-w-6xl">
-        <SectionHeader title="Skills" index="02" />
+        <SectionHeader title={dict.skills.title} index="02" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {skillCategories.map((group, gi) => (

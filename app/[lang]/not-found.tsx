@@ -1,10 +1,13 @@
 "use client";
 
 import Link from 'next/link';
+import { useDictionary } from '../i18n/DictionaryContext';
 import { motion } from 'framer-motion';
 import { HomeIcon } from 'lucide-react';
 
 export default function NotFound() {
+  const { locale: lang, dict } = useDictionary();
+  const t = dict.notFound;
   return (
     <div className="h-screen w-full bg-gray-900 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gray-900 via-gray-900 to-black flex items-center justify-center relative overflow-hidden text-white">
       {/* Stars background */}
@@ -57,11 +60,11 @@ export default function NotFound() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Lost in Space
+            {t.title}
           </h2>
           
           <p className="text-gray-300 text-lg mb-8">
-            The page you are looking for might have been moved, deleted, or perhaps never existed in this universe.
+            {t.body}
           </p>
           
           <div className="flex justify-center">
@@ -70,11 +73,11 @@ export default function NotFound() {
               whileTap={{ scale: 0.95 }}
             >
               <Link 
-                href="/"
+                href={`/${lang}`}
                 className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full flex items-center space-x-2 shadow-lg transition-all duration-300 hover:shadow-purple-500/25"
               >
                 <HomeIcon className="w-5 h-5" />
-                <span>Return Home</span>
+                <span>{t.home}</span>
               </Link>
             </motion.div>
           </div>

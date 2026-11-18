@@ -2,16 +2,16 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import NavigationBar from './components/NavigationBar';
-import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import SkillsSection from './components/SkillsSection';
-import ExperienceSection from './components/ExperienceSection';
-import ProjectsSection from './components/ProjectsSection';
-import EducationSection from './components/EducationSection';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
-import { RESUME_DATA } from './data/resume-data';
+import NavigationBar from './NavigationBar';
+import HeroSection from './HeroSection';
+import AboutSection from './AboutSection';
+import SkillsSection from './SkillsSection';
+import ExperienceSection from './ExperienceSection';
+import ProjectsSection from './ProjectsSection';
+import EducationSection from './EducationSection';
+import ContactSection from './ContactSection';
+import Footer from './Footer';
+import { RESUME_DATA } from '../data/resume-data';
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState('home');
@@ -50,40 +50,31 @@ export default function Portfolio() {
       >
         {/* No fade on the hero: it must paint before hydration for a fast LCP. */}
         <section id="home">
-          <HeroSection data={RESUME_DATA as any} />
+          <HeroSection />
         </section>
 
         <motion.section id="about" variants={fadeInUp}>
-          <AboutSection data={RESUME_DATA} />
+          <AboutSection />
         </motion.section>
 
         <motion.section id="skills" variants={fadeInUp}>
-          <SkillsSection skillCategories={[...RESUME_DATA.skillCategories]} />
+          <SkillsSection />
         </motion.section>
 
         <motion.section id="experience" variants={fadeInUp}>
-          <ExperienceSection experience={RESUME_DATA.experience} />
+          <ExperienceSection />
         </motion.section>
 
         <motion.section id="projects" variants={fadeInUp}>
-          <ProjectsSection
-            projects={RESUME_DATA.projects.map(project => ({
-              ...project,
-              techStack: [...project.techStack],
-            }))}
-          />
+          <ProjectsSection />
         </motion.section>
 
         <motion.section id="education" variants={fadeInUp}>
-          <EducationSection education={[...RESUME_DATA.education]} />
+          <EducationSection />
         </motion.section>
 
         <motion.section id="contact" variants={fadeInUp}>
-          <ContactSection
-            contact={{ ...RESUME_DATA.contact, social: [...RESUME_DATA.contact.social] }}
-            location={RESUME_DATA.location}
-            languages={RESUME_DATA.languages}
-          />
+          <ContactSection />
         </motion.section>
       </motion.main>
 

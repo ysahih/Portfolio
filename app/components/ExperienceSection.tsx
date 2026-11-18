@@ -4,25 +4,13 @@ import { motion } from 'framer-motion';
 import { BriefcaseIcon, CalendarIcon, MapPinIcon, CheckIcon, GitPullRequestIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { viewportOnce } from '../lib/motion';
+import { useDictionary } from '../i18n/DictionaryContext';
+import { RESUME_DATA } from '../data/resume-data';
 
-interface Experience {
-  company: string;
-  position: string;
-  logo?: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  scale?: string;
-  skills: readonly string[];
-  achievements: readonly string[];
-}
-
-interface ExperienceSectionProps {
-  experience: readonly Experience[];
-}
-
-const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => {
+const ExperienceSection: React.FC = () => {
+  const { dict } = useDictionary();
+  const t = dict.experience;
+  const experience = RESUME_DATA.experience.map((meta) => ({ ...meta, ...t.items[meta.id] }));
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,8 +46,8 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
       <div className="container mx-auto max-w-6xl relative">
         <SectionHeader
           index="03"
-          title="Work Experience"
-          subtitle="My professional journey and key accomplishments in the tech industry."
+          title={t.title}
+          subtitle={t.subtitle}
         />
 
         {/* Experience Timeline */}
@@ -97,7 +85,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                   >
                     <div className="flex items-center gap-4 mb-4">
                       <div className={`w-12 h-12 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0 ${index % 2 === 1 ? 'md:order-1' : 'md:order-2'}`} style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-                        <img src={exp.logo || generateDefaultLogo(exp.company)} alt={`${exp.company} logo`} className="w-10 h-10 object-contain" />
+                        <img src={exp.logo || generateDefaultLogo(exp.company)} alt={`${exp.company} ${t.logoAlt}`} className="w-10 h-10 object-contain" />
                       </div>
                       <div className={index % 2 === 1 ? 'md:order-2' : 'md:order-1 md:text-right'}>
                         <h3 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>{exp.position}</h3>
@@ -108,7 +96,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                     <div className="space-y-3">
                       <div className={`flex items-center gap-2 text-sm ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`} style={{ color: 'var(--text-muted)' }}>
                         <CalendarIcon className="w-4 h-4 flex-shrink-0" />
-                        <span>{exp.startDate} - {exp.endDate}</span>
+                        <span>{exp.period}</span>
                       </div>
                       <div className={`flex items-center gap-2 text-sm ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`} style={{ color: 'var(--text-muted)' }}>
                         <MapPinIcon className="w-4 h-4 flex-shrink-0" />
@@ -132,7 +120,7 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                       </ul>
                       {exp.achievements.length > 0 && (
                       <div className="space-y-2">
-                        <h4 className={`text-sm font-semibold ${index % 2 === 0 ? 'md:text-right' : 'text-left'}`} style={{ color: 'var(--text-primary)' }}>Key Achievements:</h4>
+                        <h4 className={`text-sm font-semibold ${index % 2 === 0 ? 'md:text-right' : 'text-left'}`} style={{ color: 'var(--text-primary)' }}>{t.achievementsLabel}</h4>
                         <ul className={`space-y-1 ${index % 2 === 0 ? 'md:text-right' : 'text-left'}`}>
                           {exp.achievements.map((ach, ai) => (
                             <li key={ai} className="flex items-start gap-2">

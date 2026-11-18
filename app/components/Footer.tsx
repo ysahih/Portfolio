@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpIcon } from "lucide-react";
+import { useDictionary } from "../i18n/DictionaryContext";
 
 interface FooterProps {
   socialLinks: {
@@ -13,6 +14,8 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
+  const { dict } = useDictionary();
+  const t = dict.footer;
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -31,15 +34,10 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
     });
   };
 
-  const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "experience", label: "Experience" },
-    { id: "projects", label: "Projects" },
-    { id: "education", label: "Education" },
-    { id: "contact", label: "Contact" },
-  ];
+  const navItems = (Object.keys(dict.nav.items) as (keyof typeof dict.nav.items)[]).map((id) => ({
+    id,
+    label: dict.nav.items[id],
+  }));
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -66,14 +64,14 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               }}
             >
               <div className="flex items-center">
-                <img src="/logo-128.png" alt="Logo" className="h-14 w-14" />
+                <img src="/logo-128.png" alt="" className="h-14 w-14" />
                 <span className="text-2xl font-bold" style={{ color: 'var(--accent)' }}>
                   Youssef Sahih
                 </span>
               </div>
             </a>
             <p className="opacity-60 mt-4 mb-6 max-w-md">
-              Software engineer building production web applications with React and TypeScript, and the test suites behind them.
+              {t.tagline}
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((link, index) => (
@@ -99,7 +97,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
           {/* Quick Links */}
           <div className="col-span-1">
             <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
-              Quick Links
+              {t.quickLinks}
             </h3>
             <ul className="space-y-2">
               {navItems.map((item) => (
@@ -125,7 +123,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
           {/* Contact Info */}
           <div className="col-span-1">
             <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
-              Contact
+              {t.contact}
             </h3>
             <ul className="space-y-2">
               <li>
@@ -150,18 +148,17 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
                   +33 7 52 93 53 14
                 </a>
               </li>
-              <li className="opacity-60">Paris 17e, France</li>
+              <li className="opacity-60">{dict.contact.location}</li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 pt-6 flex flex-col md:flex-row justify-between items-center" style={{ borderTop: '1px solid var(--border)' }}>
           <p className="opacity-60 text-sm">
-            © 2026 Youssef Sahih — Software Engineer
+            {t.copyright}
           </p>
           <p className="opacity-60 text-sm mt-2 md:mt-0">
-            Designed & Built with <span className="text-red-500">♥</span> by
-            Youssef Sahih
+            {t.builtBy}
           </p>
         </div>
       </div>
@@ -173,7 +170,7 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
         onClick={scrollToTop}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        aria-label="Scroll to top"
+        aria-label={t.scrollTop}
       >
         <ArrowUpIcon className="w-5 h-5" />
       </motion.button>

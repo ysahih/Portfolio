@@ -5,18 +5,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDownIcon, DownloadIcon } from 'lucide-react';
 import { useMagnetic } from '../hooks/useMagnetic';
 import { EASE, SPRING_SOFT, useReducedMotion } from '../lib/motion';
-
-interface HeroProps {
-  data: {
-    name: string;
-    title: string;
-    availability: string;
-    headline: string;
-    heroStats: readonly { value: string; label: string }[];
-    avatarUrl: string;
-    contact: { email: string };
-  };
-}
+import { useDictionary } from '../i18n/DictionaryContext';
+import { RESUME_DATA } from '../data/resume-data';
 
 function AnimatedName({ name, reduced }: { name: string; reduced: boolean }) {
   const words = name.split(' ');
@@ -129,7 +119,10 @@ function Letter({
   );
 }
 
-const HeroSection: React.FC<HeroProps> = ({ data }) => {
+const HeroSection: React.FC = () => {
+  const { dict } = useDictionary();
+  const t = dict.hero;
+  const data = RESUME_DATA;
   const viewWorkRef = useRef<HTMLAnchorElement>(null);
   const resumeRef = useRef<HTMLAnchorElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -186,7 +179,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6, ease: EASE }}
             >
-              {data.title}
+              {t.title}
             </motion.p>
 
             <motion.div
@@ -200,7 +193,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
                 {!reduced && <span className="absolute inline-flex h-full w-full rounded-full animate-ping" style={{ background: 'var(--accent)', opacity: 0.6 }} />}
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: 'var(--accent)' }} />
               </span>
-              {data.availability}
+              {t.availability}
             </motion.div>
 
             {/* Proof first: the numbers that back the title. Rendered visible
@@ -211,7 +204,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               animate={{ y: 0 }}
               transition={{ delay: 0.9, duration: 0.6, ease: EASE }}
             >
-              {data.heroStats.map((stat) => (
+              {t.stats.map((stat) => (
                 <div key={stat.label} className="flex flex-col-reverse text-center md:text-left">
                   <dt className="text-xs md:text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>{stat.label}</dt>
                   <dd
@@ -238,7 +231,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
               animate={{ y: 0 }}
               transition={{ delay: 1.0, duration: 0.6, ease: EASE }}
             >
-              {data.headline}
+              {t.headline}
             </motion.p>
 
             <motion.div
@@ -265,7 +258,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
                 transition={SPRING_SOFT}
               >
                 <ArrowDownIcon className="w-4 h-4" />
-                View My Work
+                {t.viewWork}
               </motion.a>
 
               <motion.a
@@ -284,7 +277,7 @@ const HeroSection: React.FC<HeroProps> = ({ data }) => {
                 transition={SPRING_SOFT}
               >
                 <DownloadIcon className="w-4 h-4" />
-                Resume
+                {t.resume}
               </motion.a>
             </motion.div>
           </div>

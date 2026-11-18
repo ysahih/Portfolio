@@ -4,21 +4,12 @@ import { motion } from 'framer-motion';
 import { GraduationCapIcon, CalendarIcon, BookOpenIcon } from 'lucide-react';
 import SectionHeader from './SectionHeader';
 import { viewportOnce } from '../lib/motion';
+import { useDictionary } from '../i18n/DictionaryContext';
 
-interface Education {
-  school: string;
-  degree: string;
-  start: string;
-  end: string;
-  location?: string;
-  description?: string;
-}
-
-interface EducationSectionProps {
-  education: Education[];
-}
-
-const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
+const EducationSection: React.FC = () => {
+  const { dict } = useDictionary();
+  const t = dict.education;
+  const education = t.items;
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -48,8 +39,8 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
       <div className="container mx-auto max-w-6xl relative">
         <SectionHeader
           index="05"
-          title="Education"
-          subtitle="My academic background and educational qualifications that have shaped my skills and knowledge."
+          title={t.title}
+          subtitle={t.subtitle}
         />
 
         <div className="relative">
@@ -67,7 +58,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({ education }) => {
                     <p className="font-medium mb-3" style={{ color: 'var(--accent)' }}>{edu.degree}</p>
                     <div className={`flex items-center gap-2 text-sm mb-4 ${index % 2 === 0 ? 'justify-start md:justify-end' : 'justify-start'}`} style={{ color: 'var(--text-muted)' }}>
                       <CalendarIcon className="w-4 h-4" />
-                      <span>{edu.start} - {edu.end}</span>
+                      <span>{edu.period}</span>
                     </div>
                     {edu.location && (
                       <p className="text-sm mb-3" style={{ color: 'var(--text-muted)' }}>📍 {edu.location}</p>
