@@ -6,9 +6,12 @@ import type { Dictionary } from './en';
 
 const fr: Dictionary = {
   meta: {
-    title: 'Youssef Sahih — Développeur logiciel — React, TypeScript, tests',
+    title: 'Youssef Sahih — Développeur React/TypeScript · Alternance janvier 2027 · Paris',
     description:
-      'Développeur logiciel avec trois ans d’expérience en production sur React et TypeScript, responsable des tests end-to-end autant que des fonctionnalités. 138 pull requests fusionnées, 109 specs Cypress et une suite Playwright de 133 tests.',
+      'Développeur React/TypeScript à 42 Paris, je recherche une alternance de 24 mois dès janvier 2027 en Île-de-France : frontend, fullstack ou automatisation QA.',
+    ogAlt: 'Youssef Sahih — Développeur React/TypeScript, alternance janvier 2027, Paris',
+    ogTagline: 'Alternance de 24 mois · rentrée de janvier 2027 · Paris',
+    ogRole: 'Développeur React / TypeScript',
     ogLocale: 'fr_FR',
     jobTitle: 'Développeur logiciel',
   },

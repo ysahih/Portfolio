@@ -4,9 +4,12 @@
 
 const en = {
   meta: {
-    title: 'Youssef Sahih — Software Engineer — React, TypeScript, Testing',
+    title: 'Youssef Sahih — React/TypeScript Developer · Apprenticeship January 2027 · Paris',
     description:
-      'Software engineer with three years in production React and TypeScript, who has owned the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
+      'React/TypeScript developer at 42 Paris, seeking a 24-month apprenticeship (alternance) from January 2027 in Île-de-France: frontend, fullstack or QA automation.',
+    ogAlt: 'Youssef Sahih — React/TypeScript developer, apprenticeship from January 2027, Paris',
+    ogTagline: '24-month apprenticeship · January 2027 intake · Paris',
+    ogRole: 'React / TypeScript Developer',
     ogLocale: 'en_US',
     jobTitle: 'Software Engineer',
   },

@@ -28,9 +28,11 @@ function AnimatedName({ name, reduced }: { name: string; reduced: boolean }) {
 
   let charOffset = 0;
   return (
+    <>
+    <span className="sr-only">{name}</span>
     <span
       ref={containerRef}
-      aria-label={name}
+      aria-hidden="true"
       className="hero-name-wrap justify-center md:justify-start"
       style={{
         display: 'inline-flex',
@@ -58,6 +60,7 @@ function AnimatedName({ name, reduced }: { name: string; reduced: boolean }) {
         );
       })}
     </span>
+    </>
   );
 }
 
