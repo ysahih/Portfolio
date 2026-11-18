@@ -262,22 +262,22 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        <ul className="flex flex-wrap gap-1.5 mb-4">
           {project.techStack.slice(0, 5).map((tech) => (
-            <span
+            <li
               key={tech}
               className="text-xs px-2 py-0.5 rounded font-mono"
               style={{ background: `color-mix(in srgb, ${accentColor} 8%, transparent)`, color: accentColor, border: `1px solid color-mix(in srgb, ${accentColor} 19%, transparent)` }}
             >
               {tech}
-            </span>
+            </li>
           ))}
           {project.techStack.length > 5 && (
-            <span className="text-xs px-2 py-0.5" style={{ color: 'var(--text-secondary)' }}>
+            <li className="text-xs px-2 py-0.5" style={{ color: 'var(--text-secondary)' }}>
               +{project.techStack.length - 5}
-            </span>
+            </li>
           )}
-        </div>
+        </ul>
 
         <div className="relative z-30 flex flex-wrap items-center gap-4">
           {project.liveLink && (

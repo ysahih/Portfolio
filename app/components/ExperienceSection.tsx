@@ -123,13 +123,13 @@ const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience }) => 
                       <p className="py-3 my-3" style={{ color: 'var(--text-secondary)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
                         {exp.description}
                       </p>
-                      <div className={`flex flex-wrap gap-2 mb-4 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
+                      <ul className={`flex flex-wrap gap-2 mb-4 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
                         {exp.skills.map((skill, si) => (
-                          <span key={si} className="px-2 py-1 text-xs rounded-full font-mono" style={{ background: 'var(--accent-tint)', color: 'var(--accent)', border: '1px solid var(--accent-tint-border)' }}>
+                          <li key={si} className="px-2 py-1 text-xs rounded-full font-mono" style={{ background: 'var(--accent-tint)', color: 'var(--accent)', border: '1px solid var(--accent-tint-border)' }}>
                             {skill}
-                          </span>
+                          </li>
                         ))}
-                      </div>
+                      </ul>
                       {exp.achievements.length > 0 && (
                       <div className="space-y-2">
                         <h4 className={`text-sm font-semibold ${index % 2 === 0 ? 'md:text-right' : 'text-left'}`} style={{ color: 'var(--text-primary)' }}>Key Achievements:</h4>

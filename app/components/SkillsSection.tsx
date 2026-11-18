@@ -51,15 +51,16 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skillCategories }) => {
                 <span className="flex-1 h-px" style={{ background: 'var(--border)' }} />
               </div>
 
-              <motion.div
+              <motion.ul
                 className="flex flex-wrap gap-2"
+                aria-label={group.label}
                 variants={staggerContainer(0.025)}
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewportOnce}
               >
                 {group.skills.map((skill) => (
-                  <motion.span
+                  <motion.li
                     key={skill}
                     data-cursor-expand
                     variants={staggerItem}
@@ -77,9 +78,9 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ skillCategories }) => {
                     }}
                   >
                     {skill}
-                  </motion.span>
+                  </motion.li>
                 ))}
-              </motion.div>
+              </motion.ul>
             </motion.div>
           ))}
         </div>

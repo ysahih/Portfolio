@@ -59,7 +59,7 @@ export const RESUME_DATA = {
       start: "Nov 2026",
       end: "ongoing",
       location: "Paris, France",
-      description: "Preparing RNCP 39774, \"Expert en architecture informatique\". Software architecture, systems, networking, data architecture. Level 14 and Work Experience validated; eligible for a 24-month apprenticeship contract.",
+      description: "Preparing RNCP 39774, \"Expert en architecture informatique\". Software architecture, systems, networking, data architecture. Level 14 reached; work-experience requirement validated; eligible for a 24-month apprenticeship contract.",
     },
     {
       school: "1337 Coding School — 42 Network",
