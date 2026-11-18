@@ -1,133 +1,91 @@
-# Modern Portfolio Website
+# sahih.codes — Youssef Sahih
 
-A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS, featuring smooth animations and interactive components.
+Personal portfolio, bilingual French / English, aimed at French apprenticeship (alternance) recruiters.
+Live at [sahih.codes](https://sahih.codes) — `/fr` is the default, `/en` is the English version.
 
-![Portfolio Preview](./public/portfolio-preview.png)
+## Stack
 
-## 🌟 Features
+- Next.js 14 (App Router), TypeScript, Tailwind CSS
+- Framer Motion for animation, lucide-react for icons
+- Resend for the contact form (optional, see below)
+- No i18n library: typed dictionaries + static `/fr` and `/en` routes
 
-- **Modern Design**: Clean and professional UI with dark/light mode support
-- **Responsive Layout**: Fully responsive design that works on all devices
-- **Smooth Animations**: Engaging animations using Framer Motion
-- **Interactive Components**: Dynamic sections with hover effects and transitions
-- **Type Safety**: Built with TypeScript for better development experience
-- **Contact Form**: Functional contact form with EmailJS integration
-- **Performance Optimized**: Fast loading times and smooth scrolling
-- **SEO Friendly**: Optimized for search engines
+## How it is organised
 
-## 🚀 Key Sections
+| Path | What it holds |
+| --- | --- |
+| `app/[lang]/layout.tsx` | Root layout per locale: `<html lang>`, metadata, hreflang alternates, JSON-LD |
+| `app/[lang]/page.tsx` | The single page, prerendered for `fr` and `en` |
+| `app/[lang]/opengraph-image.tsx` | Generated 1200×630 social preview image, one per locale |
+| `app/i18n/dictionaries/en.ts` | English text. Also defines the `Dictionary` type |
+| `app/i18n/dictionaries/fr.ts` | French text. Must match the English shape (TypeScript enforces it) |
+| `app/data/resume-data.ts` | Locale-neutral data: links, tech stacks, contact details, CV file paths |
+| `app/api/contact/route.ts` | Contact form endpoint (Resend) |
+| `middleware.ts` | Redirects `/` and unprefixed paths to `/fr` |
+| `app/sitemap.ts`, `app/robots.ts` | `sitemap.xml` (with hreflang) and `robots.txt` |
 
-- **Hero Section**: Engaging introduction with typewriter effect
-- **About**: Professional summary with animated qualities cards
-- **Skills**: Interactive skill cards with proficiency indicators
-- **Projects**: Filterable project gallery with detailed modal views
-- **Experience**: Dynamic timeline showcasing professional journey
-- **Education**: Timeline-based education history
-- **Contact**: Interactive contact form with social media links
+To change any visible text, edit **both** dictionaries.
 
-## 🛠️ Technologies Used
+## Local development
 
-- **Frontend Framework**: Next.js 14
-- **Styling**: Tailwind CSS
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Form Handling**: EmailJS
-- **Notifications**: React Hot Toast
-- **Development**: TypeScript
-- **Package Manager**: npm/yarn
-
-## 📦 Installation
-
-1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/portfolio.git
-```
-
-2. Install dependencies:
-```bash
-cd portfolio
 npm install
+cp .env.example .env.local   # optional, only needed for the contact form
+npm run dev                  # http://localhost:3000 → redirects to /fr
+npm run build && npm run lint
 ```
 
-3. Create a `.env.local` file and add your EmailJS credentials:
-```env
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_USER_ID=your_user_id
-```
+### Contact form
 
-4. Run the development server:
-```bash
-npm run dev
-```
+The form posts to `app/api/contact/route.ts`, which sends the message through [Resend](https://resend.com).
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+- `RESEND_API_KEY` set at **build time** → the form is shown.
+- Not set → the form is hidden and replaced by email / phone buttons, so visitors never see a form that cannot deliver.
 
-## 🔧 Configuration
-
-Customize your portfolio by modifying the following files:
-
-- `app/data/resume-data.ts`: Update your personal information, skills, and projects
-- `public/`: Add your images and resume PDF
-- `app/globals.css`: Modify the color scheme and global styles
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive and optimized for:
-- Mobile devices
-- Tablets
-- Desktops
-- Large screens
-
-## ⚡ Performance
-
-- Optimized images and assets
-- Lazy loading components
-- Efficient animation handling
-- Minimal bundle size
-
-## 🎨 Customization
-
-### Theme Colors
-
-The color scheme can be customized in `globals.css`:
-```css
-:root {
-  --background-light: 0 0% 100%;
-  --background-dark: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --secondary: 142.1 76.2% 36.3%;
-  /* ... other color variables */
-}
-```
-
-### Content
-
-Update your information in `resume-data.ts`:
-```typescript
-export const RESUME_DATA = {
-  name: "Your Name",
-  location: "Your Location",
-  about: "Your Description",
-  // ... other personal information
-};
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📞 Contact
-
-For any questions or feedback, please reach out:
-- Email: ucefsahih@gmail.com
-- LinkedIn: [Youssef Sahih](https://www.linkedin.com/in/youssef-sahih/)
-- GitHub: [@ysahih](https://github.com/ysahih)
+With Resend's shared sender (`onboarding@resend.dev`), mail is only delivered to the address that owns the Resend account. Verify a domain in Resend and set `CONTACT_FROM_EMAIL` to send from your own address.
 
 ---
 
-Built with ❤️ by Youssef Sahih
+## Manual to-do list (things code cannot do)
+
+### 1. CV files
+
+- [ ] Put the French CV at `public/cv.pdf` and the English one at `public/resume.pdf`.
+      Both download buttons in the hero link to these exact paths.
+- [ ] Check that both PDFs match the site: Paris 17e, +33 7 52 93 53 14, Im'enSe ended Oct 2026,
+      42 Paris since Nov 2026, alternance from January 2027.
+- [ ] Commit them (`git add public/cv.pdf public/resume.pdf`). Files that are not committed are not deployed.
+
+### 2. GitHub profile
+
+- [ ] Profile → Edit profile → **Location**: `Paris, France`.
+- [ ] Optional bio: `React/TypeScript developer · 42 Paris · Seeking an apprenticeship (alternance) from January 2027`.
+
+### 3. Repository descriptions
+
+Repo page → ⚙️ next to **About** → paste the description, add the website and topics.
+
+**`sentra-challenge`**
+
+> Electron desktop app for meeting intelligence: offline transcription with whisper.cpp and cloud diarization with AssemblyAI side by side, plus a Claude-powered chat grounded in the transcript. React + TypeScript UI, Node.js backend, packaged with Electron Builder and GitHub Actions.
+
+Topics: `electron` `react` `typescript` `nodejs` `whisper-cpp` `assemblyai` `claude-api` `github-actions`
+
+**`CVE-Vulnerability-Analyzer`**
+
+> Python tool that fetches CVE records from the NIST National Vulnerability Database (NVD) API, filters and processes them with pandas, and surfaces vulnerability descriptions for analysis.
+
+Topics: `python` `cve` `nvd` `pandas` `cybersecurity` `vulnerability-analysis`
+
+### 4. Hosting (Vercel)
+
+- [ ] If you want the contact form: add `RESEND_API_KEY` (and optionally `CONTACT_FROM_EMAIL`) under Project → Settings → Environment Variables, then redeploy. The page is static, so the key is read at build time.
+- [ ] After deploying, check that `https://sahih.codes/` redirects to `/fr`, and share `/fr` or `/en` links depending on the recipient.
+
+### 5. Elsewhere
+
+- [ ] LinkedIn: location set to Paris, and the Im'enSe role marked as ended in October 2026, so it matches the site.
+
+---
+
+Contact: [youssefsahih9@gmail.com](mailto:youssefsahih9@gmail.com) · [LinkedIn](https://linkedin.com/in/youssef-sahih) · [GitHub](https://github.com/ysahih)
