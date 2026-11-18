@@ -141,16 +141,16 @@ const Footer: React.FC<FooterProps> = ({ socialLinks }) => {
               </li>
               <li>
                 <a
-                  href="tel:+212708978739"
+                  href="tel:+33752935314"
                   className="transition-colors"
                   style={{ opacity: 0.6 }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = '1'; (e.currentTarget as HTMLElement).style.color = 'var(--accent)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = '0.6'; (e.currentTarget as HTMLElement).style.color = ''; }}
                 >
-                  +212 708 978 739
+                  +33 7 52 93 53 14
                 </a>
               </li>
-              <li className="opacity-60">Morocco — relocating to Paris, 27 October 2026</li>
+              <li className="opacity-60">Paris 17e, France</li>
             </ul>
           </div>
         </div>

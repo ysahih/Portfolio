@@ -3,7 +3,7 @@ import { GitHubIcon, LinkedInIcon, XIcon } from "../components/icons";
 export const RESUME_DATA = {
   name: "Youssef Sahih",
   title: "Software Engineer — React, TypeScript, Testing",
-  location: "Morocco — relocating to Paris, 27 October 2026",
+  location: "Paris 17e, France",
 
   languages: [
     { name: "Arabic", level: "Native" },
@@ -11,10 +11,10 @@ export const RESUME_DATA = {
     { name: "French", level: "A2, in progress" },
   ],
 
-  availability: "Open to a 24-month apprenticeship · Jan 2027 · Paris",
+  availability: "Seeking a 24-month apprenticeship (alternance) · January 2027 intake · Paris / Île-de-France",
 
   headline:
-    "Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features.",
+    "Software engineer with three years in production React and TypeScript, who has owned the end-to-end test suite as well as the features.",
 
   heroStats: [
     { value: "138", label: "Merged pull requests" },
@@ -23,16 +23,16 @@ export const RESUME_DATA = {
   ],
 
   about:
-    "Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
+    "Software engineer with three years in production React and TypeScript, who has owned the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
 
   summary:
-    "Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
+    "Software engineer with three years in production React and TypeScript, who has owned the end-to-end test suite as well as the features. 138 merged pull requests over 26 months in one production codebase, 109 Cypress specs and a 133-test Playwright suite. Backend and systems work in Node, NestJS and C++ through personal and 42 Network projects.",
 
   avatarUrl: "/ysahih.jpg",
 
   contact: {
     email: "youssefsahih9@gmail.com",
-    tel: "+212708978739",
+    tel: "+33 7 52 93 53 14",
     social: [
       {
         name: "GitHub",
@@ -56,8 +56,8 @@ export const RESUME_DATA = {
     {
       school: "42 Paris",
       degree: "IT Architecture Expert, RNCP title level 7 (EQF 7)",
-      start: "Oct 2026",
-      end: "present",
+      start: "Nov 2026",
+      end: "ongoing",
       location: "Paris, France",
       description: "Preparing RNCP 39774, \"Expert en architecture informatique\". Software architecture, systems, networking, data architecture. Level 14 and Work Experience validated; eligible for a 24-month apprenticeship contract.",
     },
@@ -65,7 +65,7 @@ export const RESUME_DATA = {
       school: "1337 Coding School — 42 Network",
       degree: "Software Engineering Program",
       start: "2022",
-      end: "2026",
+      end: "Oct 2026",
       location: "Khouribga, Morocco",
       description: "Systems and network programming in C/C++, algorithms, web architecture, relational databases. Peer-learning, code review and project-based assessment, no lectures.",
     },
@@ -108,20 +108,20 @@ export const RESUME_DATA = {
       logo: "/image.png",
       location: "Tangier, Morocco",
       startDate: "Aug 2024",
-      endDate: "Present",
-      description: "Building QHSE-sector web applications with React 18 and TypeScript.",
+      endDate: "Oct 2026",
+      description: "Built QHSE-sector web applications with React 18 and TypeScript.",
       scale: "138 merged pull requests over 26 months, across roughly 1,500 files.",
-      skills: ["React", "TypeScript", "Redux Toolkit", "RTK Query", "Cypress", "Playwright", "Node.js", "Jira", "Agile", "Git", "CI/CD", "REST APIs"],
+      skills: ["React", "TypeScript", "Redux Toolkit", "RTK Query", "Cypress", "Playwright", "Node.js", "Agile", "Git", "CI/CD", "REST APIs"],
       achievements: [
-        "Own the end-to-end test suite. 109 Cypress specs covering roughly a thousand assertions, running against both mocked network and a live dev backend, plus a Playwright suite of 133 tests using route mocking and role-based selectors",
+        "Owned the end-to-end test suite. 109 Cypress specs covering roughly a thousand assertions, running against both mocked network and a live dev backend, plus a Playwright suite of 133 tests using route mocking and role-based selectors",
         "Hardened the Cypress CI workflow with a concurrency group so parallel runs stopped corrupting the shared test backend",
         "Built the RTK Query data layer: 13 API modules with tag-based cache invalidation across 17 files",
-        "Introduced CSS-variable design tokens into the Tailwind config, now the colour system across 450+ component files",
-        "Built a feature-level component set from Figma specs on top of the internal design system — form fields, status badges, KPI and data cards — shown in an in-app playground route. The status badge was promoted into the shared core library and is imported by six screens",
+        "Introduced CSS-variable design tokens into the Tailwind config, which became the colour system across 450+ component files",
+        "Built a feature-level component set from Figma specs on top of the internal design system — form fields, status badges, KPI and data cards — shown in an in-app playground route. The status badge was promoted into the shared core library and imported by six screens",
         "Developed and maintained 30+ React 18 modules using TypeScript, Redux Toolkit, and RTK Query in production",
-        "Route-level code splitting across the app's route files, a lazy-loading image component with blur placeholders, and a cache-key fix that stopped filtered result sets collapsing into a single entry",
+        "Added route-level code splitting across the app's route files, a lazy-loading image component with blur placeholders, and a cache-key fix that stopped filtered result sets collapsing into a single entry",
         "Resolved non-deterministic hook ordering bugs and optimistic UI timing issues through precise cache lifecycle management",
-        "~1,500 translation keys across 7 locales; 94 custom hooks; 1,538 typed interfaces across 465 files; collaborated with backend on REST API contracts and payload design",
+        "Worked across ~1,500 translation keys in 7 locales, 94 custom hooks and 1,538 typed interfaces across 465 files; collaborated with backend on REST API contracts and payload design",
       ],
     },
     {

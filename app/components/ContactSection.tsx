@@ -198,7 +198,7 @@ const ContactSection: React.FC<ContactProps> = ({ contact, location, languages }
                 </div>
                 <div className="flex-1">
                   <h4 className="font-medium text-lg mb-1">Phone</h4>
-                  <a href={`tel:${contact.tel}`} className="transition-colors" style={{ color: 'var(--text-secondary)' }} onMouseEnter={e => (e.currentTarget.style.color='var(--accent)')} onMouseLeave={e => (e.currentTarget.style.color='var(--text-secondary)')}>
+                  <a href={`tel:${contact.tel.replace(/\s/g, '')}`} className="transition-colors" style={{ color: 'var(--text-secondary)' }} onMouseEnter={e => (e.currentTarget.style.color='var(--accent)')} onMouseLeave={e => (e.currentTarget.style.color='var(--text-secondary)')}>
                     {contact.tel}
                   </a>
                 </div>

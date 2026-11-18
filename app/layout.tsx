@@ -31,7 +31,7 @@ const bricolage = Bricolage_Grotesque({
 export const metadata: Metadata = {
   title: 'Youssef Sahih — Software Engineer — React, TypeScript, Testing',
   description: 'Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
-  keywords: ['software engineer', 'frontend engineer', 'React', 'TypeScript', 'Next.js', 'Cypress', 'Playwright', 'end-to-end testing', 'Paris', 'Morocco'],
+  keywords: ['software engineer', 'frontend engineer', 'React', 'TypeScript', 'Next.js', 'Cypress', 'Playwright', 'end-to-end testing', 'Paris', 'alternance'],
   authors: [{ name: 'Youssef Sahih' }],
   openGraph: {
     type: 'website',
@@ -67,10 +67,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               image: 'https://sahih.codes/ysahih.jpg',
               description: 'Software engineer with three years in production React and TypeScript, who owns the end-to-end test suite as well as the features. 138 merged pull requests, 109 Cypress specs and a 133-test Playwright suite.',
               jobTitle: 'Software Engineer',
-              worksFor: { '@type': 'Organization', name: "Im'enSe" },
-              address: { '@type': 'PostalAddress', addressCountry: 'Morocco' },
+              address: { '@type': 'PostalAddress', addressLocality: 'Paris', postalCode: '75017', addressCountry: 'FR' },
               email: 'youssefsahih9@gmail.com',
-              telephone: '+212708978739',
+              telephone: '+33752935314',
               sameAs: [
                 'https://github.com/ysahih',
                 'https://www.linkedin.com/in/youssef-sahih/',
